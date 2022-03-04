@@ -1,0 +1,12 @@
+.todoapp .toggle-all + label {
+  top: 14px;
+  left: -6px;
+  z-index: 999999;
+}
+
+.todoapp .toggle-all + label,
+.todoapp .filters li a,
+.todoapp .todo-list li .toggle,
+.todoapp .todo-list li .destroy {
+  cursor: pointer;
+}

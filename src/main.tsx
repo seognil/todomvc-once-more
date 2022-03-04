@@ -1,11 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
+import React from "react";
+import ReactDOM from "react-dom";
+import { RecoilRoot } from "recoil";
+import { TodoApp } from "./TodoApp";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RecoilRoot>
+      <TodoApp />
+    </RecoilRoot>
   </React.StrictMode>,
-  document.getElementById('root')
-)
+  document.getElementById("root"),
+);
