@@ -78,8 +78,8 @@ const Aside: FC<{ info: LayoutInfo; server: boolean }> = ({ info, server }) => {
                   <td>{prettySize(e.gsize)}</td>
                 </tr>
               ))}
-              <tr className="sum">
-                <td>Sum</td>
+              <tr className="total">
+                <td>Total</td>
                 <td>{prettySize(info.dist.map((e) => e.size).reduce((a, b) => a + b, 0))}</td>
                 <td>{prettySize(info.dist.map((e) => e.gsize).reduce((a, b) => a + b, 0))}</td>
               </tr>
