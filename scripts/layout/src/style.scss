@@ -1,0 +1,172 @@
+$primaryColor: hsla(220, 80%, 60%, 1);
+
+html,
+body {
+  margin: 0;
+  background-color: hsla(0, 0%, 95%, 1);
+}
+
+.todomvc-layout {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+
+  #todomvc-inject-app-container {
+    flex: 1;
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 8px;
+  }
+
+  & > aside {
+    overflow: scroll;
+    background-color: hsla(0, 0%, 100%, 1);
+    width: 450px;
+    margin: 8px;
+    padding: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+      "Helvetica Neue", sans-serif;
+
+    // * ---------------- common
+
+    & > hr {
+      border: none;
+      border-bottom: 1px solid hsla(0, 0%, 80%, 1);
+      margin: 32px 0;
+    }
+
+    & > h1 {
+      font-size: 24px;
+    }
+
+    & > h3 {
+      font-size: 18px;
+    }
+
+    & a {
+      color: $primaryColor;
+      transition-duration: 300ms;
+      cursor: pointer;
+
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    // * ---------------- back button
+
+    & .back button {
+      background-color: hsla(0, 0%, 100%, 1);
+      color: $primaryColor;
+      border: none;
+      padding: 8px;
+      border-radius: 4px;
+
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      transition-duration: 300ms;
+
+      &:hover {
+        background-color: hsla(0, 0%, 95%, 1);
+      }
+    }
+
+    // * ---------------- source link
+
+    & .src {
+      display: block;
+      margin: 16px 0;
+    }
+
+    // * ---------------- dist table
+
+    & table {
+      width: 100%;
+      border-collapse: collapse;
+
+      & th:first-child,
+      & td:first-child {
+        text-align: left;
+      }
+
+      & th,
+      & td {
+        text-align: right;
+        border: 1px solid hsla(0, 0%, 80%, 1);
+        padding: 4px;
+      }
+
+      & .sum {
+        font-weight: bold;
+      }
+
+      // http://zhongguose.com/#gaolianghong
+      // http://paletton.com/#uid=75A1b0koFoJe-wZjKr-rxjNwPeD
+      // hue 0 45 180 225
+      & .file-html {
+        color: #c52d2d;
+      }
+      & .file-css {
+        color: #23577f;
+      }
+      & .file-js {
+        color: #249e24;
+      }
+      & .file-asset {
+        color: #c5842d;
+      }
+      & .file-source {
+        color: hsla(0, 0%, 70%, 1);
+      }
+    }
+
+    // * ---------------- stacks list
+
+    & .stacks {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      & > li {
+        margin: 8px 0;
+        padding: 0;
+
+        &::before {
+          content: "-";
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          // background-color: hsla(0, 0%, 100%, 1);
+          border-radius: 50%;
+          margin-right: 8px;
+        }
+      }
+    }
+
+    // * ---------------- desc quote
+
+    & .desc {
+      & > blockquote {
+        margin: 16px 0;
+        border-left: 10px solid hsla(220, 20%, 50%, 0.1);
+        background-color: hsla(220, 20%, 50%, 0.05);
+        border-radius: 4px;
+        padding: 0.5px 16px;
+        line-height: 1.35em;
+        white-space: pre-line;
+
+        & > p {
+          text-indent: 2em;
+        }
+
+        & > .desc-link {
+          font-size: 18px;
+          font-weight: bold;
+          text-indent: unset;
+        }
+      }
+    }
+  }
+}

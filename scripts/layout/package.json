@@ -1,0 +1,23 @@
+{
+  "name": "scripts-layout",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@vitejs/plugin-react": "^1.3.0",
+    "sass": "^1.50.0",
+    "typescript": "^4.6.3",
+    "unocss": "^0.31.3",
+    "vite": "^2.9.2"
+  }
+}
