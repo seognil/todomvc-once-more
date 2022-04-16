@@ -61,20 +61,30 @@ body {
 
     // * ---------------- back button
 
-    .back button {
-      background-color: hsla(0, 0%, 100%, 1);
-      color: $primaryColor;
-      border: none;
-      padding: 8px;
-      border-radius: 4px;
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-      transition-duration: 300ms;
+      button {
+        background-color: hsla(0, 0%, 100%, 1);
+        color: $primaryColor;
+        border: none;
+        padding: 8px;
+        border-radius: 4px;
 
-      &:hover {
-        background-color: hsla(0, 0%, 95%, 1);
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        transition-duration: 300ms;
+
+        &:hover {
+          background-color: hsla(0, 0%, 95%, 1);
+        }
+      }
+
+      a {
+        font-size: 40px;
       }
     }
 

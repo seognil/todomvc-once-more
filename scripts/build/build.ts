@@ -69,6 +69,7 @@ const parseProject = async (projectFullPath: string): Promise<ProjectInfo> => {
 
 const genLayoutInfo = (info: ProjectInfo): LayoutInfo => ({
   backUrl: "../",
+  githubUrl: `https://github.com/seognil/todomvc-once-more`,
   sourceUrl: `https://github.com/seognil/todomvc-once-more/tree/master/examples/${info.projName}`,
   title: info.meta.title,
   dist: info.files,

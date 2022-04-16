@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useRef } from "react";
+import { FaGithubSquare } from "react-icons/fa";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import type { StackInfo } from "../../../stacks";
@@ -7,6 +8,7 @@ import type { StackInfo } from "../../../stacks";
 
 export interface LayoutInfo {
   backUrl: string;
+  githubUrl: string;
   sourceUrl: string;
 
   title: string;
@@ -36,9 +38,15 @@ export const Layout: FC<{ info?: LayoutInfo; server?: boolean }> = ({ info = Moc
 const Aside: FC<{ info: LayoutInfo; server: boolean }> = ({ info, server }) => {
   return (
     <aside>
-      <a className="back" href={info.backUrl}>
-        <button type="button">← Back</button>
-      </a>
+      <div className="nav">
+        <a href={info.backUrl}>
+          <button type="button">← Back</button>
+        </a>
+
+        <a href={info.githubUrl} aria-label="Github Repo">
+          <FaGithubSquare />
+        </a>
+      </div>
 
       <hr />
 
@@ -202,6 +210,7 @@ const libs: Record<string, StackInfo> = {
 
 const MockInfo: LayoutInfo = {
   backUrl: "",
+  githubUrl: "",
   sourceUrl: "",
   title: "React Project",
   dist: [
