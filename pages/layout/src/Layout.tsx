@@ -65,7 +65,7 @@ const Aside: FC<{ info: LayoutInfo; server: boolean }> = ({ info, server }) => {
           <table>
             <tbody>
               <tr>
-                <th>file</th>
+                <th>Files</th>
                 <th>size</th>
                 <th>gzip</th>
               </tr>
