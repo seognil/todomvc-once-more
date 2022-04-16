@@ -1,7 +1,7 @@
+import { Layout, prettyCodeBlock } from "layout";
 import { parse } from "node-html-parser";
 import { createElement } from "react";
 import * as ReactDOMServer from "react-dom/server";
-import { Layout } from "../layout/src/Layout";
 
 // * ----------------------------------------------------------------
 
@@ -13,7 +13,14 @@ export const injectAppHtml = (html: string, injectCssName: string, info = null) 
   const injectCss = (head: ReturnType<typeof parse>) =>
     injectCssName && head.appendChild(parse(`<link rel="stylesheet" href="${injectCssName}">`));
 
-  const layoutNode = parse(ReactDOMServer.renderToString(createElement(Layout, { info }, null)));
+  const layoutNode = parse(
+    //
+    ReactDOMServer.renderToString(createElement(Layout, { info, server: true }, null)),
+    { blockTextElements: { code: true } },
+  );
+
+  // @ts-ignore
+  prettyCodeBlock(layoutNode);
 
   if (fullHtmlMode) {
     // * -------------------------------- while full html

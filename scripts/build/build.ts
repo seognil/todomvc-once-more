@@ -1,6 +1,7 @@
 import fs from "fs-extra";
 import { globby } from "globby";
 import { gzipSize } from "gzip-size";
+import md5 from "md5";
 import { basename, dirname, join } from "node:path";
 import { stacks } from "../../stacks";
 import type { LayoutInfo } from "../layout/src/Layout";
@@ -11,7 +12,7 @@ import { injectAppHtml } from "./injectAppHtml";
 // const ROOT_DIR = join(process.cwd(), ".");
 const ROOT_DIR = join(__dirname, "../../");
 const PROJECTS_DIR = join(ROOT_DIR, "examples");
-const OUTPUT_DIR = join(ROOT_DIR, "build");
+const OUTPUT_DIR = join(ROOT_DIR, "dist");
 
 type FullPath = string & {};
 type SubPath = string & {};
@@ -30,6 +31,7 @@ interface Meta {
   title: string;
   stacks: StackName[];
   desc?: StackName[];
+  core?: string[];
 }
 
 // * ---------------------------------------------------------------- projects statistics
@@ -72,22 +74,21 @@ const genLayoutInfo = (info: ProjectInfo): LayoutInfo => ({
   dist: info.files,
   stacks: info.meta.stacks.map((e) => stacks[e.toLowerCase()]).filter((e) => e),
   desc: info.meta.desc?.map((e) => stacks[e.toLowerCase()]).filter((e) => e) ?? [],
+  core: info.meta.core ?? [],
 });
 
 // * ---------------------------------------------------------------- single
 
-const rebuildSingle = async (projPath: FullPath, injectCss: FullPath) => {
+const rebuildSingle = async (projPath: FullPath, injectedCss: SubPath) => {
   const p = await parseProject(projPath);
   const outProjDir = join(OUTPUT_DIR, p.projName);
   const outProjIndex = join(OUTPUT_DIR, p.projName, "index.html");
-  const cssFileName = basename(injectCss);
 
   await fs.copy(join(p.projRoot, p.distName), outProjDir);
-  await fs.copy(injectCss, join(outProjDir, cssFileName));
 
   await fs.writeFile(
     outProjIndex,
-    injectAppHtml(await fs.readFile(outProjIndex, "utf8"), basename(injectCss), genLayoutInfo(p)),
+    injectAppHtml(await fs.readFile(outProjIndex, "utf8"), injectedCss, genLayoutInfo(p)),
   );
 };
 
@@ -101,9 +102,11 @@ const rebuildAll = async () => {
     cwd: PROJECTS_DIR,
   }).then((list) => list.map((e) => dirname(join(PROJECTS_DIR, e))));
 
-  const injectCss = (await globby(join(ROOT_DIR, "scripts/layout/dist/assets/*.css")))[0];
+  const injectedCss = (await globby(join(ROOT_DIR, "scripts/layout/dist/layout.css")))[0];
+  const hashedName = md5(await fs.readFile(injectedCss)).slice(-8) + ".css";
+  await fs.copy(injectedCss, join(OUTPUT_DIR, hashedName));
 
-  await Promise.all(projectFullPathList.map((p) => rebuildSingle(p, injectCss)));
+  await Promise.all(projectFullPathList.map((p) => rebuildSingle(p, `../${hashedName}`)));
 };
 
 // * ---------------------------------------------------------------- run
