@@ -37,7 +37,7 @@ interface Meta {
 // * ---------------------------------------------------------------- projects statistics
 
 const parseProject = async (projectFullPath: string): Promise<ProjectInfo> => {
-  const distFullPath = (await globby(join(projectFullPath, "{dist,build}/index.html"))).map((e) => dirname(e)).at(0);
+  const distFullPath = (await globby(join(projectFullPath, "{dist,build}/index.html"))).map((e) => dirname(e))[0];
 
   if (!distFullPath) return null;
 
