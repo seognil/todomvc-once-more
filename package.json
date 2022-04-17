@@ -1,8 +1,10 @@
 {
   "scripts": {
-    "build:all": "pnpm build:projects && pnpm build:inject",
-    "build:projects": "pnpm -r build",
-    "build:inject": "pnpm run build:inject --dir scripts/build",
+    "dev:layout": "pnpm dev --filter ./packages/pages/layout",
+    "build": "pnpm build:projects && pnpm build:packages && pnpm build:inject",
+    "build:projects": "pnpm build --filter ./examples",
+    "build:packages": "pnpm build --filter ./packages/utils && pnpm build --filter ./packages/pages",
+    "build:inject": "pnpm build --filter ./scripts/build",
     "preview": "serve dist",
     "pretty": "prettier -w **/{src,scripts}/** --plugin-search-dir=."
   },

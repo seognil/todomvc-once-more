@@ -1,6 +1,0 @@
-{
-  "title": "React Hooks + Recoil",
-  "stacks": ["react", "recoil", "ts", "vite"],
-  "desc": ["recoil"],
-  "core": ["<RecoilRoot>", "atom()", "selector()", "useRecoilState()"]
-}

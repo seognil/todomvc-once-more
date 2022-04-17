@@ -1,6 +1,6 @@
 import { StackInfo } from "./types";
 
-export const stacks: Record<string, StackInfo> = {
+const rawData = {
   ts: {
     name: "TypeScript",
     url: "https://www.typescriptlang.org/",
@@ -34,3 +34,9 @@ export const stacks: Record<string, StackInfo> = {
     desc: `Vite (French word for "quick", pronounced /vit/, like "veet") is a build tool that aims to provide a faster and leaner development experience for modern web projects. `,
   },
 };
+
+export type StackName = keyof typeof rawData;
+
+const typeCheckOnly = rawData as Record<string, StackInfo>;
+
+export const stacks = rawData as Record<StackName, StackInfo>;

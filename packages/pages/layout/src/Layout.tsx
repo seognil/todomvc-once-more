@@ -2,27 +2,7 @@ import React, { FC, useEffect, useRef } from "react";
 import { FaGithubSquare } from "react-icons/fa";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import type { StackInfo } from "@todo/data";
-
-// * ----------------------------------------------------------------
-
-export interface LayoutInfo {
-  backUrl: string;
-  githubUrl: string;
-  sourceUrl: string;
-
-  title: string;
-  dist: FileInfo[];
-  stacks: StackInfo[];
-  desc: StackInfo[];
-  core: string[];
-}
-
-export interface FileInfo {
-  file: string;
-  size: number;
-  gsize: number;
-}
+import { LayoutInfo, stacks } from "../../../utils/data";
 
 // * ----------------------------------------------------------------
 
@@ -114,11 +94,11 @@ const Aside: FC<{ info: LayoutInfo; server: boolean }> = ({ info, server }) => {
         </>
       )}
 
-      {info.desc.length > 0 && (
+      {info.quotes.length > 0 && (
         <>
           <hr />
 
-          {info.desc.map((e) => (
+          {info.quotes.map((e) => (
             <div key={e.name} className="desc">
               <blockquote>
                 <p className="desc-link">
@@ -190,57 +170,29 @@ const prettySize = (size: number) => `${(size / 1024).toFixed(2)} kB`;
 
 // * ---------------------------------------------------------------- mock
 
-const libs: Record<string, StackInfo> = {
-  react: {
-    name: "React",
-    url: "https://reactjs.org/",
-    desc: "",
-  },
-  recoil: {
-    name: "Recoil",
-    url: "https://recoiljs.org/",
-    desc: "Atoms are units of state. They're updatable and subscribable: when an atom is updated, each subscribed component is re-rendered with the new value. They can be created at runtime, too. Atoms can be used in place of React local component state. If the same atom is used from multiple components, all those components share their state.",
-  },
-  ts: {
-    name: "TypeScript",
-    url: "https://www.typescriptlang.org/",
-    desc: "TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.",
-  },
-};
-
 const MockInfo: LayoutInfo = {
   backUrl: "",
   githubUrl: "",
-  sourceUrl: "",
+
   title: "React Project",
-  dist: [
-    {
-      file: "index.html",
-      size: 453,
-      gsize: 300,
-    },
-    {
-      file: "assets/index.53b1ee6e.css",
-      size: 5503,
-      gsize: 1732,
-    },
-    {
-      file: "assets/index.8f46499b.js",
-      size: 213827,
-      gsize: 68191,
-    },
-    {
-      file: "assets/index.8f46499b8f46499b8f46499b8f46499b8f46499b8f46499b.svg",
-      size: 213827,
-      gsize: 68191,
-    },
-    {
-      file: "assets/index.8f46499b.js.map",
-      size: 213827,
-      gsize: 68191,
-    },
+  sourceUrl: "",
+
+  cloc: [
+    { type: "CSS", files: 2, blank: 54, comment: 9, code: 321 },
+    { type: "TypeScript", files: 8, blank: 64, comment: 22, code: 237 },
   ],
-  stacks: [libs.react, libs.recoil, libs.ts],
-  desc: [libs.recoil, libs.ts],
+  dist: [
+    { file: "index.html", size: 453, gsize: 300 },
+    { file: "assets/index.53b1ee6e.css", size: 5503, gsize: 1732 },
+    { file: "assets/index.8f46499b.js", size: 213827, gsize: 68191 },
+    { file: "assets/index.8f46499b8f46499b8f46499b8f46499b8f46499b8f46499b.svg", size: 213827, gsize: 68191 },
+    { file: "assets/index.8f46499b8f46499b8f46499b8f46499b8f46499b8f46499b.js.map", size: 213827, gsize: 68191 },
+  ],
+
+  stacks: [stacks.react, stacks.recoil, stacks.ts],
   core: ["<RecoilRoot>", "atom()", "selector()", "useRecoilState()"],
+
+  desc: { short: "Use several atoms to organize ui state", long: "" },
+  quotes: [stacks.recoil],
+  references: [stacks.recoil],
 };

@@ -1,49 +1,66 @@
+import { ClocInfo, FileInfo, FullPath, LayoutInfo, ProjectStatistics, stacks, SubPath } from "@todo/data";
+import { execa } from "execa";
 import fs from "fs-extra";
 import { globby } from "globby";
 import { gzipSize } from "gzip-size";
-import type { LayoutInfo } from "@todo/pages-layout";
 import md5 from "md5";
 import { basename, dirname, join } from "node:path";
-import { stacks } from "@todo/data";
 import { injectAppHtml } from "./injectAppHtml";
 
-// * ---------------------------------------------------------------- const and type
+// * ================================================================================ const and type
 
 // const ROOT_DIR = join(process.cwd(), ".");
 const ROOT_DIR = join(__dirname, "../../");
 const PROJECTS_DIR = join(ROOT_DIR, "examples");
 const OUTPUT_DIR = join(ROOT_DIR, "dist");
 
-type FullPath = string & {};
-type SubPath = string & {};
-type BaseName = string & {};
-type StackName = string & {};
+// * ================================================================================ process
 
-interface ProjectInfo {
-  projRoot: FullPath;
-  projName: BaseName;
-  distName: BaseName;
-  files: { size: number; gsize: number; file: SubPath }[];
-  meta: Meta;
-}
+// * -------------------------------- projects statistics
 
-interface Meta {
-  title: string;
-  stacks: StackName[];
-  desc?: StackName[];
-  core?: string[];
-}
-
-// * ---------------------------------------------------------------- projects statistics
-
-const parseProject = async (projectFullPath: string): Promise<ProjectInfo> => {
+const parseProject = async (projectFullPath: string): Promise<ProjectStatistics> => {
   const distFullPath = (await globby(join(projectFullPath, "{dist,build}/index.html"))).map((e) => dirname(e))[0];
 
-  if (!distFullPath) return null;
+  const { default: meta } = await import(join(projectFullPath, "meta.js"));
 
-  // * ----------------
+  return {
+    projName: basename(projectFullPath),
+    projRoot: projectFullPath,
+    distName: basename(distFullPath),
 
-  const distFiles = await Promise.all(
+    cloc: await parseCloc(join(projectFullPath, "src")),
+    dist: await parseDist(distFullPath),
+
+    meta,
+  };
+};
+
+// * -------------------------------- cloc
+
+const parseCloc = async (projFullPath: FullPath): Promise<ClocInfo[]> => {
+  const { stdout } = await execa("npx", ["cloc", projFullPath, "--csv", "--quiet"]);
+  const result = stdout
+    .trim()
+    .split("\n")
+    .slice(1, -1)
+    .map((e) => {
+      const [files, type, blank, comment, code] = e.split(",");
+      return {
+        type,
+        files: Number(files),
+        blank: Number(blank),
+        comment: Number(comment),
+        code: Number(code),
+      };
+    });
+
+  return result;
+};
+
+// * -------------------------------- dist
+
+const parseDist = async (distFullPath: FullPath): Promise<FileInfo[]> =>
+  await Promise.all(
     (
       await globby("**", { cwd: distFullPath })
     ).map(async (file) => {
@@ -54,31 +71,28 @@ const parseProject = async (projectFullPath: string): Promise<ProjectInfo> => {
     }),
   );
 
-  const meta = await fs.readJSON(join(projectFullPath, "meta.json")).catch(() => ({}));
+// * -------------------------------- layout props
 
-  return {
-    projName: basename(projectFullPath),
-    projRoot: projectFullPath,
-    distName: basename(distFullPath),
-    files: distFiles,
-    meta,
-  };
-};
-
-// * ---------------------------------------------------------------- layout props
-
-const genLayoutInfo = (info: ProjectInfo): LayoutInfo => ({
+const genLayoutInfo = (info: ProjectStatistics): LayoutInfo => ({
   backUrl: "../",
   githubUrl: `https://github.com/seognil/todomvc-once-more`,
-  sourceUrl: `https://github.com/seognil/todomvc-once-more/tree/master/examples/${info.projName}`,
+
   title: info.meta.title,
-  dist: info.files,
-  stacks: info.meta.stacks.map((e) => stacks[e.toLowerCase()]).filter((e) => e),
-  desc: info.meta.desc?.map((e) => stacks[e.toLowerCase()]).filter((e) => e) ?? [],
-  core: info.meta.core ?? [],
+  sourceUrl: `https://github.com/seognil/todomvc-once-more/tree/master/examples/${info.projName}`,
+  cloc: info.cloc,
+  dist: info.dist,
+
+  stacks: info.meta.stacks.map((e) => stacks[e]),
+  core: info.meta.core,
+
+  desc: info.meta.desc,
+  quotes: info.meta.quotes.map((e) => stacks[e]),
+  references: info.meta.references.map((e) => (typeof e === "string" ? stacks[e] : e)),
 });
 
-// * ---------------------------------------------------------------- single
+// * ================================================================================ tasks
+
+// * -------------------------------- single
 
 const rebuildSingle = async (projPath: FullPath, injectedCss: SubPath) => {
   const p = await parseProject(projPath);
@@ -87,13 +101,12 @@ const rebuildSingle = async (projPath: FullPath, injectedCss: SubPath) => {
 
   await fs.copy(join(p.projRoot, p.distName), outProjDir);
 
-  await fs.writeFile(
-    outProjIndex,
-    injectAppHtml(await fs.readFile(outProjIndex, "utf8"), injectedCss, genLayoutInfo(p)),
-  );
+  const info = genLayoutInfo(p);
+
+  await fs.writeFile(outProjIndex, injectAppHtml(await fs.readFile(outProjIndex, "utf8"), injectedCss, info));
 };
 
-// * ---------------------------------------------------------------- all
+// * -------------------------------- all
 
 const rebuildAll = async () => {
   await fs.ensureDir(OUTPUT_DIR);
@@ -110,6 +123,6 @@ const rebuildAll = async () => {
   await Promise.all(projectFullPathList.map((p) => rebuildSingle(p, `../${hashedName}`)));
 };
 
-// * ---------------------------------------------------------------- run
+// * ================================================================================ run
 
 rebuildAll();

@@ -1,0 +1,16 @@
+{
+  "name": "@todo/lang-colors",
+  "private": true,
+  "main": "./dist/index.mjs",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsno run fetch.ts && tsup --format=esm index.ts"
+  },
+  "devDependencies": {
+    "fs-extra": "^10.1.0",
+    "node-libcurl": "^2.3.4",
+    "tsno": "^2.0.0",
+    "tsup": "^5.12.5",
+    "yaml": "^2.0.1"
+  }
+}
