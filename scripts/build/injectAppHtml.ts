@@ -1,4 +1,4 @@
-import { Layout, prettyCodeBlock } from "layout";
+import { Layout, prettyCodeBlock } from "@todo/pages-layout";
 import { parse } from "node-html-parser";
 import { createElement } from "react";
 import * as ReactDOMServer from "react-dom/server";

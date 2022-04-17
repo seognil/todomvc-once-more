@@ -1,5 +1,5 @@
 {
-  "name": "layout",
+  "name": "@todo/pages-layout",
   "private": true,
   "version": "0.0.0",
   "main": "./dist/Layout.js",
@@ -17,6 +17,7 @@
     "react-syntax-highlighter": "^15.5.0"
   },
   "devDependencies": {
+    "@todo/data": "workspace:*",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-syntax-highlighter": "^13.5.2",

@@ -2,7 +2,7 @@ import React, { FC, useEffect, useRef } from "react";
 import { FaGithubSquare } from "react-icons/fa";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import type { StackInfo } from "../../../stacks";
+import type { StackInfo } from "@todo/data";
 
 // * ----------------------------------------------------------------
 

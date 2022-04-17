@@ -1,10 +1,10 @@
 import fs from "fs-extra";
 import { globby } from "globby";
 import { gzipSize } from "gzip-size";
-import type { LayoutInfo } from "layout";
+import type { LayoutInfo } from "@todo/pages-layout";
 import md5 from "md5";
 import { basename, dirname, join } from "node:path";
-import { stacks } from "../../stacks";
+import { stacks } from "@todo/data";
 import { injectAppHtml } from "./injectAppHtml";
 
 // * ---------------------------------------------------------------- const and type
@@ -103,7 +103,7 @@ const rebuildAll = async () => {
     cwd: PROJECTS_DIR,
   }).then((list) => list.map((e) => dirname(join(PROJECTS_DIR, e))));
 
-  const injectedCss = (await globby(join(ROOT_DIR, "pages/layout/dist/layout.css")))[0];
+  const injectedCss = (await globby(join(ROOT_DIR, "packages/pages/layout/dist/layout.css")))[0];
   const hashedName = md5(await fs.readFile(injectedCss)).slice(-8) + ".css";
   await fs.copy(injectedCss, join(OUTPUT_DIR, hashedName));
 

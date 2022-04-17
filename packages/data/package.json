@@ -1,0 +1,13 @@
+{
+  "name": "@todo/data",
+  "private": true,
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsup --format=cjs src"
+  },
+  "devDependencies": {
+    "tsup": "^5.12.5"
+  }
+}
