@@ -1,6 +1,6 @@
 import { LayoutData } from "@todo/data";
 import React, { FC, useEffect, useRef } from "react";
-import { FaGithubSquare } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
@@ -27,7 +27,7 @@ const Aside: FC<{ data: LayoutData; server: boolean }> = ({ data, server }) => {
         </a>
 
         <a href={data.githubUrl} aria-label="Github Repo">
-          <FaGithubSquare />
+          <FaGithub />
         </a>
       </div>
 
