@@ -1,3 +1,3 @@
-import json from "../dist/colors.json";
+import json from "./colors.json";
 
 export const colors = json;

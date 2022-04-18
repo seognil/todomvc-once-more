@@ -4,7 +4,7 @@
   "main": "dist/index.mjs",
   "types": "src/index.ts",
   "scripts": {
-    "build": "pnpm build:colors && pnpm build:stats && pnpm build:export",
+    "build": "pnpm build:stats && pnpm build:export",
     "build:colors": "tsno run scripts/build-colors.ts",
     "build:stats": "tsno run scripts/build-stats.ts",
     "build:export": "tsup --format=esm src/index.ts"

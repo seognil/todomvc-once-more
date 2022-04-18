@@ -3,7 +3,7 @@ import { curly } from "node-libcurl";
 import { join } from "node:path";
 import { parse } from "yaml";
 
-const COLORS_FILE = join(__dirname, "../dist/colors.json");
+const COLORS_FILE = join(__dirname, "../src/colors.json");
 
 const { data } = await curly.get("https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml");
 
