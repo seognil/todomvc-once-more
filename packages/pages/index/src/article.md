@@ -14,7 +14,7 @@ After all these mess, I decided to play around and try different stuff, sense th
 
 ## Other Helpful Tools
 
-This project relies on these tools heavily, which I'd like to recommend to you guys. (Technically, they are the faster and simpler successors to previous ones)
+This project relies on these tools heavily, which I'd like to recommend to you guys. (Technically, they are the faster and simpler versions of their ancestors)
 
 - [**Vite**](https://vitejs.dev/): Next Generation Frontend Tooling
 - [**tsup**](https://github.com/egoist/tsup): The simplest and fastest way to bundle your TypeScript libraries

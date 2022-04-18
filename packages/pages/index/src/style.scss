@@ -7,17 +7,32 @@ body {
     "Helvetica Neue", sans-serif;
 
   background-color: hsla(0, 0%, 95%, 1);
+
+  scroll-behavior: smooth;
 }
 
-main article {
-  h2 {
-    margin-top: 80px;
-  }
-  a {
-    color: hsla(220, 80%, 60%, 1);
+main {
+  h2 a,
+  article a {
+    color: inherit;
     text-decoration: none;
     &:hover {
       text-decoration: underline;
+    }
+  }
+
+  article {
+    h2 {
+      margin-top: 80px;
+    }
+
+    :not(h2) a {
+      color: hsla(220, 80%, 60%, 1);
+    }
+
+    li,
+    p {
+      line-height: 1.375em;
     }
   }
 }

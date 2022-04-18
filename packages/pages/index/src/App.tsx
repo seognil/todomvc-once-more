@@ -2,6 +2,8 @@ import { githubUrl, ProjectStatsFull, stats } from "@todo/data";
 import type { FunctionalComponent as FC } from "preact";
 import { FaGithub } from "react-icons/fa";
 import { FcTodoList } from "react-icons/fc";
+// @ts-ignore
+import { MDXProvider } from "@mdx-js/preact";
 import Md from "./article.md";
 
 // * ================================================================================
@@ -32,7 +34,9 @@ export const App: FC = () => {
       </header>
 
       <main className="flex-1 pb-80px">
-        <h2>Projects</h2>
+        <h2 id="projects">
+          <a href="#projects">Projects</a>
+        </h2>
 
         <ul className="list-none p-0">
           {stats.map((e) => (
@@ -43,7 +47,9 @@ export const App: FC = () => {
         </ul>
 
         <article>
-          <Md />
+          <MDXProvider components={{ h2: H2 }}>
+            <Md />
+          </MDXProvider>
         </article>
       </main>
 
@@ -66,3 +72,18 @@ const ProjListBlock: FC<{ p: ProjectStatsFull }> = ({ p }) => {
 };
 
 // * ----------------------------------------------------------------
+
+const getAnchor = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9 ]/g, "")
+    .replace(/[ ]/g, "-");
+
+const H2: FC = ({ children }) => {
+  const anchor = getAnchor(children as string);
+  return (
+    <h2 id={anchor}>
+      <a href={`#${anchor}`}>{children}</a>
+    </h2>
+  );
+};
