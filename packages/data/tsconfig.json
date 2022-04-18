@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     // * ----------------
     "strict": true,
     "noImplicitReturns": true,

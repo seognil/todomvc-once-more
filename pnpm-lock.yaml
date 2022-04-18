@@ -70,6 +70,7 @@ importers:
       '@todo/data': workspace:*
       '@types/babel__core': ^7.1.19
       '@types/fs-extra': ^9.0.13
+      '@types/mdx': ^2.0.1
       '@types/node': ^17.0.24
       '@types/react': ^18.0.5
       '@types/react-dom': ^18.0.1
@@ -98,6 +99,7 @@ importers:
       '@preact/preset-vite': 2.2.0_2f0f5bb4b6e97c369c0e638d2f566540
       '@types/babel__core': 7.1.19
       '@types/fs-extra': 9.0.13
+      '@types/mdx': 2.0.1
       '@types/node': 17.0.24
       '@types/react': 18.0.5
       '@types/react-dom': 18.0.1
@@ -763,6 +765,10 @@ packages:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
     dependencies:
       '@types/unist': 2.0.6
+    dev: true
+
+  /@types/mdx/2.0.1:
+    resolution: {integrity: sha512-JPEv4iAl0I+o7g8yVWDwk30es8mfVrjkvh5UeVR2sYPpZCK44vrAPsbJpIS+rJAUxLgaSAMKTEH5Vn5qd9XsrQ==}
     dev: true
 
   /@types/node/17.0.24:
