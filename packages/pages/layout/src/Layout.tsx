@@ -1,62 +1,45 @@
+import { LayoutData } from "@todo/data";
 import React, { FC, useEffect, useRef } from "react";
-import { FaGithubSquare } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import type { StackInfo } from "../../../stacks";
 
 // * ----------------------------------------------------------------
 
-export interface LayoutInfo {
-  backUrl: string;
-  githubUrl: string;
-  sourceUrl: string;
-
-  title: string;
-  dist: FileInfo[];
-  stacks: StackInfo[];
-  desc: StackInfo[];
-  core: string[];
-}
-
-export interface FileInfo {
-  file: string;
-  size: number;
-  gsize: number;
-}
-
-// * ----------------------------------------------------------------
-
-export const Layout: FC<{ info?: LayoutInfo; server?: boolean }> = ({ info = MockInfo, server = false }) => {
+export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, server = false }) => {
   return (
     <div className="todomvc-layout">
-      <Aside info={info} server={server} />
+      <Aside data={data} server={server} />
       <div id="todomvc-inject-app-container"></div>
     </div>
   );
 };
 
-const Aside: FC<{ info: LayoutInfo; server: boolean }> = ({ info, server }) => {
+const Aside: FC<{ data: LayoutData; server: boolean }> = ({ data, server }) => {
+  const { stats } = data;
+  const { meta } = stats;
+
   return (
     <aside>
       <div className="nav">
-        <a href={info.backUrl}>
+        <a href={data.backUrl}>
           <button type="button">← Back</button>
         </a>
 
-        <a href={info.githubUrl} aria-label="Github Repo">
-          <FaGithubSquare />
+        <a href={data.githubUrl} aria-label="Github Repo">
+          <FaGithub />
         </a>
       </div>
 
       <hr />
 
-      <h1>{info.title}</h1>
+      <h1>{meta.title}</h1>
 
-      <a className="src" href={info.sourceUrl}>
+      <a className="src" href={data.sourceUrl}>
         <h3>Source</h3>
       </a>
 
-      {info.dist.length > 0 && (
+      {stats.dist.length > 0 && (
         <>
           <hr />
 
@@ -65,11 +48,11 @@ const Aside: FC<{ info: LayoutInfo; server: boolean }> = ({ info, server }) => {
           <table>
             <tbody>
               <tr>
-                <th>file</th>
+                <th>Files</th>
                 <th>size</th>
                 <th>gzip</th>
               </tr>
-              {info.dist.map((e) => (
+              {stats.dist.map((e) => (
                 <tr key={e.file}>
                   <td>
                     <PrettyPath path={e.file} />
@@ -80,22 +63,22 @@ const Aside: FC<{ info: LayoutInfo; server: boolean }> = ({ info, server }) => {
               ))}
               <tr className="total">
                 <td>Total</td>
-                <td>{prettySize(info.dist.map((e) => e.size).reduce((a, b) => a + b, 0))}</td>
-                <td>{prettySize(info.dist.map((e) => e.gsize).reduce((a, b) => a + b, 0))}</td>
+                <td>{prettySize(stats.dist.map((e) => e.size).reduce((a, b) => a + b, 0))}</td>
+                <td>{prettySize(stats.dist.map((e) => e.gsize).reduce((a, b) => a + b, 0))}</td>
               </tr>
             </tbody>
           </table>
         </>
       )}
 
-      {info.stacks.length > 0 && (
+      {meta.stacks.length > 0 && (
         <>
           <hr />
 
           <h3>Stacks</h3>
 
           <ul className="stacks">
-            {info.stacks.map((e) => (
+            {meta.stacks.map((e) => (
               <li key={e.name}>
                 <a href={e.url}>{e.name}</a>
               </li>
@@ -104,21 +87,21 @@ const Aside: FC<{ info: LayoutInfo; server: boolean }> = ({ info, server }) => {
         </>
       )}
 
-      {info.core.length > 0 && (
+      {meta.core.length > 0 && (
         <>
           <hr />
 
           <h3>Core Concepts</h3>
 
-          {server ? <CodeBlockServer list={info.core} /> : <CodeBlock list={info.core} />}
+          {server ? <CodeBlockServer list={meta.core} /> : <CodeBlock list={meta.core} />}
         </>
       )}
 
-      {info.desc.length > 0 && (
+      {meta.quotes.length > 0 && (
         <>
           <hr />
 
-          {info.desc.map((e) => (
+          {meta.quotes.map((e) => (
             <div key={e.name} className="desc">
               <blockquote>
                 <p className="desc-link">
@@ -144,6 +127,7 @@ const CodeBlock: FC<{ list: string[] }> = ({ list }) => {
   return (
     <div className="core" ref={containerRef}>
       {list.map((e) => (
+        // @ts-ignore
         <SyntaxHighlighter key={e} language="tsx" style={materialLight}>
           {e}
         </SyntaxHighlighter>
@@ -156,6 +140,7 @@ const CodeBlockServer: FC<{ list: string[] }> = ({ list }) => {
   return (
     <div className="core">
       {list.map((e) => (
+        // @ts-ignore
         <SyntaxHighlighter key={e} language="tsx" style={materialLight}>
           {e}
         </SyntaxHighlighter>
@@ -187,60 +172,3 @@ const PrettyPath: FC<{ path: string }> = ({ path }) => {
 };
 
 const prettySize = (size: number) => `${(size / 1024).toFixed(2)} kB`;
-
-// * ---------------------------------------------------------------- mock
-
-const libs: Record<string, StackInfo> = {
-  react: {
-    name: "React",
-    url: "https://reactjs.org/",
-    desc: "",
-  },
-  recoil: {
-    name: "Recoil",
-    url: "https://recoiljs.org/",
-    desc: "Atoms are units of state. They're updatable and subscribable: when an atom is updated, each subscribed component is re-rendered with the new value. They can be created at runtime, too. Atoms can be used in place of React local component state. If the same atom is used from multiple components, all those components share their state.",
-  },
-  ts: {
-    name: "TypeScript",
-    url: "https://www.typescriptlang.org/",
-    desc: "TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.",
-  },
-};
-
-const MockInfo: LayoutInfo = {
-  backUrl: "",
-  githubUrl: "",
-  sourceUrl: "",
-  title: "React Project",
-  dist: [
-    {
-      file: "index.html",
-      size: 453,
-      gsize: 300,
-    },
-    {
-      file: "assets/index.53b1ee6e.css",
-      size: 5503,
-      gsize: 1732,
-    },
-    {
-      file: "assets/index.8f46499b.js",
-      size: 213827,
-      gsize: 68191,
-    },
-    {
-      file: "assets/index.8f46499b8f46499b8f46499b8f46499b8f46499b8f46499b.svg",
-      size: 213827,
-      gsize: 68191,
-    },
-    {
-      file: "assets/index.8f46499b.js.map",
-      size: 213827,
-      gsize: 68191,
-    },
-  ],
-  stacks: [libs.react, libs.recoil, libs.ts],
-  desc: [libs.recoil, libs.ts],
-  core: ["<RecoilRoot>", "atom()", "selector()", "useRecoilState()"],
-};

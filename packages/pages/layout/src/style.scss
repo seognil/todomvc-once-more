@@ -4,6 +4,8 @@ html,
 body {
   margin: 0;
   background-color: hsla(0, 0%, 95%, 1);
+  min-width: unset !important;
+  max-width: unset !important;
 }
 
 .todomvc-layout {

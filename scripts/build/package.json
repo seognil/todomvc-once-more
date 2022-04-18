@@ -1,19 +1,23 @@
 {
   "scripts": {
-    "build:inject": "tsno run build.ts"
+    "build": "tsno run build.ts"
   },
   "devDependencies": {
+    "@todo/data": "workspace:*",
+    "@todo/pages-layout": "workspace:*",
     "@types/fs-extra": "^9.0.13",
+    "@types/jsdom": "^16.2.14",
     "@types/md5": "^2.3.2",
     "@types/node": "^17.0.24",
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
+    "cloc": "^2.9.0",
+    "execa": "^6.1.0",
     "fs-extra": "^10.0.1",
     "globby": "^13.1.1",
     "gzip-size": "^7.0.0",
-    "layout": "workspace:*",
+    "jsdom": "^19.0.0",
     "md5": "^2.3.0",
-    "node-html-parser": "^5.3.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "tsno": "^2.0.0",

@@ -1,13 +1,19 @@
 {
   "scripts": {
-    "build:all": "pnpm build:projects && pnpm build:inject",
-    "build:projects": "pnpm -r build",
-    "build:inject": "pnpm run build:inject --dir scripts/build",
+    "dev:index": "pnpm dev --filter ./packages/pages/index",
+    "dev:layout": "pnpm dev --filter ./packages/pages/layout",
+    "build": "pnpm build:examples && pnpm build:data && pnpm build:pages && pnpm build:website",
+    "build:examples": "pnpm build --filter ./examples",
+    "build:data": "pnpm build --filter ./packages/data",
+    "build:pages": "pnpm build --filter ./packages/pages",
+    "build:website": "pnpm build --filter ./scripts/build",
+    "preview": "serve dist",
     "pretty": "prettier -w **/{src,scripts}/** --plugin-search-dir=."
   },
   "devDependencies": {
     "prettier": "^2.6.2",
     "prettier-plugin-organize-imports": "^2.3.4",
-    "typescript": "^4.5.4"
+    "serve": "^13.0.2",
+    "typescript": "^4.6.3"
   }
 }

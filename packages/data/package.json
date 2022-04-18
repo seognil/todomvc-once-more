@@ -1,0 +1,23 @@
+{
+  "name": "@todo/data",
+  "private": true,
+  "main": "dist/index.mjs",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "pnpm build:colors && pnpm build:stats && pnpm build:export",
+    "build:colors": "tsno run scripts/build-colors.ts",
+    "build:stats": "tsno run scripts/build-stats.ts",
+    "build:export": "tsup --format=esm src/index.ts"
+  },
+  "devDependencies": {
+    "execa": "^6.1.0",
+    "find-up": "^6.3.0",
+    "fs-extra": "^10.1.0",
+    "globby": "^13.1.1",
+    "gzip-size": "^7.0.0",
+    "node-libcurl": "^2.3.4",
+    "tsno": "^2.0.0",
+    "tsup": "^5.12.5",
+    "yaml": "^2.0.1"
+  }
+}

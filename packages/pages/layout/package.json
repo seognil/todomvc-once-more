@@ -1,7 +1,6 @@
 {
-  "name": "layout",
+  "name": "@todo/pages-layout",
   "private": true,
-  "version": "0.0.0",
   "main": "./dist/Layout.js",
   "types": "./src/Layout.tsx",
   "scripts": {
@@ -11,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@todo/data": "workspace:*",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-icons": "^4.3.1",
