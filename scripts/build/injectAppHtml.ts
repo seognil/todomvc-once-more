@@ -1,7 +1,7 @@
 import { Layout, prettyCodeBlock } from "@todo/pages-layout";
 import { parse } from "node-html-parser";
 import { createElement } from "react";
-import * as ReactDOMServer from "react-dom/server";
+import { renderToString } from "react-dom/server";
 
 // * ----------------------------------------------------------------
 
@@ -15,7 +15,7 @@ export const injectAppHtml = (html: string, injectCssName: string, info = null) 
 
   const layoutNode = parse(
     //
-    ReactDOMServer.renderToString(createElement(Layout, { info, server: true }, null)),
+    renderToString(createElement(Layout, { info, server: true }, null)),
     { blockTextElements: { code: true } },
   );
 

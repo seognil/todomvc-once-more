@@ -1,7 +1,6 @@
 {
   "name": "@todo/pages-layout",
   "private": true,
-  "version": "0.0.0",
   "main": "./dist/Layout.js",
   "types": "./src/Layout.tsx",
   "scripts": {
@@ -18,7 +17,6 @@
   },
   "devDependencies": {
     "@todo/data": "workspace:*",
-    "@todo/lang-colors": "workspace:*",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-syntax-highlighter": "^13.5.2",

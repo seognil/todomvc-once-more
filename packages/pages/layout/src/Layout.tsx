@@ -1,12 +1,12 @@
+import { LayoutInfo } from "@todo/data";
 import React, { FC, useEffect, useRef } from "react";
 import { FaGithubSquare } from "react-icons/fa";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { LayoutInfo, stacks } from "../../../utils/data";
 
 // * ----------------------------------------------------------------
 
-export const Layout: FC<{ info?: LayoutInfo; server?: boolean }> = ({ info = MockInfo, server = false }) => {
+export const Layout: FC<{ info: LayoutInfo; server?: boolean }> = ({ info, server = false }) => {
   return (
     <div className="todomvc-layout">
       <Aside info={info} server={server} />
@@ -167,32 +167,3 @@ const PrettyPath: FC<{ path: string }> = ({ path }) => {
 };
 
 const prettySize = (size: number) => `${(size / 1024).toFixed(2)} kB`;
-
-// * ---------------------------------------------------------------- mock
-
-const MockInfo: LayoutInfo = {
-  backUrl: "",
-  githubUrl: "",
-
-  title: "React Project",
-  sourceUrl: "",
-
-  cloc: [
-    { type: "CSS", files: 2, blank: 54, comment: 9, code: 321 },
-    { type: "TypeScript", files: 8, blank: 64, comment: 22, code: 237 },
-  ],
-  dist: [
-    { file: "index.html", size: 453, gsize: 300 },
-    { file: "assets/index.53b1ee6e.css", size: 5503, gsize: 1732 },
-    { file: "assets/index.8f46499b.js", size: 213827, gsize: 68191 },
-    { file: "assets/index.8f46499b8f46499b8f46499b8f46499b8f46499b8f46499b.svg", size: 213827, gsize: 68191 },
-    { file: "assets/index.8f46499b8f46499b8f46499b8f46499b8f46499b8f46499b.js.map", size: 213827, gsize: 68191 },
-  ],
-
-  stacks: [stacks.react, stacks.recoil, stacks.ts],
-  core: ["<RecoilRoot>", "atom()", "selector()", "useRecoilState()"],
-
-  desc: { short: "Use several atoms to organize ui state", long: "" },
-  quotes: [stacks.recoil],
-  references: [stacks.recoil],
-};

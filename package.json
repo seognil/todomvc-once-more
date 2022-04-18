@@ -1,10 +1,11 @@
 {
   "scripts": {
     "dev:layout": "pnpm dev --filter ./packages/pages/layout",
-    "build": "pnpm build:projects && pnpm build:packages && pnpm build:inject",
-    "build:projects": "pnpm build --filter ./examples",
-    "build:packages": "pnpm build --filter ./packages/utils && pnpm build --filter ./packages/pages",
-    "build:inject": "pnpm build --filter ./scripts/build",
+    "build": "pnpm build:examples && pnpm build:data && pnpm build:pages && pnpm build:website",
+    "build:examples": "pnpm build --filter ./examples",
+    "build:data": "pnpm build --filter ./packages/data",
+    "build:pages": "pnpm build --filter ./packages/pages",
+    "build:website": "pnpm build --filter ./scripts/build",
     "preview": "serve dist",
     "pretty": "prettier -w **/{src,scripts}/** --plugin-search-dir=."
   },

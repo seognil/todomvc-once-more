@@ -39,10 +39,31 @@ importers:
       typescript: 4.6.3
       vite: 2.9.5
 
+  packages/data:
+    specifiers:
+      execa: ^6.1.0
+      find-up: ^6.3.0
+      fs-extra: ^10.1.0
+      globby: ^13.1.1
+      gzip-size: ^7.0.0
+      node-libcurl: ^2.3.4
+      tsno: ^2.0.0
+      tsup: ^5.12.5
+      yaml: ^2.0.1
+    devDependencies:
+      execa: 6.1.0
+      find-up: 6.3.0
+      fs-extra: 10.1.0
+      globby: 13.1.1
+      gzip-size: 7.0.0
+      node-libcurl: 2.3.4
+      tsno: 2.0.0
+      tsup: 5.12.5_typescript@4.6.3
+      yaml: 2.0.1
+
   packages/pages/layout:
     specifiers:
       '@todo/data': workspace:*
-      '@todo/lang-colors': workspace:*
       '@types/react': ^17.0.0
       '@types/react-dom': ^17.0.0
       '@types/react-syntax-highlighter': ^13.5.2
@@ -63,8 +84,7 @@ importers:
       react-icons: 4.3.1_react@17.0.2
       react-syntax-highlighter: 15.5.0_react@17.0.2
     devDependencies:
-      '@todo/data': link:../../utils/data
-      '@todo/lang-colors': link:../../utils/lang-colors
+      '@todo/data': link:../../data
       '@types/react': 17.0.44
       '@types/react-dom': 17.0.15
       '@types/react-syntax-highlighter': 13.5.2
@@ -76,30 +96,9 @@ importers:
       unocss: 0.31.5_vite@2.9.5
       vite: 2.9.5_sass@1.50.0
 
-  packages/utils/data:
-    specifiers:
-      tsup: ^5.12.5
-    devDependencies:
-      tsup: 5.12.5_typescript@4.6.3
-
-  packages/utils/lang-colors:
-    specifiers:
-      fs-extra: ^10.1.0
-      node-libcurl: ^2.3.4
-      tsno: ^2.0.0
-      tsup: ^5.12.5
-      yaml: ^2.0.1
-    devDependencies:
-      fs-extra: 10.1.0
-      node-libcurl: 2.3.4
-      tsno: 2.0.0
-      tsup: 5.12.5_typescript@4.6.3
-      yaml: 2.0.1
-
   scripts/build:
     specifiers:
       '@todo/data': workspace:*
-      '@todo/lang-colors': workspace:*
       '@todo/pages-layout': workspace:*
       '@types/fs-extra': ^9.0.13
       '@types/md5': ^2.3.2
@@ -118,8 +117,7 @@ importers:
       tsno: ^2.0.0
       typescript: ^4.5.4
     devDependencies:
-      '@todo/data': link:../../packages/utils/data
-      '@todo/lang-colors': link:../../packages/utils/lang-colors
+      '@todo/data': link:../../packages/data
       '@todo/pages-layout': link:../../packages/pages/layout
       '@types/fs-extra': 9.0.13
       '@types/md5': 2.3.2
@@ -1612,6 +1610,14 @@ packages:
       path-exists: 4.0.0
     dev: true
 
+  /find-up/6.3.0:
+    resolution: {integrity: sha512-v2ZsoEuVHYy8ZIlYqwPe/39Cy+cFDzp4dXPaxNvkEuouymu+2Jbz0PxpKarJHYJTmv2HWT3O382qY8l4jMWthw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      locate-path: 7.1.0
+      path-exists: 5.0.0
+    dev: true
+
   /follow-redirects/1.14.9:
     resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==}
     engines: {node: '>=4.0'}
@@ -2096,6 +2102,13 @@ packages:
       p-locate: 5.0.0
     dev: true
 
+  /locate-path/7.1.0:
+    resolution: {integrity: sha512-HNx5uOnYeK4SxEoid5qnhRfprlJeGMzFRKPLCf/15N3/B4AiofNwC/yq7VBKdVk9dx7m+PiYCJOGg55JYTAqoQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      p-locate: 6.0.0
+    dev: true
+
   /loose-envify/1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
@@ -2425,11 +2438,25 @@ packages:
       yocto-queue: 0.1.0
     dev: true
 
+  /p-limit/4.0.0:
+    resolution: {integrity: sha512-5b0R4txpzjPWVw/cXXUResoD4hb6U/x9BH08L7nw+GN1sezDzPdxeRvpc9c433fZhBan/wusjbCsqwqm4EIBIQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      yocto-queue: 1.0.0
+    dev: true
+
   /p-locate/5.0.0:
     resolution: {integrity: sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==}
     engines: {node: '>=10'}
     dependencies:
       p-limit: 3.1.0
+    dev: true
+
+  /p-locate/6.0.0:
+    resolution: {integrity: sha512-wPrq66Llhl7/4AGC6I+cqxT07LhXvWL08LNXz1fENOw0Ap4sRZZ/gZpTTJ5jpurzzzfS2W/Ge9BY3LgLjCShcw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      p-limit: 4.0.0
     dev: true
 
   /parse-entities/2.0.0:
@@ -2446,6 +2473,11 @@ packages:
   /path-exists/4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
     engines: {node: '>=8'}
+    dev: true
+
+  /path-exists/5.0.0:
+    resolution: {integrity: sha512-RjhtfwJOxzcFmNOi6ltcbcu4Iu+FL3zEj83dk4kAS+fVpTxXLO1b38RvJgT/0QwvV/L3aY9TAnyv0EOqW4GoMQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: true
 
   /path-is-absolute/1.0.1:
@@ -3335,7 +3367,7 @@ packages:
   /wide-align/1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
     dependencies:
-      string-width: 1.0.2
+      string-width: 4.2.3
     dev: true
 
   /widest-line/3.1.0:
@@ -3380,4 +3412,9 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  /yocto-queue/1.0.0:
+    resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
+    engines: {node: '>=12.20'}
     dev: true

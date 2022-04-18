@@ -3,7 +3,6 @@
     "build": "tsno run build.ts"
   },
   "devDependencies": {
-    "@todo/lang-colors": "workspace:*",
     "@todo/data": "workspace:*",
     "@todo/pages-layout": "workspace:*",
     "@types/fs-extra": "^9.0.13",

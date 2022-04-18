@@ -2,7 +2,18 @@
 
 ## Dev
 
-Just simply use [pnpm](https://pnpm.io/) instead of npm
+Use [pnpm](https://pnpm.io/) instead of npm
+
+```sh
+pnpm build # build everything in order
+
+# or separated steps
+
+pnpm build:examples # build every app in `examples/`
+pnpm build:data # analyze every example: cloc, meta, etc..
+pnpm build:pages # build web index page and layout
+pnpm build:website # build the final web
+```
 
 ## References
 

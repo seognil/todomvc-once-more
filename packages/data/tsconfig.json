@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    // * ----------------
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    "esModuleInterop": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    // * ----------------
+    "allowJs": false,
+    "isolatedModules": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "skipLibCheck": false,
+    // * ----------------
+    "strict": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    // * ----------------
+    "forceConsistentCasingInFileNames": true
+  }
+}

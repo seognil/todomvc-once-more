@@ -45,7 +45,7 @@ export interface ArticleLink {
 export interface ProjectStatistics {
   projRoot: FullPath;
   projName: BaseName;
-  distName: BaseName;
+  distName: BaseName | null;
 
   cloc: ClocInfo[];
   dist: FileInfo[];
