@@ -1,4 +1,4 @@
-import { DIR_ROOT, LayoutInfo, ProjectStatistics, stacks, statistics, SubPath } from "@todo/data";
+import { DIR_ROOT, githubUrl, LayoutData, ProjectStatsFull, stats, SubPath } from "@todo/data";
 import fs from "fs-extra";
 import { globby } from "globby";
 import md5 from "md5";
@@ -14,36 +14,27 @@ const DIR_LAYOUT = join(DIR_ROOT, "./packages/pages/layout");
 
 // * -------------------------------- layout props
 
-const toLayoutInfo = (info: ProjectStatistics): LayoutInfo => ({
+const toLayoutData = (stats: ProjectStatsFull): LayoutData => ({
   backUrl: "../",
-  githubUrl: `https://github.com/seognil/todomvc-once-more`,
+  githubUrl,
+  sourceUrl: `${githubUrl}/tree/master/examples/${stats.projName}`,
 
-  title: info.meta.title,
-  sourceUrl: `https://github.com/seognil/todomvc-once-more/tree/master/examples/${info.projName}`,
-  cloc: info.cloc,
-  dist: info.dist,
-
-  stacks: info.meta.stacks.map((e) => stacks[e]),
-  core: info.meta.core,
-
-  desc: info.meta.desc,
-  quotes: info.meta.quotes.map((e) => stacks[e]),
-  references: info.meta.references.map((e) => (typeof e === "string" ? stacks[e] : e)),
+  stats,
 });
 
 // * ================================================================================ tasks
 
 // * -------------------------------- single
 
-const rebuildSingle = async (p: ProjectStatistics, injectedCss: SubPath) => {
+const rebuildSingle = async (p: ProjectStatsFull, injectedCss: SubPath) => {
   const outProjDir = join(DIR_OUTPUT, p.projName);
   const outProjIndex = join(DIR_OUTPUT, p.projName, "index.html");
 
   await fs.copy(join(p.projRoot, p.distName), outProjDir);
 
-  const info = toLayoutInfo(p);
+  const data = toLayoutData(p);
 
-  await fs.writeFile(outProjIndex, injectAppHtml(await fs.readFile(outProjIndex, "utf8"), injectedCss, info));
+  await fs.writeFile(outProjIndex, injectAppHtml(await fs.readFile(outProjIndex, "utf8"), injectedCss, data));
 };
 
 // * -------------------------------- all
@@ -56,7 +47,7 @@ const rebuildAll = async () => {
   const cssFileName = md5(await fs.readFile(injectedCss)).slice(-8) + ".css";
   await fs.copy(injectedCss, join(DIR_OUTPUT, cssFileName));
 
-  await Promise.all(statistics.map((p) => rebuildSingle(p, `../${cssFileName}`)));
+  await Promise.all(stats.map((p) => rebuildSingle(p, `../${cssFileName}`)));
 };
 
 // * ================================================================================ run

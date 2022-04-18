@@ -1,5 +1,5 @@
 // @ts-check
-/** @type import('../../packages/data').ProjectMeta */
+/** @type import('../../packages/data').ProjectMetaRaw */
 
 const meta = {
   title: "React Hooks + Recoil",

@@ -42,20 +42,26 @@ export interface ArticleLink {
 
 // * ---------------------------------------------------------------- project full statistics
 
-export interface ProjectStatistics {
+export interface ProjectStatsBasic {
   projRoot: FullPath;
   projName: BaseName;
   distName: BaseName | null;
 
   cloc: ClocInfo[];
   dist: FileInfo[];
-
-  meta: ProjectMeta;
 }
+
+export type ProjectStatsRaw = ProjectStatsBasic & {
+  meta: ProjectMetaRaw;
+};
+
+export type ProjectStatsFull = ProjectStatsBasic & {
+  meta: ProjectMetaFull;
+};
 
 // * ---------------------------------------------------------------- meta
 
-export interface ProjectMeta {
+export interface ProjectMetaRaw {
   title: string;
 
   stacks: StackName[];
@@ -66,21 +72,8 @@ export interface ProjectMeta {
   references: (StackName | ArticleLink)[];
 }
 
-export interface Description {
-  short: string;
-  long: string;
-}
-
-// * ---------------------------------------------------------------- layout props
-
-export interface LayoutInfo {
-  backUrl: LinkUrl;
-  githubUrl: LinkUrl;
-
+export interface ProjectMetaFull {
   title: string;
-  sourceUrl: LinkUrl;
-  cloc: ClocInfo[];
-  dist: FileInfo[];
 
   stacks: StackInfo[];
   core: CodeSnippet[];
@@ -88,4 +81,19 @@ export interface LayoutInfo {
   desc: Description;
   quotes: StackInfo[];
   references: (StackInfo | ArticleLink)[];
+}
+
+export interface Description {
+  short: string;
+  long: string;
+}
+
+// * ---------------------------------------------------------------- layout props
+
+export interface LayoutData {
+  backUrl: LinkUrl;
+  githubUrl: LinkUrl;
+  sourceUrl: LinkUrl;
+
+  stats: ProjectStatsFull;
 }

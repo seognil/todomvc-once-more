@@ -79,12 +79,12 @@ importers:
       unocss: ^0.31.3
       vite: ^2.9.2
     dependencies:
+      '@todo/data': link:../../data
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-icons: 4.3.1_react@17.0.2
       react-syntax-highlighter: 15.5.0_react@17.0.2
     devDependencies:
-      '@todo/data': link:../../data
       '@types/react': 17.0.44
       '@types/react-dom': 17.0.15
       '@types/react-syntax-highlighter': 13.5.2

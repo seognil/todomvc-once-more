@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "dev:index": "pnpm dev --filter ./packages/pages/index",
     "dev:layout": "pnpm dev --filter ./packages/pages/layout",
     "build": "pnpm build:examples && pnpm build:data && pnpm build:pages && pnpm build:website",
     "build:examples": "pnpm build --filter ./examples",

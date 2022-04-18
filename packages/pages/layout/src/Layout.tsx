@@ -1,4 +1,4 @@
-import { LayoutInfo } from "@todo/data";
+import { LayoutData } from "@todo/data";
 import React, { FC, useEffect, useRef } from "react";
 import { FaGithubSquare } from "react-icons/fa";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -6,37 +6,40 @@ import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 // * ----------------------------------------------------------------
 
-export const Layout: FC<{ info: LayoutInfo; server?: boolean }> = ({ info, server = false }) => {
+export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, server = false }) => {
   return (
     <div className="todomvc-layout">
-      <Aside info={info} server={server} />
+      <Aside data={data} server={server} />
       <div id="todomvc-inject-app-container"></div>
     </div>
   );
 };
 
-const Aside: FC<{ info: LayoutInfo; server: boolean }> = ({ info, server }) => {
+const Aside: FC<{ data: LayoutData; server: boolean }> = ({ data, server }) => {
+  const { stats } = data;
+  const { meta } = stats;
+
   return (
     <aside>
       <div className="nav">
-        <a href={info.backUrl}>
+        <a href={data.backUrl}>
           <button type="button">← Back</button>
         </a>
 
-        <a href={info.githubUrl} aria-label="Github Repo">
+        <a href={data.githubUrl} aria-label="Github Repo">
           <FaGithubSquare />
         </a>
       </div>
 
       <hr />
 
-      <h1>{info.title}</h1>
+      <h1>{meta.title}</h1>
 
-      <a className="src" href={info.sourceUrl}>
+      <a className="src" href={data.sourceUrl}>
         <h3>Source</h3>
       </a>
 
-      {info.dist.length > 0 && (
+      {stats.dist.length > 0 && (
         <>
           <hr />
 
@@ -49,7 +52,7 @@ const Aside: FC<{ info: LayoutInfo; server: boolean }> = ({ info, server }) => {
                 <th>size</th>
                 <th>gzip</th>
               </tr>
-              {info.dist.map((e) => (
+              {stats.dist.map((e) => (
                 <tr key={e.file}>
                   <td>
                     <PrettyPath path={e.file} />
@@ -60,22 +63,22 @@ const Aside: FC<{ info: LayoutInfo; server: boolean }> = ({ info, server }) => {
               ))}
               <tr className="total">
                 <td>Total</td>
-                <td>{prettySize(info.dist.map((e) => e.size).reduce((a, b) => a + b, 0))}</td>
-                <td>{prettySize(info.dist.map((e) => e.gsize).reduce((a, b) => a + b, 0))}</td>
+                <td>{prettySize(stats.dist.map((e) => e.size).reduce((a, b) => a + b, 0))}</td>
+                <td>{prettySize(stats.dist.map((e) => e.gsize).reduce((a, b) => a + b, 0))}</td>
               </tr>
             </tbody>
           </table>
         </>
       )}
 
-      {info.stacks.length > 0 && (
+      {meta.stacks.length > 0 && (
         <>
           <hr />
 
           <h3>Stacks</h3>
 
           <ul className="stacks">
-            {info.stacks.map((e) => (
+            {meta.stacks.map((e) => (
               <li key={e.name}>
                 <a href={e.url}>{e.name}</a>
               </li>
@@ -84,21 +87,21 @@ const Aside: FC<{ info: LayoutInfo; server: boolean }> = ({ info, server }) => {
         </>
       )}
 
-      {info.core.length > 0 && (
+      {meta.core.length > 0 && (
         <>
           <hr />
 
           <h3>Core Concepts</h3>
 
-          {server ? <CodeBlockServer list={info.core} /> : <CodeBlock list={info.core} />}
+          {server ? <CodeBlockServer list={meta.core} /> : <CodeBlock list={meta.core} />}
         </>
       )}
 
-      {info.quotes.length > 0 && (
+      {meta.quotes.length > 0 && (
         <>
           <hr />
 
-          {info.quotes.map((e) => (
+          {meta.quotes.map((e) => (
             <div key={e.name} className="desc">
               <blockquote>
                 <p className="desc-link">
@@ -124,6 +127,7 @@ const CodeBlock: FC<{ list: string[] }> = ({ list }) => {
   return (
     <div className="core" ref={containerRef}>
       {list.map((e) => (
+        // @ts-ignore
         <SyntaxHighlighter key={e} language="tsx" style={materialLight}>
           {e}
         </SyntaxHighlighter>
@@ -136,6 +140,7 @@ const CodeBlockServer: FC<{ list: string[] }> = ({ list }) => {
   return (
     <div className="core">
       {list.map((e) => (
+        // @ts-ignore
         <SyntaxHighlighter key={e} language="tsx" style={materialLight}>
           {e}
         </SyntaxHighlighter>

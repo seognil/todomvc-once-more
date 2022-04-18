@@ -1,4 +1,5 @@
 export * from "./colors";
+export * from "./const";
 export * from "./stacks";
-export * from "./statistics";
+export * from "./stats";
 export * from "./types";

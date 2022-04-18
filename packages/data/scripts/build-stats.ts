@@ -4,7 +4,7 @@ import fs from "fs-extra";
 import { globby } from "globby";
 import { gzipSize } from "gzip-size";
 import { basename, dirname, join } from "node:path";
-import { ClocInfo, FileInfo, FullPath, ProjectStatistics } from "../src";
+import { ClocInfo, FileInfo, FullPath, ProjectStatsRaw } from "../src";
 
 // * ================================================================================ const and type
 
@@ -17,7 +17,7 @@ const DATA_FILE_PATH = join(__dirname, "../dist/data.json");
 
 // * -------------------------------- analyze projects statistics
 
-export const analyzeSingleExample = async (examplePath: FullPath): Promise<ProjectStatistics | null> => {
+export const analyzeSingleExample = async (examplePath: FullPath): Promise<ProjectStatsRaw | null> => {
   const distFullPath = (await globby(join(examplePath, "{dist,build}/index.html"))).map((e) => dirname(e))[0] ?? null;
 
   const { default: meta } = await import(join(examplePath, "meta.js"));
@@ -81,7 +81,7 @@ const main = async () => {
 
   const json = {
     root: DIR_ROOT,
-    statistics: analyzeResult,
+    stats: analyzeResult,
   };
 
   await fs.ensureFile(DATA_FILE_PATH);

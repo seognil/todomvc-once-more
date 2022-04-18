@@ -1,3 +1,4 @@
+import { LayoutData } from "@todo/data";
 import { Layout, prettyCodeBlock } from "@todo/pages-layout";
 import { parse } from "node-html-parser";
 import { createElement } from "react";
@@ -5,7 +6,7 @@ import { renderToString } from "react-dom/server";
 
 // * ----------------------------------------------------------------
 
-export const injectAppHtml = (html: string, injectCssName: string, info = null) => {
+export const injectAppHtml = (html: string, injectCssName: string, data: LayoutData) => {
   const root = parse(html);
 
   const fullHtmlMode = root.querySelector("head") !== null;
@@ -15,7 +16,7 @@ export const injectAppHtml = (html: string, injectCssName: string, info = null) 
 
   const layoutNode = parse(
     //
-    renderToString(createElement(Layout, { info, server: true }, null)),
+    renderToString(createElement(Layout, { data, server: true }, null)),
     { blockTextElements: { code: true } },
   );
 
