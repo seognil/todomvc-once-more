@@ -2,14 +2,14 @@
 /** @type import('../../packages/data').ProjectMetaRaw */
 
 const meta = {
-  title: "React Hooks + Recoil",
-  stacks: ["react", "recoil", "ts", "vite"],
+  title: "Vite + React Hooks + Recoil",
+  stacks: ["vite", "reacthooks", "recoil", "ts", "css"],
   core: ["<RecoilRoot>", "atom()", "selector()", "useRecoilState()"],
   desc: {
     short: "Use several atoms to organize ui state",
     long: "",
   },
-  quotes: ['react'],
+  quotes: ["recoil"],
   references: [
     "jotai",
     {

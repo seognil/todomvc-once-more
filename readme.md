@@ -31,6 +31,8 @@ pnpm run dev
 pnpm run build
 ```
 
+> Every example should have a `meta.js` file for the project description propose
+
 ## Development
 
 Build the entire website
@@ -41,9 +43,12 @@ pnpm build # build everything in order
 # or separated steps
 
 pnpm build:examples # build every app in `examples/`
+
+pnpm build:website # build these below
+
 pnpm build:data # analyze every example: cloc, meta, etc..
 pnpm build:pages # build web index page and layout
-pnpm build:website # build the final web
+pnpm build:inject # build the website with the data
 
 #
 

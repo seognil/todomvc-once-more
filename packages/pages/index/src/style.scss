@@ -11,28 +11,75 @@ body {
   scroll-behavior: smooth;
 }
 
+// * ---------------------------------------------------------------- content and typography
+
+:root {
+  --sky-500: #0ea5e9;
+}
+
 main {
-  h2 a,
-  article a {
-    color: inherit;
+  font-weight: 300;
+
+  a {
     text-decoration: none;
     &:hover {
       text-decoration: underline;
     }
   }
 
-  article {
-    h2 {
-      margin-top: 80px;
-    }
+  a {
+    color: inherit;
+  }
+  :not(h2) > a {
+    color: var(--sky-500);
+  }
 
-    :not(h2) a {
-      color: hsla(220, 80%, 60%, 1);
-    }
+  h2:not(:first-child) {
+    margin-top: 80px;
+  }
 
-    li,
-    p {
-      line-height: 1.375em;
+  li,
+  p {
+    line-height: 1.5em;
+    opacity: 80%;
+  }
+  li i {
+    opacity: 60%;
+  }
+}
+
+// * ---------------------------------------------------------------- visualization animation
+
+:root {
+  --index: 0;
+}
+
+.project-visualization {
+  svg.animate-pie {
+    circle {
+      animation: graph-pie 500ms ease forwards;
+      animation-delay: calc(150ms * var(--index));
+    }
+  }
+
+  @keyframes graph-pie {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .animate-bar {
+    svg {
+      width: 0%;
+      height: 100%;
+      animation: graph-bar 500ms ease forwards;
+      animation-delay: calc(150ms * var(--index));
+    }
+  }
+
+  @keyframes graph-bar {
+    to {
+      width: 100%;
     }
   }
 }

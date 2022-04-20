@@ -17,16 +17,22 @@ export type LinkUrl = string & {};
 
 export interface ClocInfo {
   type: FileType;
+  color: string;
   files: number;
   blank: number;
   comment: number;
   code: number;
 }
 
+export type DistType = "JavaScript" | "CSS" | "HTML" | "SourceMap" | "Other";
+
 export interface FileInfo {
+  name: SubPath;
+  ext: ExtName;
+  type: DistType;
+  color: string;
   size: number;
   gsize: number;
-  file: SubPath;
 }
 
 export interface StackInfo {

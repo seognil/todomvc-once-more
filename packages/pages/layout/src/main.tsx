@@ -22,11 +22,23 @@ const MockData: LayoutData = {
       { type: "TypeScript", files: 8, blank: 64, comment: 22, code: 237 },
     ],
     dist: [
-      { file: "index.html", size: 453, gsize: 300 },
-      { file: "assets/index.53b1ee6e.css", size: 5503, gsize: 1732 },
-      { file: "assets/index.8f46499b.js", size: 213827, gsize: 68191 },
-      { file: "assets/index.8f46499b8f46499b8f46499b8f46499b8f46499b8f46499b.svg", size: 213827, gsize: 68191 },
-      { file: "assets/index.8f46499b8f46499b8f46499b8f46499b8f46499b8f46499b.js.map", size: 213827, gsize: 68191 },
+      { name: "index.html", ext: ".html", type: "HTML", size: 453, gsize: 300 },
+      { name: "assets/index.53b1ee6e.css", ext: ".css", type: "CSS", size: 5503, gsize: 1732 },
+      { name: "assets/index.8f46499b.js", ext: "js", type: "JavaScript", size: 213827, gsize: 68191 },
+      {
+        name: "assets/index.8f46499b8f46499b8f46499b8f46499b8f46499b8f46499b.svg",
+        ext: "svg",
+        type: "Other",
+        size: 213827,
+        gsize: 68191,
+      },
+      {
+        name: "assets/index.8f46499b8f46499b8f46499b8f46499b8f46499b8f46499b.js.map",
+        ext: "js.map",
+        type: "SourceMap",
+        size: 213827,
+        gsize: 68191,
+      },
     ],
 
     meta: {

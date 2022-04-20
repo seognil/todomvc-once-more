@@ -53,8 +53,7 @@ export const injectExampleHtml = (html: string, data: LayoutData, inject: Inject
   // * ---------------- body
 
   layoutBody.querySelector("#todomvc-inject-app-container").innerHTML = body.innerHTML;
-  body.innerHTML = "";
-  body.appendChild(layoutBody.firstChild);
+  body.innerHTML = layoutBody.innerHTML;
 
   // * ---------------- return
 

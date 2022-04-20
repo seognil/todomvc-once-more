@@ -1,4 +1,4 @@
-import { LayoutData } from "@todo/data";
+import { FileInfo, LayoutData } from "@todo/data";
 import React, { FC, useEffect, useRef } from "react";
 import { FaGithub } from "react-icons/fa";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -53,9 +53,9 @@ const Aside: FC<{ data: LayoutData; server: boolean }> = ({ data, server }) => {
                 <th>gzip</th>
               </tr>
               {stats.dist.map((e) => (
-                <tr key={e.file}>
+                <tr key={e.name}>
                   <td>
-                    <PrettyPath path={e.file} />
+                    <PrettyPath file={e} />
                   </td>
                   <td>{prettySize(e.size)}</td>
                   <td>{prettySize(e.gsize)}</td>
@@ -160,15 +160,12 @@ export const prettyCodeBlock = (root: HTMLElement | null) => {
 
 // * ---------------------------------------------------------------- utils
 
-const PrettyPath: FC<{ path: string }> = ({ path }) => {
-  const max = 32;
-  const ext = path.match(/(?<=(\.))\w+(\.map)?$/)?.[0] ?? "";
+const PrettyPath: FC<{ file: FileInfo }> = ({ file }) => {
+  const MAX = 32;
+  const { name, ext, type } = file;
+  const shorten = name.length > MAX ? `${name.slice(0, MAX - ext.length - 6)}~${name.slice(-(ext.length + 5))}` : name;
 
-  const shorten = path.length > max ? `${path.slice(0, max - ext.length - 6)}~${path.slice(-(ext.length + 5))}` : path;
-
-  const cls = /\.map$/.test(ext) ? "source" : { js: "js", css: "css", html: "html" }[ext] ?? "asset";
-
-  return <span className={`file-${cls}`}>{shorten}</span>;
+  return <span className={`file-${type.toLowerCase()}`}>{shorten}</span>;
 };
 
 const prettySize = (size: number) => `${(size / 1024).toFixed(2)} kB`;

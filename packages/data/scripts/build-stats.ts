@@ -4,7 +4,7 @@ import fs from "fs-extra";
 import { globby } from "globby";
 import { gzipSize } from "gzip-size";
 import { basename, dirname, join } from "node:path";
-import { ClocInfo, FileInfo, FullPath, ProjectStatsRaw } from "../src";
+import { ClocInfo, colors, DistType, FileInfo, FullPath, ProjectStatsRaw } from "../src";
 
 // * ================================================================================ const and type
 
@@ -44,8 +44,13 @@ const analyzeCloc = async (projFullPath: FullPath): Promise<ClocInfo[]> => {
     .slice(1, -1)
     .map((e) => {
       const [files, type, blank, comment, code] = e.split(",") as [string, string, string, string, string];
+
+      // @ts-ignore
+      const color = colors[type];
+
       return {
-        type,
+        type: color ? type : "Other",
+        color: color ?? "#ededed",
         files: Number(files),
         blank: Number(blank),
         comment: Number(comment),
@@ -62,11 +67,20 @@ const analyzeDist = async (distFullPath: FullPath): Promise<FileInfo[]> =>
   await Promise.all(
     (
       await globby("**", { cwd: distFullPath })
-    ).map(async (file) => {
-      const fullFilePath = join(distFullPath, file);
+    ).map(async (name) => {
+      const fullFilePath = join(distFullPath, name);
       const size = (await fs.stat(fullFilePath)).size;
       const gsize = await gzipSize(await fs.readFile(fullFilePath, "utf8"));
-      return { file, size, gsize };
+
+      const ext = name.match(/(?<=(\.))\w+(\.map)?$/)?.[0] ?? "";
+      const type = (
+        /\.map$/.test(ext) ? "SourceMap" : { js: "JavaScript", css: "CSS", html: "HTML" }[ext] ?? "Other"
+      ) as DistType;
+
+      // @ts-ignore
+      const color = colors[type] ?? "#ededed";
+
+      return { name, ext, type, color, size, gsize };
     }),
   );
 

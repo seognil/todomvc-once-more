@@ -11,6 +11,11 @@ const rawData = {
     url: "https://javascript.info/",
     desc: "JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.js, Apache CouchDB and Adobe Acrobat.",
   },
+  css: {
+    name: "CSS",
+    url: "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics",
+    desc: "CSS (Cascading Style Sheets) is the code that styles web content. CSS basics walks through what you need to get started.",
+  },
 
   react: {
     name: "React",
@@ -26,6 +31,12 @@ const rawData = {
     name: "Recoil",
     url: "https://recoiljs.org/",
     desc: "Atoms are units of state. They're updatable and subscribable: when an atom is updated, each subscribed component is re-rendered with the new value. They can be created at runtime, too. Atoms can be used in place of React local component state. If the same atom is used from multiple components, all those components share their state.",
+  },
+
+  jotai: {
+    name: "Jotai",
+    url: "https://jotai.org/",
+    desc: "Jotai takes a bottom-up approach to React state management with an atomic model inspired by Recoil. One can build state by combining atoms and renders are optimized based on atom dependency. This solves the extra re-render issue of React context and eliminates the need for the memoization technique.",
   },
 
   vite: {
