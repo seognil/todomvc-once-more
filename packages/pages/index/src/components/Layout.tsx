@@ -1,12 +1,12 @@
-import { ClocInfo, colors, DistType, FileInfo, githubUrl, ProjectStatsFull, stats } from "@todo/data";
 // @ts-ignore
 import { MDXProvider } from "@mdx-js/preact";
-import type { FunctionalComponent as FC } from "preact";
-import { FaGithub, FaCircle, FaSquare } from "react-icons/fa";
-import { FiActivity } from "react-icons/fi";
-import { FcTodoList } from "react-icons/fc";
-import Md from "./article.md";
+import { githubUrl } from "@todo/data";
 import clsx from "clsx";
+import type { FunctionalComponent as FC } from "preact";
+import { FaGithub } from "react-icons/fa";
+import { FcTodoList } from "react-icons/fc";
+import { FiActivity } from "react-icons/fi";
+import Md from "./article.md";
 import { ProjBlock } from "./ProjBlock";
 
 // * ================================================================================

@@ -1,7 +1,6 @@
-import { ClocInfo, colors, DistType, FileInfo, githubUrl, ProjectStatsFull, stats } from "@todo/data";
-
-import type { FunctionalComponent as FC } from "preact";
+import { ClocInfo, stats } from "@todo/data";
 import clsx from "clsx";
+import type { FunctionalComponent as FC } from "preact";
 
 // * ================================================================================
 

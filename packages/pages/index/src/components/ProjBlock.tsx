@@ -1,11 +1,8 @@
-import { ClocInfo, colors, DistType, FileInfo, githubUrl, ProjectStatsFull, stats } from "@todo/data";
-
+import { DistType, FileInfo, ProjectStatsFull, stats } from "@todo/data";
 import type { FunctionalComponent as FC, VNode as ReactElement } from "preact";
-import { FaGithub, FaCircle, FaSquare } from "react-icons/fa";
-
-import clsx from "clsx";
-import { PieChart } from "./PieChart";
+import { FaCircle, FaSquare } from "react-icons/fa";
 import { DistBar, GzipBar } from "./BarChart";
+import { PieChart } from "./PieChart";
 
 // * ================================================================================
 

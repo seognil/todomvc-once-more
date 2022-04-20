@@ -1,10 +1,5 @@
-import { ClocInfo, colors, DistType, FileInfo, githubUrl, ProjectStatsFull, stats } from "@todo/data";
-
+import { FileInfo, stats } from "@todo/data";
 import type { FunctionalComponent as FC } from "preact";
-import { FaGithub, FaCircle, FaSquare } from "react-icons/fa";
-
-import clsx from "clsx";
-import { PieChart } from "./PieChart";
 
 // * ================================================================================
 
