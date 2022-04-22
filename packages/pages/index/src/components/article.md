@@ -1,3 +1,20 @@
+## Coming soon
+
+- React Hooks + React Context
+- React Hooks + Mobx
+- React Hooks + RXJS + Observable-hooks
+- React Hooks + Redux
+- Preact instead of React
+- Create-React-App
+- Astro
+- Vue + Pinia
+- UnoCSS
+- Twind
+- Emotion
+- Svelte
+- SolidJS
+- ...
+
 ## Other Helpful Tools
 
 This project also relies on these tools heavily, which I'd like to recommend to you guys. (Maybe you have already used some. Technically, they are the faster and simpler versions of their ancestors)
