@@ -5,8 +5,10 @@
   "types": "./src/Layout.tsx",
   "scripts": {
     "dev": "vite",
-    "build": "tsup --format=cjs src/Layout.tsx && sass src/style.scss dist/layout.css",
+    "build": "pnpm build:export && pnpm build:css",
     "build:app": "tsc && vite build",
+    "build:export": "tsup --format=cjs src/Layout.tsx",
+    "build:css": "sass src/style.scss dist/layout.css",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -25,7 +27,6 @@
     "sass": "^1.50.0",
     "tsup": "^5.12.5",
     "typescript": "^4.6.3",
-    "unocss": "^0.31.3",
     "vite": "^2.9.2"
   }
 }

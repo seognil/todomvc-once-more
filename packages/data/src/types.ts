@@ -1,4 +1,5 @@
 import { StackName } from "./stacks";
+import syntaxTypeList from "./syntax-type-list.json";
 
 // * ---------------------------------------------------------------- primitive
 
@@ -6,6 +7,7 @@ export type FullPath = string & {};
 export type SubPath = string & {};
 
 export type FileType = string & {};
+export type FileName = string & {};
 export type BaseName = string & {};
 export type ExtName = string & {};
 
@@ -17,17 +19,41 @@ export type LinkUrl = string & {};
 
 export interface ClocInfo {
   type: FileType;
+  color: string;
   files: number;
   blank: number;
   comment: number;
   code: number;
 }
 
+// * ----------------
+
+export type DistType = "JavaScript" | "CSS" | "HTML" | "SourceMap" | "Other";
+
 export interface FileInfo {
+  name: SubPath;
+  ext: ExtName;
+  type: DistType;
+  color: string;
   size: number;
   gsize: number;
-  file: SubPath;
 }
+
+export interface FileTypeSum {
+  type: DistType;
+  files: number;
+  color: string;
+  size: number;
+  gsize: number;
+}
+
+// * ----------------
+
+export type SyntaxLang = keyof typeof syntaxTypeList;
+
+export type CoreInfo = { lang: SyntaxLang; code: CodeSnippet[]; snippet: CodeSnippet };
+
+// * ----------------
 
 export interface StackInfo {
   name: StackName;
@@ -49,6 +75,7 @@ export interface ProjectStatsBasic {
 
   cloc: ClocInfo[];
   dist: FileInfo[];
+  distTypeSum: FileTypeSum[];
 }
 
 export type ProjectStatsRaw = ProjectStatsBasic & {
@@ -65,22 +92,22 @@ export interface ProjectMetaRaw {
   title: string;
 
   stacks: StackName[];
-  core?: CodeSnippet[];
+  core: CoreInfo;
 
   desc: Description;
   quotes: StackName[];
-  references: (StackName | ArticleLink)[];
+  resources: (StackName | ArticleLink)[];
 }
 
 export interface ProjectMetaFull {
   title: string;
 
   stacks: StackInfo[];
-  core: CodeSnippet[];
+  core: CoreInfo;
 
   desc: Description;
   quotes: StackInfo[];
-  references: (StackInfo | ArticleLink)[];
+  resources: (StackInfo | ArticleLink)[];
 }
 
 export interface Description {
@@ -92,6 +119,7 @@ export interface Description {
 
 export interface LayoutData {
   backUrl: LinkUrl;
+  baseUrl: LinkUrl;
   githubUrl: LinkUrl;
   sourceUrl: LinkUrl;
 

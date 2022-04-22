@@ -15,8 +15,9 @@ const DIR_INDEX = join(DIR_ROOT, "./packages/pages/index");
 
 // * -------------------------------- layout props
 
-const toLayoutData = (stats: ProjectStatsFull): LayoutData => ({
-  backUrl: "../",
+const toLayoutData = (stats: ProjectStatsFull, inject: InjectConfig): LayoutData => ({
+  backUrl: inject.backUrl,
+  baseUrl: inject.baseUrl(stats),
   githubUrl,
   sourceUrl: `${githubUrl}/tree/master/examples/${stats.projName}`,
 
@@ -25,26 +26,13 @@ const toLayoutData = (stats: ProjectStatsFull): LayoutData => ({
 
 // * ================================================================================ tasks
 
-// * -------------------------------- single
-
-const rebuildSingle = async (p: ProjectStatsFull, inject: InjectConfig) => {
-  const outProjDir = join(DIR_OUTPUT, p.projName);
-  const outProjIndex = join(DIR_OUTPUT, p.projName, "index.html");
-
-  await fs.copy(join(p.projRoot, p.distName), outProjDir);
-
-  const data = toLayoutData(p);
-
-  await fs.writeFile(outProjIndex, injectExampleHtml(await fs.readFile(outProjIndex, "utf8"), data, inject));
-};
-
 // * -------------------------------- all
 
 const rebuildAll = async () => {
   await fs.ensureDir(DIR_OUTPUT);
   await fs.emptyDir(DIR_OUTPUT);
 
-  // * ---------------- index
+  // * ---------------- index page
 
   await fs.copy(join(DIR_INDEX, "./dist"), join(DIR_OUTPUT));
 
@@ -63,12 +51,28 @@ const rebuildAll = async () => {
   // * ---------------- inject config
 
   const inject: InjectConfig = {
-    css: `../${cssBasename}`,
-    favicon: `../${iconBasename}`,
+    outDir: (p) => join(DIR_OUTPUT, "./examples/", p.projName),
+    baseUrl: (p) => `/examples/${p.projName}/`,
+    backUrl: "../../",
+    css: `../../${cssBasename}`,
+    favicon: `../../${iconBasename}`,
     title: (str: string) => `${str} | TodoMVC once more`,
   };
 
   await Promise.all(stats.map((p) => rebuildSingle(p, inject)));
+};
+
+// * -------------------------------- single
+
+const rebuildSingle = async (p: ProjectStatsFull, inject: InjectConfig) => {
+  const outProjDir = inject.outDir(p);
+  const outProjIndex = join(outProjDir, "index.html");
+
+  await fs.copy(join(p.projRoot, p.distName), outProjDir);
+
+  const data = toLayoutData(p, inject);
+
+  await fs.writeFile(outProjIndex, injectExampleHtml(await fs.readFile(outProjIndex, "utf8"), data, inject));
 };
 
 // * ================================================================================ run

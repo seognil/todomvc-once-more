@@ -1,29 +1,23 @@
-import { LayoutData } from "@todo/data";
+import type { CoreInfo, FileTypeSum, LayoutData } from "@todo/data";
 import React, { FC, useEffect, useRef } from "react";
-import { FaGithub } from "react-icons/fa";
+import { FaClone, FaGithub, FaSquare } from "react-icons/fa";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { materialLight, vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
+
+const codeTheme = materialLight;
+const snippetTheme = vscDarkPlus;
 
 // * ----------------------------------------------------------------
 
 export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, server = false }) => {
-  return (
-    <div className="todomvc-layout">
-      <Aside data={data} server={server} />
-      <div id="todomvc-inject-app-container"></div>
-    </div>
-  );
-};
-
-const Aside: FC<{ data: LayoutData; server: boolean }> = ({ data, server }) => {
   const { stats } = data;
   const { meta } = stats;
 
   return (
-    <aside>
+    <div className="todomvc-layout">
       <div className="nav">
         <a href={data.backUrl}>
-          <button type="button">← Back</button>
+          <button type="button">← Home</button>
         </a>
 
         <a href={data.githubUrl} aria-label="Github Repo">
@@ -31,76 +25,47 @@ const Aside: FC<{ data: LayoutData; server: boolean }> = ({ data, server }) => {
         </a>
       </div>
 
-      <hr />
-
       <h1>{meta.title}</h1>
 
-      <a className="src" href={data.sourceUrl}>
-        <h3>Source</h3>
-      </a>
+      <div className="todomvc-app-container">
+        <div className="todomvc-info">
+          <p>{meta.desc.short}</p>
 
-      {stats.dist.length > 0 && (
-        <>
-          <hr />
+          {meta.stacks.length > 0 && (
+            <>
+              <h2>
+                Stacks (<a href={data.sourceUrl}>Source Code</a>)
+              </h2>
 
-          <h3>Build Output</h3>
+              <ul>
+                {meta.stacks.map((e) => (
+                  <li key={e.url}>
+                    <a href={e.url}>{e.name}</a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
 
-          <table>
-            <tbody>
-              <tr>
-                <th>Files</th>
-                <th>size</th>
-                <th>gzip</th>
-              </tr>
-              {stats.dist.map((e) => (
-                <tr key={e.file}>
-                  <td>
-                    <PrettyPath path={e.file} />
-                  </td>
-                  <td>{prettySize(e.size)}</td>
-                  <td>{prettySize(e.gsize)}</td>
-                </tr>
-              ))}
-              <tr className="total">
-                <td>Total</td>
-                <td>{prettySize(stats.dist.map((e) => e.size).reduce((a, b) => a + b, 0))}</td>
-                <td>{prettySize(stats.dist.map((e) => e.gsize).reduce((a, b) => a + b, 0))}</td>
-              </tr>
-            </tbody>
-          </table>
-        </>
-      )}
+          {stats.distTypeSum.length > 0 && (
+            <>
+              <h2>Build (gzip size)</h2>
+              <BuildSizeBlock data={data} />
+            </>
+          )}
+        </div>
 
-      {meta.stacks.length > 0 && (
-        <>
-          <hr />
+        <div id="todomvc-inject-app-container">
+          <div style={{ background: "linear-gradient(-45deg, #e66465, #9198e5)", width: "100%", height: "600px" }}>
+            PlaceHolder
+          </div>
+        </div>
+      </div>
 
-          <h3>Stacks</h3>
-
-          <ul className="stacks">
-            {meta.stacks.map((e) => (
-              <li key={e.name}>
-                <a href={e.url}>{e.name}</a>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-
-      {meta.core.length > 0 && (
-        <>
-          <hr />
-
-          <h3>Core Concepts</h3>
-
-          {server ? <CodeBlockServer list={meta.core} /> : <CodeBlock list={meta.core} />}
-        </>
-      )}
+      <h2>Core Concepts</h2>
 
       {meta.quotes.length > 0 && (
         <>
-          <hr />
-
           {meta.quotes.map((e) => (
             <div key={e.name} className="desc">
               <blockquote>
@@ -113,62 +78,152 @@ const Aside: FC<{ data: LayoutData; server: boolean }> = ({ data, server }) => {
           ))}
         </>
       )}
-    </aside>
+
+      <h2>Basic Usage</h2>
+
+      <div>
+        {server ? <CodeBlockServer core={meta.core} /> : <CodeBlock core={meta.core} />}
+
+        <p>{stats.meta.desc.long}</p>
+
+        <div className="core-snippet">
+          <SyntaxHighlighter language={meta.core.lang} style={snippetTheme}>
+            {meta.core.snippet}
+          </SyntaxHighlighter>
+        </div>
+      </div>
+
+      <h2>Rescources</h2>
+
+      <ul>
+        {stats.meta.resources.map((e) => (
+          <li key={e.url}>
+            {"name" in e ? (
+              <>
+                <a href={e.url}>{e.name}</a>
+              </>
+            ) : (
+              <a href={e.url}>{e.title}</a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+// * ---------------------------------------------------------------- Bar
+
+const BuildSizeBlock: FC<{ data: LayoutData }> = ({ data }) => {
+  const distTypeSum = data.stats.distTypeSum;
+  const gsum = distTypeSum.map((e) => e.gsize).reduce((a, b) => a + b, 0);
+
+  return (
+    <div className="todomvc-graph">
+      <div className="todomvc-bar">
+        <GzipBar files={distTypeSum} />
+      </div>
+
+      <div className="todomvc-dist">
+        <div>
+          {distTypeSum.map((e) => (
+            <div key={e.type} className="lang-tag">
+              <span>
+                <FaSquare style={{ color: e.color }} />
+                <b>{e.type}</b>
+              </span>
+
+              <span>{prettyKB(e.gsize)}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="lang-tag dist-total">
+          <span>
+            <FaClone />
+            <b>Total</b>
+          </span>
+
+          <span>{prettyKB(gsum)}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// * ------------------------------------------------
+
+const GzipBar: FC<{ files: FileTypeSum[] }> = ({ files }) => {
+  const gsum = files.map((e) => e.gsize).reduce((a, b) => a + b, 0);
+
+  // * ----------------
+
+  let tmp = 0;
+  const gzipData = files.map((e) => {
+    const result = { color: e.color, start: tmp / gsum, percent: e.gsize / gsum };
+    tmp += e.gsize;
+    return result;
+  });
+
+  // * ----------------
+
+  return (
+    <svg width="100%" height="100%">
+      {gzipData.map((e, i) => (
+        <rect key={i} y={e.start * 100 + "%"} height={e.percent * 100 + "%"} width="100%" rx="2" fill={e.color} />
+      ))}
+    </svg>
   );
 };
 
 // * ---------------------------------------------------------------- CodeBlock
 
-const CodeBlock: FC<{ list: string[] }> = ({ list }) => {
-  const containerRef = useRef<HTMLParagraphElement>(null);
+const CodeBlock: FC<{ core: CoreInfo }> = ({ core }) => {
+  const containerRef = useRef<HTMLUListElement>(null);
   useEffect(() => {
-    containerRef.current && prettyCodeBlock(containerRef.current);
-  }, [list]);
+    containerRef.current && prettyCodeBlock(containerRef.current, document);
+  }, [core.code]);
   return (
-    <div className="core" ref={containerRef}>
-      {list.map((e) => (
-        // @ts-ignore
-        <SyntaxHighlighter key={e} language="tsx" style={materialLight}>
-          {e}
-        </SyntaxHighlighter>
+    <ul className="core-code" ref={containerRef}>
+      {core.code.map((e) => (
+        <li key={e}>
+          <SyntaxHighlighter language={core.lang} style={codeTheme}>
+            {e}
+          </SyntaxHighlighter>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
-const CodeBlockServer: FC<{ list: string[] }> = ({ list }) => {
+const CodeBlockServer: FC<{ core: CoreInfo }> = ({ core }) => {
   return (
-    <div className="core">
-      {list.map((e) => (
-        // @ts-ignore
-        <SyntaxHighlighter key={e} language="tsx" style={materialLight}>
-          {e}
-        </SyntaxHighlighter>
+    <ul className="core-code">
+      {core.code.map((e) => (
+        <li key={e}>
+          <SyntaxHighlighter language={core.lang} style={codeTheme}>
+            {e}
+          </SyntaxHighlighter>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
-export const prettyCodeBlock = (root: HTMLElement | null) => {
-  const container = root?.classList.contains("core") ? root : root?.querySelector(".core");
+export const prettyCodeBlock = (root: HTMLElement | null, document: Document) => {
+  const container = root?.classList.contains("core-code") ? root : root?.querySelector(".core-code");
   if (!container) return;
 
   const codeNodes = container.querySelectorAll("code");
   container.innerHTML = "";
-  codeNodes.forEach((e) => container.appendChild(e));
+  codeNodes.forEach((e) => {
+    const li = document.createElement("li");
+    li.appendChild(e);
+    container.appendChild(li);
+  });
 };
 
 // * ---------------------------------------------------------------- utils
 
-const PrettyPath: FC<{ path: string }> = ({ path }) => {
-  const max = 32;
-  const ext = path.match(/(?<=(\.))\w+(\.map)?$/)?.[0] ?? "";
-
-  const shorten = path.length > max ? `${path.slice(0, max - ext.length - 6)}~${path.slice(-(ext.length + 5))}` : path;
-
-  const cls = /\.map$/.test(ext) ? "source" : { js: "js", css: "css", html: "html" }[ext] ?? "asset";
-
-  return <span className={`file-${cls}`}>{shorten}</span>;
-};
-
-const prettySize = (size: number) => `${(size / 1024).toFixed(2)} kB`;
+const prettySize = (size: number) => (size / 1024).toFixed(2);
+const prettyKB = (size: number) => `${prettySize(size)} kB`;

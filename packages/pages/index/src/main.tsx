@@ -1,6 +1,6 @@
 import { render } from "preact";
 import "uno.css";
-import { App } from "./App";
+import { Layout } from "./components/Layout";
 import "./style.scss";
 
-render(<App />, document.getElementById("app")!);
+render(<Layout />, document.getElementById("app")!);
