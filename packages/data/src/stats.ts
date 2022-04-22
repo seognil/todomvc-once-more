@@ -14,7 +14,7 @@ const toFull = (p: ProjectStatsRaw): ProjectStatsFull => ({
 
     desc: p.meta.desc,
     quotes: p.meta.quotes.map((e) => stacks[e]),
-    references: p.meta.references.map((e) => (typeof e === "string" ? stacks[e] : e)),
+    resources: p.meta.resources.map((e) => (typeof e === "string" ? stacks[e] : e)),
   },
 });
 

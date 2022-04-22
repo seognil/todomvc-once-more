@@ -1,4 +1,4 @@
-import { FileInfo, stats } from "@todo/data";
+import { FileTypeSum, stats } from "@todo/data";
 import type { FunctionalComponent as FC } from "preact";
 
 // * ================================================================================
@@ -7,7 +7,7 @@ const sumMax = stats.map((e) => e.dist.map((e) => e.size).reduce((a, b) => a + b
 
 // * ----------------------------------------------------------------
 
-export const DistBar: FC<{ files: FileInfo[] }> = ({ files }) => {
+export const DistBar: FC<{ files: FileTypeSum[] }> = ({ files }) => {
   const sum = files.map((e) => e.size).reduce((a, b) => a + b, 0);
 
   let tmp = 0;
@@ -33,7 +33,7 @@ export const DistBar: FC<{ files: FileInfo[] }> = ({ files }) => {
 
 // * ----------------------------------------------------------------
 
-export const GzipBar: FC<{ files: FileInfo[] }> = ({ files }) => {
+export const GzipBar: FC<{ files: FileTypeSum[] }> = ({ files }) => {
   const sum = files.map((e) => e.size).reduce((a, b) => a + b, 0);
   const gsum = files.map((e) => e.gsize).reduce((a, b) => a + b, 0);
 

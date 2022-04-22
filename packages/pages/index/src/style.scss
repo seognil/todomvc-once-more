@@ -7,6 +7,7 @@ body {
     "Helvetica Neue", sans-serif;
 
   background-color: hsla(0, 0%, 95%, 1);
+  color: hsl(0, 0%, 30%);
 
   scroll-behavior: smooth;
 }
@@ -41,7 +42,6 @@ main {
   li,
   p {
     line-height: 1.5em;
-    opacity: 80%;
   }
   li i {
     opacity: 60%;

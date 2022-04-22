@@ -1,16 +1,24 @@
 // @ts-check
-/** @type import('../../packages/data').ProjectMetaRaw */
 
+const { readFileSync } = require("fs");
+const { join } = require("path");
+
+/** @type import('../../packages/data').ProjectMetaRaw */
 const meta = {
   title: "Vite + React Hooks + Recoil",
   stacks: ["vite", "reacthooks", "recoil", "ts", "css"],
-  core: ["<RecoilRoot>", "atom()", "selector()", "useRecoilState()"],
   desc: {
     short: "Use several atoms to organize ui state",
-    long: "",
+    long: "The usage of Recoil simply looks like Redux or Mobx, but multiple <RecoilRoot>'s may co-exist and represent independent providers/stores of atom state; atoms will have distinct values within each root.",
   },
   quotes: ["recoil"],
-  references: [
+  core: {
+    lang: "tsx",
+    code: ["<RecoilRoot>", "atom()", "selector()", "useRecoilState()"],
+    snippet: readFileSync(join(__dirname, "./concepts.tsx"), "utf-8"),
+  },
+  resources: [
+    "recoil",
     "jotai",
     {
       title: "Jotai vs. Recoil: What are the differences?",

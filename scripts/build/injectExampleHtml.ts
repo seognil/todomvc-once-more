@@ -1,4 +1,4 @@
-import { LayoutData, SubPath } from "@todo/data";
+import type { FullPath, LayoutData, LinkUrl, ProjectStatsFull, SubPath } from "@todo/data";
 import { Layout, prettyCodeBlock } from "@todo/pages-layout";
 import { JSDOM } from "jsdom";
 import { createElement } from "react";
@@ -7,6 +7,9 @@ import { renderToString } from "react-dom/server";
 // * ================================================================================
 
 export interface InjectConfig {
+  outDir: (p: ProjectStatsFull) => FullPath;
+  baseUrl: (p: ProjectStatsFull) => LinkUrl;
+  backUrl: SubPath;
   css: SubPath;
   favicon: SubPath;
   title: (str: string) => string;
@@ -22,7 +25,7 @@ export const injectExampleHtml = (html: string, data: LayoutData, inject: Inject
   const layoutBody = new JSDOM(renderToString(createElement(Layout, { data, server: true }, null))).window.document
     .body;
 
-  prettyCodeBlock(layoutBody);
+  prettyCodeBlock(layoutBody, document);
 
   // * ---------------- head
 
@@ -46,7 +49,7 @@ export const injectExampleHtml = (html: string, data: LayoutData, inject: Inject
   favicon.setAttribute("href", inject.favicon);
 
   const base = document.head.querySelector("base") ?? document.createElement("base");
-  base.setAttribute("href", `/${data.stats.projName}/`);
+  base.setAttribute("href", data.baseUrl);
 
   head.prepend(base, title, favicon, css);
 

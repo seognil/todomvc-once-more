@@ -1,4 +1,4 @@
-import { DistType, FileInfo, ProjectStatsFull, stats } from "@todo/data";
+import { ProjectStatsFull, stats } from "@todo/data";
 import type { FunctionalComponent as FC, VNode as ReactElement } from "preact";
 import { FaCircle, FaSquare } from "react-icons/fa";
 import { DistBar, GzipBar } from "./BarChart";
@@ -26,7 +26,7 @@ const ProjListBlock: FC<{ p: ProjectStatsFull; index: number }> = ({ p, index })
     <div className="w-full flex items-center mb-48px" style={{ "--index": index }}>
       <div className="w-30% min-w-200px">
         <div className="pr-32px">
-          <a className="font-bold text-20px" href={`./${p.projName}`}>
+          <a className="font-bold text-20px" href={`/examples/${p.projName}`}>
             <span className="font-bold">{p.meta.title}</span>
           </a>
 
@@ -58,10 +58,7 @@ const ProjListBlock: FC<{ p: ProjectStatsFull; index: number }> = ({ p, index })
 const ProjVis: FC<{ p: ProjectStatsFull }> = ({ p }) => {
   const srcs = p.cloc.sort((a, b) => b.code - a.code);
 
-  const files = (["JavaScript", "CSS", "HTML", "Other"] as DistType[])
-    .reverse()
-    .map((type) => p.dist.find((e) => e.type === type) ?? null)
-    .filter((e) => e) as FileInfo[];
+  const files = p.distTypeSum;
 
   const sum = files.map((e) => e.size).reduce((a, b) => a + b, 0);
   const gsum = files.map((e) => e.gsize).reduce((a, b) => a + b, 0);
