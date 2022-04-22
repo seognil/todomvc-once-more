@@ -1,25 +1,41 @@
-import { atom, RecoilRoot, useRecoilState } from "recoil";
+import { atom, RecoilRoot, selector, useRecoilState, useRecoilValue } from "recoil";
 
-const counterAtom = atom({ key: "counter", default: 0 });
+// * ---------------- RecoilRoot
 
 const App = () => {
   return (
     <RecoilRoot>
-      <Layout />
+      <Comp />
     </RecoilRoot>
   );
 };
 
-const Layout = () => {
-  const [count, setCount] = useRecoilState(counterAtom);
+// * ---------------- multiple atoms
+
+const aAtom = atom({ key: "a", default: 0 });
+const bAtom = atom({ key: "b", default: 0 });
+const sumAtom = selector({ key: "sum", get: ({ get }) => get(aAtom) + get(bAtom) });
+
+// * ---------------- atoms used in components
+
+const Comp = () => {
+  const [a, setA] = useRecoilState(aAtom);
+  const [b, setB] = useRecoilState(bAtom);
+  const sum = useRecoilValue(sumAtom);
 
   return (
     <div>
-      <span>{count}</span>
+      <button onClick={() => setA((e) => e - 1)}> - </button>
+      <span>{a}</span>
+      <button onClick={() => setA((e) => e + 1)}> + </button>
 
-      <button onClick={() => setCount((e) => e - 1)}> - </button>
+      <button onClick={() => setB((e) => e - 1)}> - </button>
+      <span>{b}</span>
+      <button onClick={() => setB((e) => e + 1)}> + </button>
 
-      <button onClick={() => setCount((e) => e + 1)}> + </button>
+      <span>
+        {a} + {b} = {sum}
+      </span>
     </div>
   );
 };
