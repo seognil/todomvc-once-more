@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import "../styles/style-from-todo-mvc-website.css";
-import "../styles/style-patch.css";
+import "../styles/style-from-todo-mvc-website.scss";
+import "../styles/style-patch.scss";
 import { NewTodoBlock } from "./NewTodoBlock";
 import { StatusBar } from "./StatusBar";
 import { TodoList } from "./TodoList";

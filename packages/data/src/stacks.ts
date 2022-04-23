@@ -17,6 +17,12 @@ const rawData = {
     desc: "CSS (Cascading Style Sheets) is the code that styles web content. CSS basics walks through what you need to get started.",
   },
 
+  sass: {
+    name: "Sass",
+    url: "https://sass-lang.com/",
+    desc: "Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.",
+  },
+
   react: {
     name: "React",
     url: "https://reactjs.org/",

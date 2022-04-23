@@ -56,7 +56,10 @@ export const useDisplayTodos = () => useRecoilValue(filtedTodos);
 
 export const useCreateTodo = () => {
   const setTodo = useSetRecoilState(allTodos);
-  return (todoText: string) => setTodo((todos) => [...todos, { id: nanoid(), content: todoText, completed: false }]);
+  return (todoText: string) => {
+    if (!todoText) return;
+    setTodo((todos) => [...todos, { id: nanoid(), content: todoText, completed: false }]);
+  };
 };
 
 export const useUpdateTodoContent = () => {
@@ -92,6 +95,12 @@ export const useChangeVisibility = () => {
 };
 
 // * ----------------
+
+export const useIsAllCompleted = () => {
+  const all = useRecoilValue(allTodos);
+  const remain = useRecoilValue(remainCount);
+  return all.length !== 0 && remain === 0;
+};
 
 export const useToggleAllTodos = () => {
   const setTodos = useSetRecoilState(allTodos);

@@ -1,6 +1,6 @@
 import type { FC, KeyboardEvent } from "react";
 import { useState } from "react";
-import { useCreateTodo, useToggleAllTodos } from "../model/model";
+import { useCreateTodo, useIsAllCompleted, useToggleAllTodos } from "../model/model";
 
 // * ================================================================================
 
@@ -39,11 +39,12 @@ export const NewTodoBlock: FC = () => {
 // * ---------------------------------------------------------------- ToggleAll
 
 const ToggleAll: FC = () => {
+  const checked = useIsAllCompleted();
   const toggleAll = useToggleAllTodos();
 
   return (
     <>
-      <input id="toggle-all" className="toggle-all" type="checkbox" />
+      <input id="toggle-all" className="toggle-all" type="checkbox" checked={checked} />
       <label htmlFor="toggle-all" onClick={toggleAll}>
         Mark all as complete
       </label>
