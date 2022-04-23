@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import { atom, selector, useRecoilValue, useSetRecoilState } from "recoil";
 
-// * ================================================================================ Types
+// * ---------------------------------------------------------------- types
 
 export enum FILTER_MODE {
   "ALL",
@@ -15,7 +15,7 @@ export interface TodoItem {
   completed: boolean;
 }
 
-// * ================================================================================ Models
+// * ---------------------------------------------------------------- Recoil atoms
 
 const allTodos = atom<TodoItem[]>({ key: "todos", default: [] });
 
@@ -48,9 +48,9 @@ const filtedTodos = selector<TodoItem[]>({
   },
 });
 
-// * ================================================================================ UI interfaces
+// * ---------------------------------------------------------------- UI interactions
 
-// * ---------------- todos
+// * ---------------- todo crud
 
 export const useDisplayTodos = () => useRecoilValue(filtedTodos);
 
@@ -94,7 +94,7 @@ export const useChangeVisibility = () => {
   return (mode: FILTER_MODE) => setVisibility(mode);
 };
 
-// * ----------------
+// * ---------------- toggle
 
 export const useIsAllCompleted = () => {
   const all = useRecoilValue(allTodos);

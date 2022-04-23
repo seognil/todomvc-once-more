@@ -30,6 +30,7 @@ const Layout = () => {
 
 export const MockData: LayoutData = {
   backUrl: "",
+  baseUrl: "",
   githubUrl: "",
 
   sourceUrl: "",

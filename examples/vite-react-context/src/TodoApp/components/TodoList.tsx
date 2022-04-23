@@ -1,20 +1,15 @@
 import clsx from "clsx";
 import type { FC } from "react";
 import { useEffect, useRef, useState } from "react";
-import {
-  TodoItem,
-  useChangeTodoCompleted,
-  useDeleteTodoById,
-  useDisplayTodos,
-  useUpdateTodoContent,
-} from "../model/model";
+import { TodoItem, useTodoModel } from "../model/model";
 
 // * ================================================================================
 
 // * ---------------------------------------------------------------- TodoList
 
 export const TodoList: FC = () => {
-  const todos = useDisplayTodos();
+  const model = useTodoModel();
+  const todos = model.getDisplayTodos();
 
   return (
     <ul className="todo-list">
@@ -28,6 +23,8 @@ export const TodoList: FC = () => {
 // * ---------------------------------------------------------------- TodoListItem
 
 const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
+  const model = useTodoModel();
+
   const { id, content, completed } = item;
 
   const [localText, setLocalText] = useState("");
@@ -40,9 +37,9 @@ const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
 
   // * ---------------- action
 
-  const updateTodoContent = useUpdateTodoContent();
-  const changeTodoCompleted = useChangeTodoCompleted();
-  const deleteTodoById = useDeleteTodoById();
+  const updateTodoContent = model.updateTodoContent;
+  const changeTodoCompleted = model.changeTodoCompletedById;
+  const deleteTodoById = model.deleteTodoById;
 
   const intoTextEditing = () => {
     setEditing(true);

@@ -31,7 +31,7 @@ const rawData = {
   reacthooks: {
     name: "React Hooks",
     url: "https://reactjs.org/docs/hooks-intro.html",
-    desc: "Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class.",
+    desc: "Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks solve a wide variety of seemingly unconnected problems in React that we’ve encountered over five years of writing and maintaining tens of thousands of components.",
   },
   recoil: {
     name: "Recoil",
