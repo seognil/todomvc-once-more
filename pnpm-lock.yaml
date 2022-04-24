@@ -174,7 +174,6 @@ importers:
       '@types/react-dom': ^17.0.10
       '@vitejs/plugin-react': ^1.0.7
       clsx: ^1.1.1
-      mobx: ^6.5.0
       nanoid: ^3.3.1
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -185,7 +184,6 @@ importers:
       vite: ^2.8.0
     dependencies:
       clsx: 1.1.1
-      mobx: 6.5.0
       nanoid: 3.3.3
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
