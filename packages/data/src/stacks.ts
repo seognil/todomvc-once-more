@@ -39,6 +39,22 @@ const rawData = {
     desc: "Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks solve a wide variety of seemingly unconnected problems in React that we’ve encountered over five years of writing and maintaining tens of thousands of components.",
   },
 
+  "redux": {
+    name: "redux (core)",
+    url: "https://redux.js.org/",
+    desc: "Centralizing your application's state and logic enables powerful capabilities like undo/redo, state persistence, and much more.",
+  },
+  "redux-toolkit": {
+    name: "@reduxjs/toolkit",
+    url: "https://redux-toolkit.js.org/",
+    desc: `Includes utilities to simplify common use cases like store setup, creating reducers, immutable update logic, and more. Takes inspiration from libraries like Immer and Autodux to let you write "mutative" immutable update logic, and even create entire "slices" of state automatically.`,
+  },
+  "react-redux": {
+    name: "react-redux",
+    url: "https://react-redux.js.org/",
+    desc: "React Redux is maintained by the Redux team, and kept up-to-date with the latest APIs from Redux and React.",
+  },
+
   "mobx": {
     name: "MobX",
     url: "https://mobx.js.org/",
