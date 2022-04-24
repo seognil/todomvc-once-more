@@ -99,7 +99,7 @@ export const useTodoModel = () => {
         const nextCompleted = data.todos.every((e) => e.completed) ? false : true;
         return {
           ...data,
-          todos: data.todos.map((todo) => ({ ...todo, completed: nextCompleted })),
+          todos: data.todos.map((e) => ({ ...e, completed: nextCompleted })),
         };
       });
     },

@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 
 const MyContext = createContext(null);
 
-// * ---------------- App Context initialization
+// * ---------------- App Context wrapping
 
 const App = () => {
   const [a, setA] = useState(1);

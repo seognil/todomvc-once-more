@@ -3,7 +3,7 @@ import type { FC } from "react";
 import { useEffect, useRef, useState } from "react";
 import {
   TodoItem,
-  useChangeTodoCompleted,
+  useChangeTodoCompletedById,
   useDeleteTodoById,
   useDisplayTodos,
   useUpdateTodoContent,
@@ -41,7 +41,7 @@ const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
   // * ---------------- action
 
   const updateTodoContent = useUpdateTodoContent();
-  const changeTodoCompleted = useChangeTodoCompleted();
+  const changeTodoCompleted = useChangeTodoCompletedById();
   const deleteTodoById = useDeleteTodoById();
 
   const intoTextEditing = () => {

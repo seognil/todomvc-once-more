@@ -1,6 +1,6 @@
 import { atom, RecoilRoot, selector, useRecoilState, useRecoilValue } from "recoil";
 
-// * ---------------- RecoilRoot
+// * ---------------- RecoilRoot wrapping
 
 const App = () => {
   return (

@@ -45,6 +45,11 @@ const filtedTodos = selector<TodoItem[]>({
       : get(todos),
 });
 
+const isAllCompleted = selector({
+  key: "isAllCompleted",
+  get: ({ get }) => get(todos).length !== 0 && get(todos).every((e) => e.completed),
+});
+
 // * ---------------------------------------------------------------- UI interactions
 
 // * ---------------- todo crud
@@ -61,18 +66,13 @@ export const useCreateTodo = () => {
 
 export const useUpdateTodoContent = () => {
   const setTodo = useSetRecoilState(todos);
-  return (patchTodo: Pick<TodoItem, "id" | "content">) =>
-    setTodo((todos) =>
-      todos.map((prevTodo) => (prevTodo.id === patchTodo.id ? { ...prevTodo, ...patchTodo } : prevTodo)),
-    );
+  return (patch: Pick<TodoItem, "id" | "content">) =>
+    setTodo((todos) => todos.map((e) => (e.id === patch.id ? { ...e, ...patch } : e)));
 };
 
-export const useChangeTodoCompleted = () => {
+export const useChangeTodoCompletedById = () => {
   const setTodo = useSetRecoilState(todos);
-  return (todoId: string) =>
-    setTodo((todos) =>
-      todos.map((prevTodo) => (prevTodo.id === todoId ? { ...prevTodo, completed: !prevTodo.completed } : prevTodo)),
-    );
+  return (id: string) => setTodo((todos) => todos.map((e) => (e.id === id ? { ...e, completed: !e.completed } : e)));
 };
 
 export const useDeleteTodoById = () => {
@@ -93,11 +93,7 @@ export const useChangeVisibility = () => {
 
 // * ---------------- toggle
 
-export const useIsAllCompleted = () => {
-  const all = useRecoilValue(todos);
-  const remain = useRecoilValue(remainCount);
-  return all.length !== 0 && remain === 0;
-};
+export const useIsAllCompleted = () => useRecoilValue(isAllCompleted);
 
 export const useToggleAllTodos = () => {
   const setTodos = useSetRecoilState(todos);

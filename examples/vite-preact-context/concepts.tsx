@@ -1,44 +1,32 @@
-// * ---------------- Use preact packages instead and tweak some build configs
+// * ---------------- Replacing import using preact (or by setting alias)
+
+// import { render } from "react-dom";
+import { render } from "preact";
+
+// import type { FC } from "react";
+import type { FunctionalComponent as FC } from "preact";
 
 // import { createContext, useContext, useState } from "react";
 import { createContext, useContext, useState } from "preact/compat";
 
-// * ---------------- Context and data definitions
+// * ---------------- and tweak your build config
 
-const MyContext = createContext(null);
+// * e.g. vite has preact support out of the box
 
-// * ---------------- App Context initialization
+import preact from "@preact/preset-vite";
+import { defineConfig } from "vite";
 
-const App = () => {
-  const [a, setA] = useState(1);
-  const [b, setB] = useState(2);
-  return (
-    <MyContext.Provider value={{ a, setA, b, setB }}>
-      <Comp />
-    </MyContext.Provider>
-  );
-};
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [preact()],
+});
 
-// * ---------------- Use content with hooks in components
+// * ---------------- tsconfig.json
 
-const Comp = () => {
-  const { a, setA, b, setB } = useContext(MyContext);
-
-  const sum = a + b;
-
-  return (
-    <div>
-      <button onClick={() => setA((e) => e - 1)}> - </button>
-      <span>{a}</span>
-      <button onClick={() => setA((e) => e + 1)}> + </button>
-
-      <button onClick={() => setB((e) => e - 1)}> - </button>
-      <span>{b}</span>
-      <button onClick={() => setB((e) => e + 1)}> + </button>
-
-      <span>
-        {a} + {b} = {sum}
-      </span>
-    </div>
-  );
+const tsconfigJson = {
+  compilerOptions: {
+    jsx: "preserve",
+    jsxFactory: "h",
+    jsxFragmentFactory: "Fragment",
+  },
 };

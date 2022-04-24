@@ -27,10 +27,10 @@ export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, serve
 
       <h1>{meta.title}</h1>
 
+      <p>{meta.desc.short}</p>
+
       <div className="todomvc-app-container">
         <div className="todomvc-info">
-          <p>{meta.desc.short}</p>
-
           {meta.stacks.length > 0 && (
             <>
               <h2>
@@ -62,7 +62,7 @@ export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, serve
         </div>
       </div>
 
-      <h2>Core Concepts</h2>
+      <h2>Core Library</h2>
 
       {meta.quotes.length > 0 && (
         <>

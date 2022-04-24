@@ -43,13 +43,13 @@ export const createTodo = action((todoText: string) => {
 });
 
 export const updateTodoContent = action((patch: Pick<TodoItem, "id" | "content">) => {
-  const target = todos.find((todo) => todo.id === patch.id);
+  const target = todos.find((e) => e.id === patch.id);
   if (!target) return;
   target.content = patch.content;
 });
 
 export const changeTodoCompletedById = action((id: string) => {
-  const target = todos.find((todo) => todo.id === id);
+  const target = todos.find((e) => e.id === id);
   if (!target) return;
   target.completed = !target.completed;
 });
@@ -62,7 +62,7 @@ export const changeVisibility = action((value: FILTER_MODE) => filter.set(value)
 
 export const toggleAllTodos = action(() => {
   const nextCompleted = todos.every((e) => e.completed) ? false : true;
-  todos.replace(todos.map((todo) => ({ ...todo, completed: nextCompleted })));
+  todos.replace(todos.map((e) => ({ ...e, completed: nextCompleted })));
 });
 
 export const clearCompleted = action(() => {

@@ -13,17 +13,13 @@ const sum = computed(() => a.get() + b.get());
 const setA = action((delta) => a.set(a.get() + delta));
 const setB = action((delta) => b.set(b.get() + delta));
 
-// * ---------------- Mobx side effect if you want
+// * ---------------- Mobx subscription without React
 
-autorun(() => {
+const unsubscribe = autorun(() => {
   console.log("side effect", sum.get());
 });
 
-// * ---------------- App Root, nothing fancy
-
-const App = () => {
-  return <Comp />;
-};
+unsubscribe();
 
 // * ---------------- Every observable value in observer is reactive
 

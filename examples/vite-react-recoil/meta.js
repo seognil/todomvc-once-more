@@ -5,10 +5,10 @@ const { join } = require("path");
 
 /** @type import('../../packages/data/src').ProjectMetaRaw */
 const meta = {
-  title: "Vite + React Hooks + Recoil",
+  title: "React Hooks + Recoil",
   stacks: ["vite", "reacthooks", "recoil", "ts", "sass"],
   desc: {
-    short: "Use several atoms to organize ui state",
+    short: "Use multiple atoms to organize ui state instead of a single data store",
     long: [
       "The usage of Recoil simply looks like Redux or Mobx.",
       "But unlike Redux, when implementing multiple sub-systems, you only need one RecoilRoot as Provider.",
