@@ -4,15 +4,13 @@ import type { FunctionalComponent as FC } from "preact";
 
 // * ================================================================================
 
-const clocValMax = stats
-  .map((e) => e.cloc.map((e) => e.code))
-  .flat()
-  .reduce((a, b) => Math.max(a, b));
+const csumMax = stats.map((e) => e.cloc.reduce((a, b) => a + b.code, 0)).reduce((a, b) => Math.max(a, b));
 
 // * ----------------------------------------------------------------
 
 export const PieChart: FC<{ clocs: ClocInfo[]; className?: string }> = ({ clocs, className }) => {
   const csum = clocs.reduce((a, b) => a + b.code, 0);
+  const localMax = Math.max(...clocs.map((e) => e.code));
 
   // * ----------------
 
@@ -32,12 +30,11 @@ export const PieChart: FC<{ clocs: ClocInfo[]; className?: string }> = ({ clocs,
 
   // * ----------------
 
-  const size = 80;
+  const size = 200;
   const [w, h] = [size, size];
   const [x, y] = [w / 2, h / 2];
   const origin = [x, y] as const;
-  const r = size / 2;
-  const max = clocValMax;
+  const radiusUnit = ((size / 2) * (csum / csumMax)) / localMax;
 
   // * ----------------
 
@@ -47,7 +44,7 @@ export const PieChart: FC<{ clocs: ClocInfo[]; className?: string }> = ({ clocs,
         .map((e, i) => (
           <PiePiece
             key={i}
-            val={(r / max) * e.val}
+            val={radiusUnit * e.val}
             origin={origin}
             color={e.color}
             start={e.start}

@@ -1,4 +1,4 @@
-import { DIR_ROOT, githubUrl, LayoutData, ProjectStatsFull, stats } from "@todo/data";
+import { DIR_ROOT, ExampleNames, githubUrl, LayoutData, ProjectStatsFull, stats } from "@todo/data";
 import fs from "fs-extra";
 import { globby } from "globby";
 import md5 from "md5";
@@ -59,7 +59,13 @@ const rebuildAll = async () => {
     title: (str: string) => `${str} | TodoMVC once more`,
   };
 
-  await Promise.all(stats.map((p) => rebuildSingle(p, inject)));
+  const order: ExampleNames[] = ["vite-react-context", "vite-react-recoil"];
+  const tasks = order
+    .map((name) => stats.find((p) => p.projName === name))
+    .filter(Boolean)
+    .map((p) => rebuildSingle(p, inject));
+
+  await Promise.all(tasks);
 };
 
 // * -------------------------------- single

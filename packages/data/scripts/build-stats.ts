@@ -124,8 +124,11 @@ const main = async () => {
 
   const analyzeResult = await Promise.all(examples.map((e) => analyzeSingleExample(e)));
 
+  const names = Object.fromEntries(analyzeResult.map((e) => [e?.projName, true]));
+
   const json = {
     root: DIR_ROOT,
+    names: names,
     stats: analyzeResult,
   };
 
