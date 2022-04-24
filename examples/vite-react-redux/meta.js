@@ -11,7 +11,7 @@ const meta = {
     short: "State management in the early ages",
     long: [
       "In the early days of React UI development, there were not many choices for state management, Redux was the de facto standard library and everyone know it.",
-      "But when people realize it's annoying to write a lot of boilerplate for data layers in complex projects with redux. They often use it with other tools (like `redux-actions`) as well or wrap the redux core APIs with custom handmade utils.",
+      "But when people realize it's annoying to write a lot of boilerplate for data layers in complex projects with redux. They often use it with other tools (like `redux-actions`) as well or wrap the redux core API with custom handmade utils.",
     ],
   },
   quotes: ["redux", "react-redux"],

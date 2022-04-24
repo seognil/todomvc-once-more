@@ -45,10 +45,8 @@ const ToggleAll: FC = () => {
 
   return (
     <>
-      <input id="toggle-all" className="toggle-all" type="checkbox" checked={checked} />
-      <label htmlFor="toggle-all" onClick={toggleAll}>
-        Mark all as complete
-      </label>
+      <input id="toggle-all" className="toggle-all" type="checkbox" checked={checked} onChange={toggleAll} />
+      <label htmlFor="toggle-all">Mark all as complete</label>
     </>
   );
 };

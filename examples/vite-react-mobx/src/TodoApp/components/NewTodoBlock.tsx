@@ -43,10 +43,8 @@ const ToggleAll = observer(() => {
 
   return (
     <>
-      <input id="toggle-all" className="toggle-all" type="checkbox" checked={checked} />
-      <label htmlFor="toggle-all" onClick={toggleAllTodos}>
-        Mark all as complete
-      </label>
+      <input id="toggle-all" className="toggle-all" type="checkbox" checked={checked} onChange={toggleAllTodos} />
+      <label htmlFor="toggle-all">Mark all as complete</label>
     </>
   );
 });

@@ -10,8 +10,8 @@ const meta = {
   desc: {
     short: "ReactiveX is an API for asynchronous programming with observable streams",
     long: [
-      "Like Mobx, RxJS's core concept is Observable/Observer. But RxJS's value shines in stream programming by provides tons of additional APIs (rxjs/operators). On the other hand, the cost is the steep learning curve.",
-      "So although you can use a thing called 'BehaviorSubject' which allows you to emit values manually to just implement react state management, I think it's maybe an overkill.",
+      "Like Mobx, RxJS's core concept is Observable/Observer. But RxJS's value shines in stream programming by provides tons of additional API (`rxjs/operators`). On the other hand, the cost is the steep learning curve.",
+      "So although you can use an object called `BehaviorSubject` which allows you to emit values manually to just implement react state management, I think it's maybe an overkill.",
     ],
   },
   quotes: ["rxjs", "observable-hooks"],
