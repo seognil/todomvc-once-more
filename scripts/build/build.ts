@@ -1,4 +1,4 @@
-import { DIR_ROOT, ExampleNames, githubUrl, LayoutData, ProjectStatsFull, stats } from "@todo/data";
+import { DIR_ROOT, githubUrl, LayoutData, ProjectStatsFull, stats } from "@todo/data";
 import fs from "fs-extra";
 import { globby } from "globby";
 import md5 from "md5";

@@ -14,6 +14,25 @@ importers:
       serve: 13.0.2
       typescript: 4.6.3
 
+  examples/vite-preact-context:
+    specifiers:
+      '@preact/preset-vite': ^2.2.0
+      clsx: ^1.1.1
+      nanoid: ^3.3.1
+      preact: ^10.7.1
+      sass: ^1.50.1
+      typescript: ^4.5.4
+      vite: ^2.8.0
+    dependencies:
+      clsx: 1.1.1
+      nanoid: 3.3.3
+      preact: 10.7.1
+    devDependencies:
+      '@preact/preset-vite': 2.2.0_preact@10.7.1+vite@2.9.5
+      sass: 1.50.1
+      typescript: 4.6.3
+      vite: 2.9.5_sass@1.50.1
+
   examples/vite-react-context:
     specifiers:
       '@types/react': ^17.0.33
@@ -491,6 +510,18 @@ packages:
       '@babel/helper-plugin-utils': 7.16.7
     dev: true
 
+  /@babel/plugin-syntax-jsx/7.16.7:
+    resolution: {integrity: sha512-Esxmk7YjA8QysKeT3VhTXvF6y77f/a91SIs4pWb4H2eWGQkCKFgQaG6hdoEVZtGsrAcb2K5BW66XsOErD4WU3Q==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+    dependencies:
+      '@babel/helper-plugin-utils': 7.16.7
+    dev: true
+
   /@babel/plugin-syntax-jsx/7.16.7_@babel+core@7.17.9:
     resolution: {integrity: sha512-Esxmk7YjA8QysKeT3VhTXvF6y77f/a91SIs4pWb4H2eWGQkCKFgQaG6hdoEVZtGsrAcb2K5BW66XsOErD4WU3Q==}
     engines: {node: '>=6.9.0'}
@@ -527,6 +558,18 @@ packages:
     dependencies:
       '@babel/core': 7.12.9
       '@babel/helper-plugin-utils': 7.16.7
+    dev: true
+
+  /@babel/plugin-transform-react-jsx-development/7.16.7:
+    resolution: {integrity: sha512-RMvQWvpla+xy6MlBpPlrKZCMRs2AGiHOGHY3xRwl0pEeim348dDyxeH4xBsMPbIMhujeq7ihE702eM2Ew0Wo+A==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+    dependencies:
+      '@babel/plugin-transform-react-jsx': 7.17.3
     dev: true
 
   /@babel/plugin-transform-react-jsx-development/7.16.7_@babel+core@7.17.9:
@@ -566,6 +609,22 @@ packages:
     dependencies:
       '@babel/core': 7.17.9
       '@babel/helper-plugin-utils': 7.16.7
+    dev: true
+
+  /@babel/plugin-transform-react-jsx/7.17.3:
+    resolution: {integrity: sha512-9tjBm4O07f7mzKSIlEmPdiE6ub7kfIe6Cd+w+oQebpATfTQMAgW+YOuWxogbKVTulA+MEO7byMeIUtQ1z+z+ZQ==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+    dependencies:
+      '@babel/helper-annotate-as-pure': 7.16.7
+      '@babel/helper-module-imports': 7.16.7
+      '@babel/helper-plugin-utils': 7.16.7
+      '@babel/plugin-syntax-jsx': 7.16.7
+      '@babel/types': 7.17.0
     dev: true
 
   /@babel/plugin-transform-react-jsx/7.17.3_@babel+core@7.17.9:
@@ -757,6 +816,31 @@ packages:
       '@prefresh/vite': 2.2.8_preact@10.7.1+vite@2.9.5
       '@rollup/pluginutils': 4.2.1
       babel-plugin-transform-hook-names: 1.0.2_@babel+core@7.17.9
+      debug: 4.3.4
+      kolorist: 1.5.1
+      resolve: 1.22.0
+      vite: 2.9.5_sass@1.50.1
+    transitivePeerDependencies:
+      - preact
+      - supports-color
+    dev: true
+
+  /@preact/preset-vite/2.2.0_preact@10.7.1+vite@2.9.5:
+    resolution: {integrity: sha512-xOtPzyVSPphUF/tRnzjxkCR/ovbCS6O25ekdCw5MGKcaAkb6PDRo50tS1x2n0+O9qL7Z/qrHJKpyCVn29A4iMg==}
+    peerDependencies:
+      '@babel/core': 7.x
+      vite: 2.x
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      vite:
+        optional: true
+    dependencies:
+      '@babel/plugin-transform-react-jsx': 7.17.3
+      '@babel/plugin-transform-react-jsx-development': 7.16.7
+      '@prefresh/vite': 2.2.8_preact@10.7.1+vite@2.9.5
+      '@rollup/pluginutils': 4.2.1
+      babel-plugin-transform-hook-names: 1.0.2
       debug: 4.3.4
       kolorist: 1.5.1
       resolve: 1.22.0
@@ -1237,6 +1321,15 @@ packages:
     resolution: {integrity: sha512-yJ9BsJaISua7d8zNT7oRG1ZLBJCIdZ4PZqmH8qa9N5AK01ifk3fnkc98AXhtzE7UkfCsEumvoQWgoYLhOnJ7jQ==}
     dependencies:
       '@babel/helper-plugin-utils': 7.10.4
+    dev: true
+
+  /babel-plugin-transform-hook-names/1.0.2:
+    resolution: {integrity: sha512-5gafyjyyBTTdX/tQQ0hRgu4AhNHG/hqWi0ZZmg2xvs2FgRkJXzDNKBZCyoYqgFkovfDrgM8OoKg8karoUvWeCw==}
+    peerDependencies:
+      '@babel/core': ^7.12.10
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
     dev: true
 
   /babel-plugin-transform-hook-names/1.0.2_@babel+core@7.17.9:

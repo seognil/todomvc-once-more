@@ -28,6 +28,11 @@ const rawData = {
     url: "https://reactjs.org/",
     desc: "React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.",
   },
+  preact: {
+    name: "Preact",
+    url: "https://preactjs.com/",
+    desc: "Preact is not intended to be a reimplementation of React. There are differences. Many of these differences are trivial, or can be completely removed by using preact/compat, which is a thin layer over Preact that attempts to achieve 100% compatibility with React.",
+  },
   reacthooks: {
     name: "React Hooks",
     url: "https://reactjs.org/docs/hooks-intro.html",
