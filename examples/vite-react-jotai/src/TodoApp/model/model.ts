@@ -1,5 +1,5 @@
-import { nanoid } from "nanoid";
 import { atom, useAtom } from "jotai";
+import { nanoid } from "nanoid";
 
 // * ---------------------------------------------------------------- types
 
