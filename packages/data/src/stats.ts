@@ -19,3 +19,5 @@ const toFull = (p: ProjectStatsRaw): ProjectStatsFull => ({
 });
 
 export const stats = (json.stats as ProjectStatsRaw[]).map(toFull);
+
+export type ExampleNames = keyof typeof json.names;

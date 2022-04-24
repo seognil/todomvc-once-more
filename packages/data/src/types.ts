@@ -112,7 +112,7 @@ export interface ProjectMetaFull {
 
 export interface Description {
   short: string;
-  long: string;
+  long: string | string[];
 }
 
 // * ---------------------------------------------------------------- layout props

@@ -1,16 +1,12 @@
 ## Coming soon
 
-- React Hooks + React Context
-- React Hooks + Mobx
-- React Hooks + RXJS + Observable-hooks
-- React Hooks + Redux
-- Preact instead of React
 - Create-React-App
 - Astro
-- Vue + Pinia
+- TailwindCSS
 - UnoCSS
 - Twind
 - Emotion
+- Vue + Pinia
 - Svelte
 - SolidJS
 - ...
@@ -24,6 +20,7 @@ This project also relies on these tools heavily, which I'd like to recommend to 
 - [**tsno**](https://github.com/egoist/tsno): <i>node with typescript support</i>
 - [**pnpm**](https://pnpm.io/): <i>pnpm has built-in support for monorepositories</i>
 - [**Vercel**](https://vercel.com/): <i>Vercel is the best place to deploy any frontend app</i>
+- [**Bundlephobia**](https://bundlephobia.com/): <i>Find the cost of adding a npm package to your bundle</i>
 
 ## Frontend Development Resources
 

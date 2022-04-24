@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "clsx": "^1.1.1",
+    "nanoid": "^3.3.1",
+    "preact": "^10.7.1"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.2.0",
+    "sass": "^1.50.1",
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0"
+  }
+}

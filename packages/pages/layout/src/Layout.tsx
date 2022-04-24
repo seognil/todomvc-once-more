@@ -27,10 +27,10 @@ export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, serve
 
       <h1>{meta.title}</h1>
 
+      <p>{meta.desc.short}</p>
+
       <div className="todomvc-app-container">
         <div className="todomvc-info">
-          <p>{meta.desc.short}</p>
-
           {meta.stacks.length > 0 && (
             <>
               <h2>
@@ -62,7 +62,7 @@ export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, serve
         </div>
       </div>
 
-      <h2>Core Concepts</h2>
+      <h2>Core Libraries</h2>
 
       {meta.quotes.length > 0 && (
         <>
@@ -84,7 +84,9 @@ export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, serve
       <div>
         {server ? <CodeBlockServer core={meta.core} /> : <CodeBlock core={meta.core} />}
 
-        <p>{stats.meta.desc.long}</p>
+        {[stats.meta.desc.long].flat().map((e, i) => (
+          <p key={i}>{e}</p>
+        ))}
 
         <div className="core-snippet">
           <SyntaxHighlighter language={meta.core.lang} style={snippetTheme}>

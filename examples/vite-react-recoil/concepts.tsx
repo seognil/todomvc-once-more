@@ -1,6 +1,6 @@
 import { atom, RecoilRoot, selector, useRecoilState, useRecoilValue } from "recoil";
 
-// * ---------------- RecoilRoot
+// * ---------------- RecoilRoot wrapping
 
 const App = () => {
   return (
@@ -12,8 +12,8 @@ const App = () => {
 
 // * ---------------- multiple atoms
 
-const aAtom = atom({ key: "a", default: 0 });
-const bAtom = atom({ key: "b", default: 0 });
+const aAtom = atom({ key: "a", default: 1 });
+const bAtom = atom({ key: "b", default: 2 });
 const sumAtom = selector({ key: "sum", get: ({ get }) => get(aAtom) + get(bAtom) });
 
 // * ---------------- atoms used in components

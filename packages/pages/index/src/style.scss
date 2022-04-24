@@ -58,7 +58,7 @@ main {
   svg.animate-pie {
     circle {
       animation: graph-pie 500ms ease forwards;
-      animation-delay: calc(150ms * var(--index));
+      animation-delay: calc(100ms * var(--index));
     }
   }
 
@@ -73,7 +73,7 @@ main {
       width: 0%;
       height: 100%;
       animation: graph-bar 500ms ease forwards;
-      animation-delay: calc(150ms * var(--index));
+      animation-delay: calc(100ms * var(--index));
     }
   }
 

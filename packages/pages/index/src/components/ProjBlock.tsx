@@ -1,4 +1,4 @@
-import { ProjectStatsFull, stats } from "@todo/data";
+import { ExampleNames, ProjectStatsFull, stats } from "@todo/data";
 import type { FunctionalComponent as FC, VNode as ReactElement } from "preact";
 import { FaCircle, FaSquare } from "react-icons/fa";
 import { DistBar, GzipBar } from "./BarChart";
@@ -12,10 +12,26 @@ const prettyKB = (size: number) => `${prettySize(size)} kB`;
 // * ================================================================================
 
 export const ProjBlock: FC = () => {
+  const order: ExampleNames[] = [
+    "vite-react-context",
+    "vite-preact-context",
+    "vite-react-context-immer",
+    "vite-react-redux",
+    "vite-react-mobx",
+    "vite-react-rxjs",
+    "vite-react-recoil",
+    "vite-react-jotai",
+  ];
+
+  const list = [
+    ...order.map((name) => stats.find((p) => p.projName === name)).filter(Boolean),
+    ...stats.filter((p) => !order.includes(p.projName as ExampleNames)),
+  ] as ProjectStatsFull[];
+
   return (
     <div>
-      {stats.map((e, i) => (
-        <ProjListBlock key={e.projName} p={e} index={i} />
+      {list.map((p, i) => (
+        <ProjListBlock key={p.projName} p={p} index={i} />
       ))}
     </div>
   );
@@ -24,7 +40,7 @@ export const ProjBlock: FC = () => {
 const ProjListBlock: FC<{ p: ProjectStatsFull; index: number }> = ({ p, index }) => {
   return (
     <div className="w-full flex items-center mb-48px" style={{ "--index": index }}>
-      <div className="w-30% min-w-200px">
+      <div className="w-40% min-w-200px">
         <div className="pr-32px">
           <a className="font-bold text-20px" href={`/examples/${p.projName}`}>
             <span className="font-bold">{p.meta.title}</span>
@@ -33,7 +49,7 @@ const ProjListBlock: FC<{ p: ProjectStatsFull; index: number }> = ({ p, index })
           <p className="leading-1em mt-8px mb-0 text-14px font-light opacity-60">{p.meta.desc.short}</p>
 
           <div className="mt-8px text-14px font-light opacity-60">
-            <span>Full Stacks: </span>
+            <span>Full Stack: </span>
             {p.meta.stacks
               .map((e) => (
                 <a href={e.url}>
