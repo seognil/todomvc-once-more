@@ -1,8 +1,7 @@
 import { nanoid } from "nanoid";
-
 import { createContext, useContext, useState } from "react";
 
-// * ---------------------------------------------------------------- types and const
+// * ---------------------------------------------------------------- types and difinitions
 
 export enum FILTER_MODE {
   "ALL",
@@ -42,6 +41,7 @@ export const useTodoModel = () => {
   const [data, setData] = c;
   const { filter, todos } = data;
 
+  // * wrap things into function to avoid calculate every time
   const model = {
     // * ---------------- todo crud
 
@@ -60,17 +60,17 @@ export const useTodoModel = () => {
       }));
     },
 
-    updateTodoContent: (patchTodo: Pick<TodoItem, "id" | "content">) => {
+    updateTodoContent: (patch: Pick<TodoItem, "id" | "content">) => {
       setData((data) => ({
         ...data,
-        todos: data.todos.map((todo) => (todo.id === patchTodo.id ? { ...todo, content: patchTodo.content } : todo)),
+        todos: data.todos.map((e) => (e.id === patch.id ? { ...e, content: patch.content } : e)),
       }));
     },
 
     changeTodoCompletedById: (id: string) => {
       setData((data) => ({
         ...data,
-        todos: data.todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo)),
+        todos: data.todos.map((e) => (e.id === id ? { ...e, completed: !e.completed } : e)),
       }));
     },
 

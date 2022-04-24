@@ -59,13 +59,7 @@ const rebuildAll = async () => {
     title: (str: string) => `${str} | TodoMVC once more`,
   };
 
-  const order: ExampleNames[] = ["vite-react-context", "vite-react-recoil"];
-  const tasks = order
-    .map((name) => stats.find((p) => p.projName === name))
-    .filter(Boolean)
-    .map((p) => rebuildSingle(p, inject));
-
-  await Promise.all(tasks);
+  await Promise.all(stats.map((p) => rebuildSingle(p, inject)));
 };
 
 // * -------------------------------- single

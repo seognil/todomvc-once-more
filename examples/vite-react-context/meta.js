@@ -9,7 +9,11 @@ const meta = {
   stacks: ["vite", "reacthooks", "ts", "sass"],
   desc: {
     short: "React without any third-party state management libraries",
-    long: `Basic usage of React Functional Components with Hooks and Context API. It's simple, but there is a problem, once the context changes, all components will be re-rendered. It's trivial to manage the performance optimization manually and split the model/domain layer in large projects. That's why third-party libraries appear to solve pain points`,
+    long: [
+      "Basic usage of React Functional Components with Hooks and Context API.",
+      "It's simple, but there is a problem, once the context changes, all components will be re-rendered. It's trivial to manage the performance optimization manually and split the model/domain layer in large projects.",
+      "That's why third-party libraries appear to solve pain points.",
+    ],
   },
   quotes: ["reacthooks"],
   core: {

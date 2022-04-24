@@ -1,4 +1,4 @@
-import { ProjectStatsFull, stats } from "@todo/data";
+import { ExampleNames, ProjectStatsFull, stats } from "@todo/data";
 import type { FunctionalComponent as FC, VNode as ReactElement } from "preact";
 import { FaCircle, FaSquare } from "react-icons/fa";
 import { DistBar, GzipBar } from "./BarChart";
@@ -12,11 +12,16 @@ const prettyKB = (size: number) => `${prettySize(size)} kB`;
 // * ================================================================================
 
 export const ProjBlock: FC = () => {
+  const order: ExampleNames[] = ["vite-react-context", "vite-react-mobx", "vite-react-recoil"];
+
   return (
     <div>
-      {stats.map((e, i) => (
-        <ProjListBlock key={e.projName} p={e} index={i} />
-      ))}
+      {order
+        .map((name) => stats.find((p) => p.projName === name))
+        .filter(Boolean)
+        .map((p, i) => (
+          <ProjListBlock key={p!.projName} p={p!} index={i} />
+        ))}
     </div>
   );
 };
@@ -24,7 +29,7 @@ export const ProjBlock: FC = () => {
 const ProjListBlock: FC<{ p: ProjectStatsFull; index: number }> = ({ p, index }) => {
   return (
     <div className="w-full flex items-center mb-48px" style={{ "--index": index }}>
-      <div className="w-30% min-w-200px">
+      <div className="w-40% min-w-200px">
         <div className="pr-32px">
           <a className="font-bold text-20px" href={`/examples/${p.projName}`}>
             <span className="font-bold">{p.meta.title}</span>

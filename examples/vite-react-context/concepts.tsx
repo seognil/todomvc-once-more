@@ -7,8 +7,8 @@ const MyContext = createContext(null);
 // * ---------------- App Context initialization
 
 const App = () => {
-  const [a, setA] = useState(0);
-  const [b, setB] = useState(0);
+  const [a, setA] = useState(1);
+  const [b, setB] = useState(2);
   return (
     <MyContext.Provider value={{ a, setA, b, setB }}>
       <Comp />

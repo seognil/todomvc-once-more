@@ -84,7 +84,9 @@ export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, serve
       <div>
         {server ? <CodeBlockServer core={meta.core} /> : <CodeBlock core={meta.core} />}
 
-        <p>{stats.meta.desc.long}</p>
+        {[stats.meta.desc.long].flat().map((e, i) => (
+          <p key={i}>{e}</p>
+        ))}
 
         <div className="core-snippet">
           <SyntaxHighlighter language={meta.core.lang} style={snippetTheme}>

@@ -33,6 +33,16 @@ const rawData = {
     url: "https://reactjs.org/docs/hooks-intro.html",
     desc: "Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks solve a wide variety of seemingly unconnected problems in React that we’ve encountered over five years of writing and maintaining tens of thousands of components.",
   },
+  mobx: {
+    name: "MobX",
+    url: "https://mobx.js.org/",
+    desc: `Anything that can be derived from the application state, should be. Automatically. MobX is a battle tested library that makes state management simple and scalable by transparently applying functional reactive programming (TFRP).`,
+  },
+  immer: {
+    name: "Immer",
+    url: "https://immerjs.github.io/immer/",
+    desc: "Immer can be used in any context in which immutable data structures need to be used. For example in combination with React state, React or Redux reducers, or configuration management. Immutable data structures allow for (efficient) change detection: if the reference to an object didn't change, the object itself did not change. In addition, it makes cloning relatively cheap: Unchanged parts of a data tree don't need to be copied and are shared in memory with older versions of the same state.",
+  },
   recoil: {
     name: "Recoil",
     url: "https://recoiljs.org/",
