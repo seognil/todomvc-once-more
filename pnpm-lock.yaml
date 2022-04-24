@@ -114,6 +114,37 @@ importers:
       typescript: 4.6.3
       vite: 2.9.5_sass@1.50.1
 
+  examples/vite-react-rxjs:
+    specifiers:
+      '@types/react': ^17.0.33
+      '@types/react-dom': ^17.0.10
+      '@vitejs/plugin-react': ^1.0.7
+      clsx: ^1.1.1
+      mobx: ^6.5.0
+      nanoid: ^3.3.1
+      observable-hooks: ^4.0.5
+      react: ^17.0.2
+      react-dom: ^17.0.2
+      rxjs: ^7.3.0
+      sass: ^1.50.1
+      typescript: ^4.5.4
+      vite: ^2.8.0
+    dependencies:
+      clsx: 1.1.1
+      mobx: 6.5.0
+      nanoid: 3.3.3
+      observable-hooks: 4.2.0_95dbd2143a892133cb1f95671e6a188e
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      rxjs: 7.5.5
+    devDependencies:
+      '@types/react': 17.0.44
+      '@types/react-dom': 17.0.15
+      '@vitejs/plugin-react': 1.3.1
+      sass: 1.50.1
+      typescript: 4.6.3
+      vite: 2.9.5_sass@1.50.1
+
   packages/data:
     specifiers:
       execa: ^6.1.0
@@ -3460,6 +3491,23 @@ packages:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
 
+  /observable-hooks/4.2.0_95dbd2143a892133cb1f95671e6a188e:
+    resolution: {integrity: sha512-bGjfGQI9vXrOIf1zAc3dmMqIXSqGQM+MLYOSQuqTzgP/8ptyDn9Gsm3tXXnohHkL7byyzHFc0/zuWyydUjtAFg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      rxjs: '>=6.0.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      rxjs: 7.5.5
+    dev: false
+
   /on-headers/1.0.2:
     resolution: {integrity: sha512-pZAE+FJLoyITytdqK0U5s+FIpjN0JP3OzFi/u8Rx+EV5/W+JTWGXG8xFzevE7AjBfDqHv/8vL8qQsIhHnqRkrA==}
     engines: {node: '>= 0.8'}
@@ -4113,6 +4161,12 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
+  /rxjs/7.5.5:
+    resolution: {integrity: sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw==}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
+
   /safe-buffer/5.1.2:
     resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}
     dev: true
@@ -4537,6 +4591,10 @@ packages:
   /tslib/2.0.1:
     resolution: {integrity: sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==}
     dev: true
+
+  /tslib/2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
+    dev: false
 
   /tsno/2.0.0:
     resolution: {integrity: sha512-B0qp3W6GXNF8TLu3CD+45MfNDlvqys2bYKbYz52Od1CDkMP/mNsgguqe5tmDYTZM9ZGp1bDBuiTFvCKTVnUOfw==}

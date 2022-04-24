@@ -12,7 +12,13 @@ const prettyKB = (size: number) => `${prettySize(size)} kB`;
 // * ================================================================================
 
 export const ProjBlock: FC = () => {
-  const order: ExampleNames[] = ["vite-react-context", "vite-preact-context", "vite-react-mobx", "vite-react-recoil"];
+  const order: ExampleNames[] = [
+    "vite-react-context",
+    "vite-preact-context",
+    "vite-react-mobx",
+    "vite-react-rxjs",
+    "vite-react-recoil",
+  ];
 
   const list = [
     ...order.map((name) => stats.find((p) => p.projName === name)).filter(Boolean),
