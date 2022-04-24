@@ -1,7 +1,5 @@
 ## Coming soon
 
-- React Hooks + Redux
-- Immer.js and immutability
 - Create-React-App
 - Astro
 - TailwindCSS
