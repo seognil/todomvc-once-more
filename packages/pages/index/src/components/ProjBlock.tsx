@@ -20,6 +20,7 @@ export const ProjBlock: FC = () => {
     "vite-react-mobx",
     "vite-react-rxjs",
     "vite-react-recoil",
+    "vite-react-jotai",
   ];
 
   const list = [
