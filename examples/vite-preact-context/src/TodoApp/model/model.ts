@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import type { StateUpdater } from "preact/compat";
 import { createContext, useContext, useState } from "preact/compat";
 
 // * ---------------------------------------------------------------- types and difinitions
@@ -27,7 +28,7 @@ const DEFAULT_TODO_DATA: TodoData = {
 
 // * ---------------------------------------------------------------- react context and model
 
-type UseState<T> = [T, React.Dispatch<React.SetStateAction<T>>];
+type UseState<T> = [T, StateUpdater<T>];
 
 export const TodoContext = createContext<UseState<TodoData> | null>(null);
 
