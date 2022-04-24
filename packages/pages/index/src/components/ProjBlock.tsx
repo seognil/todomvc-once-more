@@ -46,7 +46,7 @@ const ProjListBlock: FC<{ p: ProjectStatsFull; index: number }> = ({ p, index })
           <p className="leading-1em mt-8px mb-0 text-14px font-light opacity-60">{p.meta.desc.short}</p>
 
           <div className="mt-8px text-14px font-light opacity-60">
-            <span>Full Stacks: </span>
+            <span>Full Stack: </span>
             {p.meta.stacks
               .map((e) => (
                 <a href={e.url}>

@@ -6,7 +6,7 @@ const { join } = require("path");
 /** @type import('../../packages/data/src').ProjectMetaRaw */
 const meta = {
   title: "Vite + React Hooks + React Context",
-  stacks: ["vite", "reacthooks", "ts", "sass"],
+  stacks: ["vite", "react-hooks", "ts", "sass"],
   desc: {
     short: "React without any third-party state management libraries",
     long: [
@@ -15,7 +15,7 @@ const meta = {
       "That's why third-party libraries appear to solve pain points.",
     ],
   },
-  quotes: ["reacthooks"],
+  quotes: ["react-hooks"],
   core: {
     lang: "tsx",
     code: ["<MyContext.Provider value={}>", "useContext()", "useState()"],

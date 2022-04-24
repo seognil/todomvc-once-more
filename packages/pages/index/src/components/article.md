@@ -1,16 +1,14 @@
 ## Coming soon
 
-- React Hooks + React Context
-- React Hooks + Mobx
-- React Hooks + RXJS + Observable-hooks
 - React Hooks + Redux
-- Preact instead of React
+- Immer.js and immutability
 - Create-React-App
 - Astro
-- Vue + Pinia
+- TailwindCSS
 - UnoCSS
 - Twind
 - Emotion
+- Vue + Pinia
 - Svelte
 - SolidJS
 - ...

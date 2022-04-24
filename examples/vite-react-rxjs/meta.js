@@ -6,7 +6,7 @@ const { join } = require("path");
 /** @type import('../../packages/data/src').ProjectMetaRaw */
 const meta = {
   title: "React Hooks + RxJS + observable-hooks",
-  stacks: ["vite", "reacthooks", "rxjs", "observable-hooks", "ts", "sass"],
+  stacks: ["vite", "react-hooks", "rxjs", "observable-hooks", "ts", "sass"],
   desc: {
     short: "ReactiveX is an API for asynchronous programming with observable streams",
     long: [

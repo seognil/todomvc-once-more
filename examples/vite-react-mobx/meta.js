@@ -6,7 +6,7 @@ const { join } = require("path");
 /** @type import('../../packages/data/src').ProjectMetaRaw */
 const meta = {
   title: "React Hooks + Mobx",
-  stacks: ["vite", "reacthooks", "mobx", "mobx-react-lite", "ts", "sass"],
+  stacks: ["vite", "react-hooks", "mobx", "mobx-react-lite", "ts", "sass"],
   desc: {
     short: "Simple, scalable state management with observable values",
     long: [

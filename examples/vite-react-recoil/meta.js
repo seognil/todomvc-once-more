@@ -6,7 +6,7 @@ const { join } = require("path");
 /** @type import('../../packages/data/src').ProjectMetaRaw */
 const meta = {
   title: "React Hooks + Recoil",
-  stacks: ["vite", "reacthooks", "recoil", "ts", "sass"],
+  stacks: ["vite", "react-hooks", "recoil", "ts", "sass"],
   desc: {
     short: "Use multiple atoms to organize ui state instead of a single data store",
     long: [

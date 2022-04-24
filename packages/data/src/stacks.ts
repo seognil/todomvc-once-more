@@ -33,7 +33,7 @@ const rawData = {
     url: "https://preactjs.com/",
     desc: "Preact is not intended to be a reimplementation of React. There are differences. Many of these differences are trivial, or can be completely removed by using preact/compat, which is a thin layer over Preact that attempts to achieve 100% compatibility with React.",
   },
-  "reacthooks": {
+  "react-hooks": {
     name: "React Hooks",
     url: "https://reactjs.org/docs/hooks-intro.html",
     desc: "Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks solve a wide variety of seemingly unconnected problems in React that we’ve encountered over five years of writing and maintaining tens of thousands of components.",
