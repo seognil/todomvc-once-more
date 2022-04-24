@@ -15,6 +15,7 @@ export const ProjBlock: FC = () => {
   const order: ExampleNames[] = [
     "vite-react-context",
     "vite-preact-context",
+    "vite-react-context-immer",
     "vite-react-redux",
     "vite-react-mobx",
     "vite-react-rxjs",

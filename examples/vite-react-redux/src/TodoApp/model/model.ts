@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
-import { createStore } from "redux";
 import { useDispatch, useSelector } from "react-redux";
+import { createStore } from "redux";
 
 // * ---------------------------------------------------------------- types and difinitions
 

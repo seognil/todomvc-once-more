@@ -15,7 +15,7 @@ const meta = {
       "That's why third-party libraries appear to solve pain points.",
     ],
   },
-  quotes: ["react-hooks"],
+  quotes: ["vite", "react-hooks"],
   core: {
     lang: "tsx",
     code: ["<MyContext.Provider value={}>", "useContext()", "useState()"],

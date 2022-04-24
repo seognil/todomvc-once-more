@@ -25,7 +25,6 @@ const meta = {
   resources: [
     "recoil",
     "jotai",
-    "immer",
     {
       title: "Jotai vs. Recoil: What are the differences?",
       url: "https://blog.logrocket.com/jotai-vs-recoil-what-are-the-differences/",

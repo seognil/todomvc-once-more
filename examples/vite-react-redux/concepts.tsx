@@ -3,19 +3,18 @@ import { createStore } from "redux";
 
 // * ---------------- Redux store definitions
 
-const store = createStore(
-  (state, action) => {
-    switch (action.type) {
-      case "UPDATE_A":
-        return { ...state, a: state.a + action.payload };
-      case "UPDATE_B":
-        return { ...state, b: state.b + action.payload };
-      default:
-        return state;
-    }
-  },
-  { a: 0, b: 0 },
-);
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "UPDATE_A":
+      return { ...state, a: state.a + action.payload };
+    case "UPDATE_B":
+      return { ...state, b: state.b + action.payload };
+    default:
+      return state;
+  }
+};
+
+const store = createStore(reducer, { a: 0, b: 0 });
 
 // * ---------------- Redux Provider wrapping
 

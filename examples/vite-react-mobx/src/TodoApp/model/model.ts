@@ -62,7 +62,9 @@ export const changeVisibility = action((value: FILTER_MODE) => filter.set(value)
 
 export const toggleAllTodos = action(() => {
   const nextCompleted = todos.every((e) => e.completed) ? false : true;
-  todos.replace(todos.map((e) => ({ ...e, completed: nextCompleted })));
+  todos.forEach((e) => {
+    e.completed = nextCompleted;
+  });
 });
 
 export const clearCompleted = action(() => {
