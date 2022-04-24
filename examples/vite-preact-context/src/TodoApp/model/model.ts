@@ -88,7 +88,12 @@ export const useTodoModel = () => {
     getHasCompleted: () => todos.filter((e) => e.completed).length > 0,
 
     getFilterValue: () => filter,
-    changeVisibility: (filter: FILTER_MODE) => setData((data) => ({ ...data, filter })),
+    changeVisibility: (filter: FILTER_MODE) => {
+      setData((data) => ({
+        ...data,
+        filter,
+      }));
+    },
 
     // * ---------------- toggle
 

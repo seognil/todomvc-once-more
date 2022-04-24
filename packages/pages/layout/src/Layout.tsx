@@ -62,7 +62,7 @@ export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, serve
         </div>
       </div>
 
-      <h2>Core Library</h2>
+      <h2>Core Libraries</h2>
 
       {meta.quotes.length > 0 && (
         <>

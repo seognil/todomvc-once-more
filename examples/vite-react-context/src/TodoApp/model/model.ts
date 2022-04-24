@@ -41,7 +41,7 @@ export const useTodoModel = () => {
   const [data, setData] = c;
   const { filter, todos } = data;
 
-  // * wrap things into function to avoid calculate every time
+  // * wrap things into function to avoid useContext boilerplate and achieve lazy evaluation
   const model = {
     // * ---------------- todo crud
 
@@ -87,7 +87,12 @@ export const useTodoModel = () => {
     getHasCompleted: () => todos.filter((e) => e.completed).length > 0,
 
     getFilterValue: () => filter,
-    changeVisibility: (filter: FILTER_MODE) => setData((data) => ({ ...data, filter })),
+    changeVisibility: (filter: FILTER_MODE) => {
+      setData((data) => ({
+        ...data,
+        filter,
+      }));
+    },
 
     // * ---------------- toggle
 
@@ -102,7 +107,6 @@ export const useTodoModel = () => {
         };
       });
     },
-
     clearCompleted: () => {
       setData((data) => ({
         ...data,

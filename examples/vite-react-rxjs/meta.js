@@ -14,7 +14,7 @@ const meta = {
       "So although you can use a thing called 'BehaviorSubject' which allows you to emit values manually to just implement react state management, I think it's maybe an overkill.",
     ],
   },
-  quotes: ["rxjs"],
+  quotes: ["rxjs", "observable-hooks"],
   core: {
     lang: "tsx",
     code: [

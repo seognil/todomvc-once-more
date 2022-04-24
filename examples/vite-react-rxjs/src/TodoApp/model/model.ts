@@ -69,7 +69,9 @@ export const useHasCompleted = () => useObservableEagerState(hasCompleted$);
 
 export const useFilterValue = () => useObservableEagerState(filter$);
 
-export const changeVisibility = (value: FILTER_MODE) => filter$.next(value);
+export const changeVisibility = (value: FILTER_MODE) => {
+  filter$.next(value);
+};
 
 // * ---------------- toggle
 

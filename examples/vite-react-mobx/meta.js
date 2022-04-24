@@ -5,7 +5,7 @@ const { join } = require("path");
 
 /** @type import('../../packages/data/src').ProjectMetaRaw */
 const meta = {
-  title: "React Hooks + Mobx",
+  title: "React Hooks + Mobx + mobx-react-lite",
   stacks: ["vite", "react-hooks", "mobx", "mobx-react-lite", "ts", "sass"],
   desc: {
     short: "Simple, scalable state management with observable values",
@@ -14,7 +14,7 @@ const meta = {
       "Notice: By default, MobX uses proxies to make arrays and plain objects observable. Proxies provide the best performance and most consistent behavior across environments. However, if you are targeting an environment that doesn't support proxies, proxy support has to be disabled. Most notably this is the case when targeting Internet Explorer or React Native without using the Hermes engine.",
     ],
   },
-  quotes: ["mobx"],
+  quotes: ["mobx", "mobx-react-lite"],
   core: {
     lang: "tsx",
     code: ["observable()", "observable.box()", "computed()", "action()", "autorun()", "observer()"],

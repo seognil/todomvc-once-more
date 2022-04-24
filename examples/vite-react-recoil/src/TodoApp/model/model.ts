@@ -66,18 +66,23 @@ export const useCreateTodo = () => {
 
 export const useUpdateTodoContent = () => {
   const setTodo = useSetRecoilState(todos);
-  return (patch: Pick<TodoItem, "id" | "content">) =>
+  return (patch: Pick<TodoItem, "id" | "content">) => {
     setTodo((todos) => todos.map((e) => (e.id === patch.id ? { ...e, ...patch } : e)));
+  };
 };
 
 export const useChangeTodoCompletedById = () => {
   const setTodo = useSetRecoilState(todos);
-  return (id: string) => setTodo((todos) => todos.map((e) => (e.id === id ? { ...e, completed: !e.completed } : e)));
+  return (id: string) => {
+    setTodo((todos) => todos.map((e) => (e.id === id ? { ...e, completed: !e.completed } : e)));
+  };
 };
 
 export const useDeleteTodoById = () => {
   const setTodo = useSetRecoilState(todos);
-  return (id: string) => setTodo((todos) => todos.filter((e) => e.id !== id));
+  return (id: string) => {
+    setTodo((todos) => todos.filter((e) => e.id !== id));
+  };
 };
 
 // * ---------------- misc
@@ -88,7 +93,9 @@ export const useHasCompleted = () => useRecoilValue(hasCompleted);
 export const useFilterValue = () => useRecoilValue(filter);
 export const useChangeVisibility = () => {
   const setVisibility = useSetRecoilState(filter);
-  return (mode: FILTER_MODE) => setVisibility(mode);
+  return (mode: FILTER_MODE) => {
+    setVisibility(mode);
+  };
 };
 
 // * ---------------- toggle
@@ -99,10 +106,14 @@ export const useToggleAllTodos = () => {
   const setTodos = useSetRecoilState(todos);
   const remainCount = useRemainCount();
   const nextCompleted = remainCount > 0;
-  return () => setTodos((todos) => todos.map((e) => ({ ...e, completed: nextCompleted })));
+  return () => {
+    setTodos((todos) => todos.map((e) => ({ ...e, completed: nextCompleted })));
+  };
 };
 
 export const useClearCompleted = () => {
   const setTodos = useSetRecoilState(todos);
-  return () => setTodos((todos) => todos.filter((e) => !e.completed));
+  return () => {
+    setTodos((todos) => todos.filter((e) => !e.completed));
+  };
 };
