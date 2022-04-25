@@ -104,8 +104,7 @@ export const useIsAllCompleted = () => useRecoilValue(isAllCompleted);
 
 export const useToggleAllTodos = () => {
   const setTodos = useSetRecoilState(todos);
-  const remainCount = useRemainCount();
-  const nextCompleted = remainCount > 0;
+  const nextCompleted = useRecoilValue(todos).every((e) => e.completed) ? false : true;
   return () => {
     setTodos((todos) => todos.map((e) => ({ ...e, completed: nextCompleted })));
   };

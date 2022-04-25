@@ -92,9 +92,8 @@ export const useChangeVisibility = () => {
 export const useIsAllCompleted = () => useAtom(isAllCompleted)[0];
 
 export const useToggleAllTodos = () => {
-  const [, setTodos] = useAtom(todos);
-  const remainCount = useRemainCount();
-  const nextCompleted = remainCount > 0;
+  const [todosValue, setTodos] = useAtom(todos);
+  const nextCompleted = todosValue.every((e) => e.completed) ? false : true;
   return () => {
     setTodos((todos) => todos.map((e) => ({ ...e, completed: nextCompleted })));
   };
