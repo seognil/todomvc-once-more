@@ -15,17 +15,18 @@ const meta = {
   usage: {
     lang: "tsx",
     code: [
-      "new BehaviorSubject()",
+      "class Observable",
       "Observable.pipe()",
       "Observable.subscribe()",
+      "new BehaviorSubject()",
       "BehaviorSubject.value",
       "BehaviorSubject.next()",
       `import { map, switchMap } from "rxjs/operators"`,
       `import { useObservableEagerState } from "observable-hooks"`,
     ],
     note: [
-      "Like Mobx, RxJS's core concept is Observable/Observer. But RxJS's value shines in stream programming by provides tons of additional API (`rxjs/operators`). On the other hand, the cost is the steep learning curve.",
-      "So although you can use an object called `BehaviorSubject` which allows you to emit values manually to just implement react state management, I think it's maybe an overkill.",
+      "Like Mobx, RxJS's core concept is Observable/Observer. But RxJS shines in stream programming by provides tons of additional APIs (`rxjs/operators`). On the other hand, the cost is the steep learning curve.",
+      "So although you can implement state management by using an object called `BehaviorSubject` which allows you to emit values manually. It's maybe an overkill.",
     ],
     snippet: readFileSync(join(__dirname, "./concepts.tsx"), "utf-8"),
   },

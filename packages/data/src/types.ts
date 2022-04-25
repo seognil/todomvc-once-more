@@ -99,7 +99,7 @@ export interface ProjectMetaFull {
   usage: {
     lang: SyntaxLang;
     code: CodeSnippet[];
-    note: string[];
+    note: string | string[];
     snippet: CodeSnippet;
   };
   resources: (StackInfo | ArticleLink)[];

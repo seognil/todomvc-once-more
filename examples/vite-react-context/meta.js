@@ -14,11 +14,11 @@ const meta = {
 
   usage: {
     lang: "tsx",
-    code: ["<MyContext.Provider value={}>", "useContext()", "useState()"],
+    code: ["useState()", "useContext()", "<MyContext.Provider value={}>"],
     note: [
-      "Basic usage of React Functional Components with Hooks and Context API.",
-      "It's simple, but there is a problem, once the context changes, all components will be re-rendered. It's trivial to manage the performance optimization manually and split the model/domain layer in large projects.",
-      "That's why third-party libraries appear to solve pain points.",
+      "Basic usage of React Functional Components with built-in Hooks and Context API.",
+      "It's simple, but there is a problem, once the context changes, all components will be re-rendered by default. It's trivial to do the performance optimization manually or split the model/domain layer in large projects.",
+      "That's why third-party libraries appear to solve these pain points.",
     ],
     snippet: readFileSync(join(__dirname, "./concepts.tsx"), "utf-8"),
   },

@@ -1,6 +1,8 @@
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { createStore } from "redux";
 
+// * Redux (legacy version) standard usage demo (It's verbose, I just don't like it)
+
 // * ---------------- Redux store definitions
 
 const reducer = (state, action) => {
@@ -51,3 +53,11 @@ const Comp = () => {
     </div>
   );
 };
+
+// * ---------------- (Subscriptions outside of render as well)
+
+const unsubscribe = store.subscribe(() => {
+  console.log("store changed: ", store.getState());
+});
+
+unsubscribe();

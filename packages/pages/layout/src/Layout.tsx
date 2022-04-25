@@ -84,7 +84,7 @@ export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, serve
       <div>
         {server ? <CodeBlockServer meta={meta} /> : <CodeBlock meta={meta} />}
 
-        {[stats.meta.usage.code].flat().map((e, i) => (
+        {[stats.meta.usage.note].flat().map((e, i) => (
           <p key={i}>{e}</p>
         ))}
 

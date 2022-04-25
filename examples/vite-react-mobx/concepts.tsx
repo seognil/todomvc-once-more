@@ -1,8 +1,17 @@
 import { observable, computed, action, autorun } from "mobx";
 import { observer } from "mobx-react-lite";
 
+// * ---------------- (Legacy browser support if you want)
+
+import { configure } from "mobx";
+
+configure({
+  useProxies: "never",
+});
+
 // * ---------------- Mobx observables and computed
 
+// * box() is for primitive values
 const a = observable.box(1);
 const b = observable.box(2);
 
@@ -12,14 +21,6 @@ const sum = computed(() => a.get() + b.get());
 
 const setA = action((delta) => a.set(a.get() + delta));
 const setB = action((delta) => b.set(b.get() + delta));
-
-// * ---------------- Mobx subscription without React
-
-const unsubscribe = autorun(() => {
-  console.log("side effect", sum.get());
-});
-
-unsubscribe();
 
 // * ---------------- Every observable value in observer is reactive
 
@@ -40,3 +41,11 @@ const Comp = observer(() => {
     </div>
   );
 });
+
+// * ---------------- (Subscriptions outside of render as well)
+
+const unsubscribe = autorun(() => {
+  console.log("side effect", sum.get());
+});
+
+unsubscribe();

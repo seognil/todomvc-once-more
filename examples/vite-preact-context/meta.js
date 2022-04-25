@@ -6,7 +6,7 @@ const { join } = require("path");
 /** @type import('../../packages/data/src').ProjectMetaRaw */
 const meta = {
   title: "Replacing React with Preact",
-  desc: "Fast 3kB alternative to React with the same modern API",
+  desc: "Preact is a fast 3kB alternative to React with the same modern API",
 
   stacks: ["vite", "preact", "ts", "sass"],
 
@@ -20,8 +20,9 @@ const meta = {
       `import { useState } from "preact/compat"`,
     ],
     note: [
-      "Preact is a super small React alternative. And It works well with most libraries of the React ecosystem which built on top of React Hooks.",
-      "You can easily replace React with Preact to reduce app's build size in several steps.",
+      "Preact is a tiny React alternative. And It works well with most libraries of the React ecosystem which built on the top of React Hooks.",
+      "With universal CLI such as Vite, preact support is out of the box.",
+      "And if from an existing project, you can also easily replace React with Preact to reduce app's build size in minitus.",
     ],
     snippet: readFileSync(join(__dirname, "./concepts.tsx"), "utf-8"),
   },

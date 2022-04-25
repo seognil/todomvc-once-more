@@ -12,6 +12,7 @@ const App = () => {
 
 const aAtom = atom({ key: "a", default: 1 });
 const bAtom = atom({ key: "b", default: 2 });
+
 const sumAtom = selector({ key: "sum", get: ({ get }) => get(aAtom) + get(bAtom) });
 
 const Comp = () => {
@@ -32,6 +33,8 @@ const App = () => {
 
 const aAtom = atom(1);
 const bAtom = atom(2);
+
+// * types are auto detected from parameter
 const sumAtom = atom((get) => get(aAtom) + get(bAtom));
 
 const Comp = () => {
