@@ -29,11 +29,67 @@ export const ProjBlock: FC = () => {
   ] as ProjectStatsFull[];
 
   return (
-    <div>
-      {list.map((p, i) => (
-        <ProjListBlock key={p.projName} p={p} index={i} />
-      ))}
-    </div>
+    <>
+      <h2 id="projects-react">
+        <a href="#projects-react">React Baseline: React Hooks + React Context</a>
+      </h2>
+
+      <div>
+        {list.map((p, i) => (
+          <ProjListBlock key={p.projName} p={p} index={i} />
+        ))}
+      </div>
+
+      <b>Wait List</b>
+
+      <ul>
+        <li>Zusland</li>
+        <li>Xstate</li>
+        <li>resso</li>
+      </ul>
+
+      <h2 id="projects-frameworks">
+        <a href="#projects-frameworks">Framework Baseline: Preact + Jotai</a>
+      </h2>
+
+      <b>Wait List</b>
+
+      <ul>
+        <li>Preact + Jotai</li>
+        <li>Vue3 + Pinia</li>
+        <li>Svelte</li>
+        <li>SolidJS</li>
+        <li>Reason</li>
+        <li>Elm</li>
+      </ul>
+
+      <h2 id="projects-styling">
+        <a href="#projects-styling">Style Baseline: React + Sass</a>
+      </h2>
+
+      <b>Wait List</b>
+
+      <ul>
+        <li>React + Sass</li>
+        <li>TailwindCSS</li>
+        <li>React + UnoCSS</li>
+        <li>Vue + UnoCSS</li>
+        <li>Twind</li>
+        <li>Emotion</li>
+      </ul>
+
+      <h2 id="projects-cli">
+        <a href="#projects-cli">CLI Baseline: Vite</a>
+      </h2>
+
+      <b>Wait List</b>
+
+      <ul>
+        <li>Vite</li>
+        <li>Create-React-App</li>
+        <li>Astro</li>
+      </ul>
+    </>
   );
 };
 

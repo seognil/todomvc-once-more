@@ -30,7 +30,7 @@ export const Layout: FC = () => {
         <p className="text-1.25em opacity-60">Modern Frontend Development Practices</p>
 
         <div className="inline-flex items-center">
-          <LinkBtn href="#projects">
+          <LinkBtn href="#projects-react">
             <FiActivity className="mr-8px text-1.2em" />
             <span>Get Started</span>
           </LinkBtn>
@@ -43,10 +43,6 @@ export const Layout: FC = () => {
       </header>
 
       <main className="flex-1 pb-80px">
-        <h2 id="projects">
-          <a href="#projects">Projects</a>
-        </h2>
-
         <ProjBlock />
 
         <MDXProvider components={{ h2: H2 }}>
