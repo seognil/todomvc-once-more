@@ -127,19 +127,17 @@ export const MockData: LayoutData = {
 
     meta: {
       title: "React Project",
+      desc: "Use several atoms to organize ui state",
 
       stacks: [stacks.react, stacks.recoil, stacks.ts],
-      core: {
+
+      core: [stacks.recoil],
+      usage: {
         lang: "tsx",
         code: ["<RecoilRoot>", "atom()", "selector()", "useRecoilState()"],
+        note: "Anim aliquip et cillum eu laboris id consequat. In sit reprehenderit cupidatat adipisicing nulla quis. Nisi quis reprehenderit ad qui quis nisi mollit. Enim minim velit ipsum duis aliquip ex consequat laboris et culpa. Velit magna consectetur anim id.",
         snippet: coreSnippet,
       },
-
-      desc: {
-        short: "Use several atoms to organize ui state",
-        long: "Anim aliquip et cillum eu laboris id consequat. In sit reprehenderit cupidatat adipisicing nulla quis. Nisi quis reprehenderit ad qui quis nisi mollit. Enim minim velit ipsum duis aliquip ex consequat laboris et culpa. Velit magna consectetur anim id.",
-      },
-      quotes: [stacks.recoil],
       resources: [stacks.jotai],
     },
   },

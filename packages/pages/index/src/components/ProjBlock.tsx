@@ -102,7 +102,7 @@ const ProjListBlock: FC<{ p: ProjectStatsFull; index: number }> = ({ p, index })
             <span className="font-bold">{p.meta.title}</span>
           </a>
 
-          <p className="leading-1em mt-8px mb-0 text-14px font-light opacity-60">{p.meta.desc.short}</p>
+          <p className="leading-1em mt-8px mb-0 text-14px font-light opacity-60">{p.meta.desc}</p>
 
           <div className="mt-8px text-14px font-light opacity-60">
             <span>Full Stack: </span>

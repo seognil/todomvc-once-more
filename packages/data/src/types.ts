@@ -15,6 +15,8 @@ export type CodeSnippet = string & {};
 
 export type LinkUrl = string & {};
 
+export type SyntaxLang = keyof typeof syntaxTypeList;
+
 // * ---------------------------------------------------------------- misc
 
 export interface ClocInfo {
@@ -47,25 +49,6 @@ export interface FileTypeSum {
   gsize: number;
 }
 
-// * ----------------
-
-export type SyntaxLang = keyof typeof syntaxTypeList;
-
-export type CoreInfo = { lang: SyntaxLang; code: CodeSnippet[]; snippet: CodeSnippet };
-
-// * ----------------
-
-export interface StackInfo {
-  name: StackName;
-  url: LinkUrl;
-  desc: string;
-}
-
-export interface ArticleLink {
-  title: string;
-  url: LinkUrl;
-}
-
 // * ---------------------------------------------------------------- project full statistics
 
 export interface ProjectStatsBasic {
@@ -90,29 +73,49 @@ export type ProjectStatsFull = ProjectStatsBasic & {
 
 export interface ProjectMetaRaw {
   title: string;
+  desc: string;
 
   stacks: StackName[];
-  core: CoreInfo;
 
-  desc: Description;
-  quotes: StackName[];
+  core: StackName[];
+  usage: {
+    lang: SyntaxLang;
+    code: CodeSnippet[];
+    note: string[];
+    snippet: CodeSnippet;
+  };
   resources: (StackName | ArticleLink)[];
 }
 
+// * ----------------
+
 export interface ProjectMetaFull {
   title: string;
+  desc: string;
 
   stacks: StackInfo[];
-  core: CoreInfo;
 
-  desc: Description;
-  quotes: StackInfo[];
+  core: StackInfo[];
+  usage: {
+    lang: SyntaxLang;
+    code: CodeSnippet[];
+    note: string[];
+    snippet: CodeSnippet;
+  };
   resources: (StackInfo | ArticleLink)[];
 }
 
-export interface Description {
-  short: string;
-  long: string | string[];
+// * ----------------
+
+export interface StackInfo {
+  name: StackName;
+  url: LinkUrl;
+  desc: string;
+}
+
+export interface ArticleLink {
+  title: string;
+  url: LinkUrl;
 }
 
 // * ---------------------------------------------------------------- layout props
