@@ -1,4 +1,4 @@
-import type { CoreInfo, FileTypeSum, LayoutData } from "@todo/data";
+import type { FileTypeSum, LayoutData, ProjectMetaFull } from "@todo/data";
 import React, { FC, useEffect, useRef } from "react";
 import { FaClone, FaGithub, FaSquare } from "react-icons/fa";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -27,7 +27,7 @@ export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, serve
 
       <h1>{meta.title}</h1>
 
-      <p>{meta.desc.short}</p>
+      <p>{meta.desc}</p>
 
       <div className="todomvc-app-container">
         <div className="todomvc-info">
@@ -64,9 +64,9 @@ export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, serve
 
       <h2>Core Libraries</h2>
 
-      {meta.quotes.length > 0 && (
+      {meta.core.length > 0 && (
         <>
-          {meta.quotes.map((e) => (
+          {meta.core.map((e) => (
             <div key={e.name} className="desc">
               <blockquote>
                 <p className="desc-link">
@@ -82,15 +82,15 @@ export const Layout: FC<{ data: LayoutData; server?: boolean }> = ({ data, serve
       <h2>Basic Usage</h2>
 
       <div>
-        {server ? <CodeBlockServer core={meta.core} /> : <CodeBlock core={meta.core} />}
+        {server ? <CodeBlockServer meta={meta} /> : <CodeBlock meta={meta} />}
 
-        {[stats.meta.desc.long].flat().map((e, i) => (
+        {[stats.meta.usage.note].flat().map((e, i) => (
           <p key={i}>{e}</p>
         ))}
 
         <div className="core-snippet">
-          <SyntaxHighlighter language={meta.core.lang} style={snippetTheme}>
-            {meta.core.snippet}
+          <SyntaxHighlighter language={meta.usage.lang} style={snippetTheme}>
+            {meta.usage.snippet}
           </SyntaxHighlighter>
         </div>
       </div>
@@ -180,16 +180,16 @@ const GzipBar: FC<{ files: FileTypeSum[] }> = ({ files }) => {
 
 // * ---------------------------------------------------------------- CodeBlock
 
-const CodeBlock: FC<{ core: CoreInfo }> = ({ core }) => {
+const CodeBlock: FC<{ meta: ProjectMetaFull }> = ({ meta }) => {
   const containerRef = useRef<HTMLUListElement>(null);
   useEffect(() => {
     containerRef.current && prettyCodeBlock(containerRef.current, document);
-  }, [core.code]);
+  }, [meta.usage.code]);
   return (
     <ul className="core-code" ref={containerRef}>
-      {core.code.map((e) => (
+      {meta.usage.code.map((e) => (
         <li key={e}>
-          <SyntaxHighlighter language={core.lang} style={codeTheme}>
+          <SyntaxHighlighter language={meta.usage.lang} style={codeTheme}>
             {e}
           </SyntaxHighlighter>
         </li>
@@ -198,12 +198,12 @@ const CodeBlock: FC<{ core: CoreInfo }> = ({ core }) => {
   );
 };
 
-const CodeBlockServer: FC<{ core: CoreInfo }> = ({ core }) => {
+const CodeBlockServer: FC<{ meta: ProjectMetaFull }> = ({ meta }) => {
   return (
     <ul className="core-code">
-      {core.code.map((e) => (
+      {meta.usage.code.map((e) => (
         <li key={e}>
-          <SyntaxHighlighter language={core.lang} style={codeTheme}>
+          <SyntaxHighlighter language={meta.usage.lang} style={codeTheme}>
             {e}
           </SyntaxHighlighter>
         </li>

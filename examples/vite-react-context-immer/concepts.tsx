@@ -12,10 +12,10 @@ const data = {
 
 // * -------------------------------- without immer
 
-// * when you patching a complex immutable data in react with pure js
+// * when you patching a complex immutable data in js without tools
 
 {
-  // * changing 40 to 90
+  // * change value 40 to 90
 
   setState((data) => {
     const nextList = [...data.list];
@@ -37,7 +37,7 @@ const data = {
 import { produce } from "immer";
 
 {
-  // * changing 40 to 90
+  // * change value 40 to 90
 
   setState((data) =>
     produce(data, (draft) => {

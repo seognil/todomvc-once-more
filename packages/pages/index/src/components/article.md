@@ -1,16 +1,3 @@
-## Coming soon
-
-- Create-React-App
-- Astro
-- TailwindCSS
-- UnoCSS
-- Twind
-- Emotion
-- Vue + Pinia
-- Svelte
-- SolidJS
-- ...
-
 ## Other Helpful Tools
 
 This project also relies on these tools heavily, which I'd like to recommend to you guys. (Maybe you have already used some. Technically, they are the faster and simpler versions of their ancestors)

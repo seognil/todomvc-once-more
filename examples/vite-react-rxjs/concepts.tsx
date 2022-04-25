@@ -14,14 +14,6 @@ const sum$ = combineLatest([a$, b$]).pipe(map(([a, b]) => a + b));
 const setA = (delta) => a$.next(a$.value + delta);
 const setB = (delta) => b$.next(b$.value + delta);
 
-// * ---------------- RxJS Observable subscription without React
-
-const subscription = sum$.subscribe((val) => {
-  console.log("sum is: ", val);
-});
-
-subscription.unsubscribe();
-
 // * ---------------- observable-hooks is a combination of RxJS Observables and React Hooks
 
 const Comp = () => {
@@ -45,3 +37,11 @@ const Comp = () => {
     </div>
   );
 };
+
+// * ---------------- (Subscriptions outside of render as well)
+
+const subscription = sum$.subscribe((val) => {
+  console.log("sum is: ", val);
+});
+
+subscription.unsubscribe();

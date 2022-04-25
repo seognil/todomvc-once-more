@@ -58,12 +58,12 @@ const rawData = {
   "mobx": {
     name: "MobX",
     url: "https://mobx.js.org/",
-    desc: `Anything that can be derived from the application state, should be. Automatically. MobX is a battle tested library that makes state management simple and scalable by transparently applying functional reactive programming (TFRP).`,
+    desc: `Anything that can be derived from the application state, should be, Automatically. MobX is a battle tested library that makes state management simple and scalable by transparently applying functional reactive programming (TFRP).`,
   },
   "mobx-react-lite": {
     name: "mobx-react-lite",
     url: "https://mobx.js.org/react-integration.html",
-    desc: "mobx-react-lite is a lighter version of mobx-react which supports React functional components only and as such makes the library slightly faster and smaller (only 1.5kB gzipped). Note however that it is possible to use <Observer> inside the render of class components. Unlike mobx-react, it doesn't Provider/inject, as useContext can be used instead.",
+    desc: "`mobx-react-lite` is a lighter version of `mobx-react` which supports React functional components only and as such makes the library slightly faster and smaller (only 1.5kB gzipped).",
   },
   "immer": {
     name: "Immer",

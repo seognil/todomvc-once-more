@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 
 const MyContext = createContext(null);
 
-// * ---------------- App Context wrapping
+// * ---------------- useState and Context wrapping
 
 const App = () => {
   const [a, setA] = useState(1);
@@ -16,7 +16,7 @@ const App = () => {
   );
 };
 
-// * ---------------- Use content with hooks in components
+// * ---------------- Use contexted values with hooks in components
 
 const Comp = () => {
   const { a, setA, b, setB } = useContext(MyContext);
