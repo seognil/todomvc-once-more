@@ -1,5 +1,17 @@
-# Build Todo Apps With Different (Modern) Frameworks
+<p align="center">
+  <a href="https://todomvc-once-more.vercel.app/">
+    <img width="240px" src="https://raw.githubusercontent.com/seognil/todomvc-once-more/master/packages/pages/index/src/favicon.svg" />
+  </a>
+</p>
 
+<h1 align="center">
+  <a href="https://todomvc-once-more.vercel.app/">TodoMVC once more</a>
+</h1>
+
+> Modern Frontend Development Practices
+
+Docs: <https://todomvc-once-more.vercel.app/>
+  
 ## Get Started
 
 ### pnpm
