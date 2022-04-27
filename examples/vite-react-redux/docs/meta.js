@@ -3,7 +3,7 @@
 const { readFileSync } = require("fs");
 const { join } = require("path");
 
-/** @type import('../../packages/data/src').ProjectMetaRaw */
+/** @type import('../../../packages/data/src').ProjectMetaRaw */
 const meta = {
   title: "React Hooks + redux (core) + react-redux",
   desc: "State management in the early ages",

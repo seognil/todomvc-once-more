@@ -3,7 +3,7 @@
 const { readFileSync } = require("fs");
 const { join } = require("path");
 
-/** @type import('../../packages/data/src').ProjectMetaRaw */
+/** @type import('../../../packages/data/src').ProjectMetaRaw */
 const meta = {
   title: "Vite + React Hooks + React Context",
   desc: "React without any third-party state management libraries",

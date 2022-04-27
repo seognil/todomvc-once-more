@@ -3,7 +3,7 @@
 const { readFileSync } = require("fs");
 const { join } = require("path");
 
-/** @type import('../../packages/data/src').ProjectMetaRaw */
+/** @type import('../../../packages/data/src').ProjectMetaRaw */
 const meta = {
   title: "Immer.js and immutability",
   desc: "Immer.js simplifies handling immutable data structures",

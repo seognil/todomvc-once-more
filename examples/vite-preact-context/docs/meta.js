@@ -3,7 +3,7 @@
 const { readFileSync } = require("fs");
 const { join } = require("path");
 
-/** @type import('../../packages/data/src').ProjectMetaRaw */
+/** @type import('../../../packages/data/src').ProjectMetaRaw */
 const meta = {
   title: "Replacing React with Preact",
   desc: "Preact is a fast 3kB alternative to React with the same modern API",

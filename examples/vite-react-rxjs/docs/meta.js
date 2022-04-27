@@ -3,7 +3,7 @@
 const { readFileSync } = require("fs");
 const { join } = require("path");
 
-/** @type import('../../packages/data/src').ProjectMetaRaw */
+/** @type import('../../../packages/data/src').ProjectMetaRaw */
 const meta = {
   title: "React Hooks + RxJS + observable-hooks",
   desc: "ReactiveX is an API for asynchronous programming with observable streams",
