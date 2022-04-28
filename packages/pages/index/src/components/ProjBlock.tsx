@@ -12,7 +12,7 @@ const prettyKB = (size: number) => `${prettySize(size)} kB`;
 // * ================================================================================
 
 export const ProjBlock: FC = () => {
-  const order: ExampleNames[] = [
+  const reactList: ExampleNames[] = [
     "vite-react-context",
     "vite-preact-context",
     "vite-react-context-immer",
@@ -23,45 +23,26 @@ export const ProjBlock: FC = () => {
     "vite-react-jotai",
   ];
 
-  const list = [
-    ...order.map((name) => stats.find((p) => p.projName === name)).filter(Boolean),
-    ...stats.filter((p) => !order.includes(p.projName as ExampleNames)),
-  ] as ProjectStatsFull[];
+  const frameworkList: ExampleNames[] = ["vite-svelte"];
+
+  const allProjects = [...reactList, ...frameworkList];
+  const rest = stats.filter((p) => !allProjects.includes(p.projName as ExampleNames));
 
   return (
     <>
-      <h2 id="projects-react">
-        <a href="#projects-react">React Baseline: React Hooks + React Context</a>
-      </h2>
+      <ProjListByCate
+        list={reactList}
+        wait={["Zusland", "Xstate", "resso"]}
+        anchor="projects-react"
+        title="React Baseline: React Hooks + React Context"
+      />
 
-      <div>
-        {list.map((p, i) => (
-          <ProjListBlock key={p.projName} p={p} index={i} />
-        ))}
-      </div>
-
-      <b>Wait List</b>
-
-      <ul>
-        <li>Zusland</li>
-        <li>Xstate</li>
-        <li>resso</li>
-      </ul>
-
-      <h2 id="projects-frameworks">
-        <a href="#projects-frameworks">Framework Baseline: Preact + Jotai</a>
-      </h2>
-
-      <b>Wait List</b>
-
-      <ul>
-        <li>Preact + Jotai</li>
-        <li>Vue3 + Pinia</li>
-        <li>Svelte</li>
-        <li>SolidJS</li>
-        <li>Reason</li>
-        <li>Elm</li>
-      </ul>
+      <ProjListByCate
+        list={frameworkList}
+        wait={["Preact + Jotai", "Vue3 + Pinia", "Svelte", "SolidJS", "Reason", "Elm"]}
+        anchor="projects-frameworks"
+        title="Framework Baseline: Preact + Jotai"
+      />
 
       <h2 id="projects-styling">
         <a href="#projects-styling">Style Baseline: React + Sass</a>
@@ -93,7 +74,43 @@ export const ProjBlock: FC = () => {
   );
 };
 
-const ProjListBlock: FC<{ p: ProjectStatsFull; index: number }> = ({ p, index }) => {
+const getProjs = (list: ExampleNames[]) =>
+  list.map((name) => stats.find((p) => p.projName === name)).filter(Boolean) as ProjectStatsFull[];
+
+const ProjListByCate: FC<{ list: ExampleNames[]; wait?: string[]; anchor: string; title: string }> = ({
+  list,
+  wait,
+  anchor,
+  title,
+}) => {
+  return (
+    <>
+      <h2 id={anchor}>
+        <a href={"#" + anchor}>{title}</a>
+      </h2>
+
+      <div>
+        {getProjs(list).map((p, i) => (
+          <ProjListItem key={p.projName} p={p} index={i} />
+        ))}
+      </div>
+
+      {(wait?.length ?? 0) > 0 && (
+        <>
+          <b>Wait List</b>
+
+          <ul>
+            {wait?.map((e) => (
+              <li key={e}>{e}</li>
+            ))}
+          </ul>
+        </>
+      )}
+    </>
+  );
+};
+
+const ProjListItem: FC<{ p: ProjectStatsFull; index: number }> = ({ p, index }) => {
   return (
     <div className="w-full flex items-center mb-48px" style={{ "--index": index }}>
       <div className="w-40% min-w-200px">

@@ -38,6 +38,16 @@ const rawData = {
     url: "https://reactjs.org/docs/hooks-intro.html",
     desc: "Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks solve a wide variety of seemingly unconnected problems in React that we’ve encountered over five years of writing and maintaining tens of thousands of components.",
   },
+  "svelte": {
+    name: "Svelte",
+    url: "https://svelte.dev/",
+    desc: "Svelte is a radical new approach to building user interfaces. Whereas traditional frameworks like React and Vue do the bulk of their work in the browser, Svelte shifts that work into a compile step that happens when you build your app.",
+  },
+  "svelte-kit": {
+    name: "@sveltejs/kit",
+    url: "https://kit.svelte.dev/",
+    desc: "SvelteKit is a framework for building web applications of all sizes, with a beautiful development experience and flexible filesystem-based routing.",
+  },
 
   "redux": {
     name: "redux (core)",
