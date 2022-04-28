@@ -41,7 +41,7 @@ const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
   // * ---------------- action
 
   const updateTodoContent = useUpdateTodoContent();
-  const changeTodoCompleted = useChangeTodoCompletedById();
+  const changeTodoCompletedById = useChangeTodoCompletedById();
   const deleteTodoById = useDeleteTodoById();
 
   const intoTextEditing = () => {
@@ -63,7 +63,7 @@ const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
           className="toggle"
           type="checkbox"
           checked={completed}
-          onChange={() => changeTodoCompleted(id)}
+          onChange={() => changeTodoCompletedById(id)}
           aria-label="toggle todo"
         />
         <label onDoubleClick={intoTextEditing}>{content}</label>
