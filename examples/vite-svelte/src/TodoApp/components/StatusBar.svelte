@@ -1,13 +1,13 @@
 <script lang="ts">
   import { changeVisibility, clearCompleted, filter, hasCompleted, remainCount } from "../model/model.svelte";
-  import { FILTER_MODE } from "../model/types";
+  import type { FilterMode } from "../model/types";
 
   $: remainText = `${$remainCount} ${$remainCount === 1 ? "item" : "items"} left`;
 
-  const filterBtnList = [
-    { target: FILTER_MODE.ALL, text: "All" },
-    { target: FILTER_MODE.ACTIVE, text: "Active" },
-    { target: FILTER_MODE.COMPLETED, text: "Completed" },
+  const filterBtnList: { target: FilterMode; text: string }[] = [
+    { target: "ALL", text: "All" },
+    { target: "ACTIVE", text: "Active" },
+    { target: "COMPLETED", text: "Completed" },
   ];
 </script>
 

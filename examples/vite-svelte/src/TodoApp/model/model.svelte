@@ -1,14 +1,14 @@
 <script lang="ts" context="module">
-  import type { Readable } from "svelte/store";
-  import { writable, derived, get } from "svelte/store";
   import { nanoid } from "nanoid";
-  import { TodoItem, FILTER_MODE } from "./types";
+  import { writable, derived, get } from "svelte/store";
+  import type { Readable } from "svelte/store";
+  import type { TodoItem, FilterMode } from "./types";
 
   // * ---------------------------------------------------------------- svelte writable values
 
   export const todos = writable<TodoItem[]>([]);
 
-  export const filter = writable<FILTER_MODE>(FILTER_MODE.ALL);
+  export const filter = writable<FilterMode>('ALL');
 
   export const completedTodos = derived(todos, ($todos) => $todos.filter((e) => e.completed));
 
@@ -19,9 +19,9 @@
   export const remainCount = derived(activeTodos, ($activeTodos) => $activeTodos.length);
 
   export const filtedTodos = derived([todos, filter], () =>
-    get(filter) === FILTER_MODE.COMPLETED
+    get(filter) === 'COMPLETED'
       ? get(completedTodos)
-      : get(filter) === FILTER_MODE.ACTIVE
+      : get(filter) === 'ACTIVE'
       ? get(activeTodos)
       : get(todos),
   ) as Readable<TodoItem[]>;
@@ -49,7 +49,7 @@
 
   // * ---------------- misc
 
-  export const changeVisibility = (mode: FILTER_MODE) => {
+  export const changeVisibility = (mode: FilterMode) => {
     filter.set(mode);
   };
 

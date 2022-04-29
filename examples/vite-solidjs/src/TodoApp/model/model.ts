@@ -1,13 +1,9 @@
 import { nanoid } from "nanoid";
-import { createSignal, createMemo, createRoot } from "solid-js";
+import { createMemo, createRoot, createSignal } from "solid-js";
 
 // * ---------------------------------------------------------------- types
 
-export enum FILTER_MODE {
-  "ALL",
-  "ACTIVE",
-  "COMPLETED",
-}
+export type FilterMode = "ALL" | "ACTIVE" | "COMPLETED";
 
 export interface TodoItem {
   id: string;
@@ -18,7 +14,7 @@ export interface TodoItem {
 // * ---------------------------------------------------------------- Solidjs signals
 
 export const model = createRoot(() => {
-  const [filter, setFilter] = createSignal<FILTER_MODE>(FILTER_MODE.ALL);
+  const [filter, setFilter] = createSignal<FilterMode>("ALL");
 
   const [todos, setTodos] = createSignal<TodoItem[]>([]);
 
@@ -26,9 +22,9 @@ export const model = createRoot(() => {
     // * ---------------- todo crud
 
     getDisplayTodos: createMemo(() =>
-      filter() === FILTER_MODE.COMPLETED
+      filter() === "COMPLETED"
         ? todos().filter((e) => e.completed)
-        : filter() === FILTER_MODE.ACTIVE
+        : filter() === "ACTIVE"
         ? todos().filter((e) => !e.completed)
         : todos(),
     ),
@@ -56,7 +52,7 @@ export const model = createRoot(() => {
     getHasCompleted: () => todos().filter((e) => e.completed).length > 0,
 
     filter,
-    changeVisibility: (filter: FILTER_MODE) => {
+    changeVisibility: (filter: FilterMode) => {
       setFilter(filter);
     },
 

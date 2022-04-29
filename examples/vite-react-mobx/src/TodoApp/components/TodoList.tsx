@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import { observer } from "mobx-react-lite";
 import { useEffect, useRef, useState } from "react";
-import { changeTodoCompletedById, deleteTodoById, TodoItem, todos, updateTodoContent } from "../model/model";
+import type { TodoItem } from "../model/model";
+import { changeTodoCompletedById, deleteTodoById, todos, updateTodoContent } from "../model/model";
 
 // * ================================================================================
 

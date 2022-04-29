@@ -6,7 +6,7 @@ const { join } = require("path");
 /** @type import('../../../packages/data/src').ProjectMetaRaw */
 const meta = {
   title: "Svelte + svelte/store",
-  stacks: ["vite", "svelte", "recoil", "ts", "sass"],
+  stacks: ["vite", "svelte", "ts", "sass"],
 
   desc: "",
 

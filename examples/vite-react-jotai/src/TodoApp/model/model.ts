@@ -3,11 +3,7 @@ import { nanoid } from "nanoid";
 
 // * ---------------------------------------------------------------- types
 
-export enum FILTER_MODE {
-  "ALL",
-  "ACTIVE",
-  "COMPLETED",
-}
+export type FilterMode = "ALL" | "ACTIVE" | "COMPLETED";
 
 export interface TodoItem {
   id: string;
@@ -19,7 +15,7 @@ export interface TodoItem {
 
 const todos = atom<TodoItem[]>([]);
 
-const filter = atom<FILTER_MODE>(FILTER_MODE.ALL);
+const filter = atom<FilterMode>("ALL");
 
 const completedTodos = atom((get) => get(todos).filter((e) => e.completed));
 
@@ -30,11 +26,7 @@ const hasCompleted = atom((get) => get(completedTodos).length > 0);
 const remainCount = atom((get) => get(activeTodos).length);
 
 const filtedTodos = atom((get) =>
-  get(filter) === FILTER_MODE.COMPLETED
-    ? get(completedTodos)
-    : get(filter) === FILTER_MODE.ACTIVE
-    ? get(activeTodos)
-    : get(todos),
+  get(filter) === "COMPLETED" ? get(completedTodos) : get(filter) === "ACTIVE" ? get(activeTodos) : get(todos),
 );
 
 const isAllCompleted = atom((get) => get(todos).length !== 0 && get(todos).every((e) => e.completed));
@@ -82,7 +74,7 @@ export const useHasCompleted = () => useAtom(hasCompleted)[0];
 export const useFilterValue = () => useAtom(filter)[0];
 export const useChangeVisibility = () => {
   const [, setVisibility] = useAtom(filter);
-  return (mode: FILTER_MODE) => {
+  return (mode: FilterMode) => {
     setVisibility(mode);
   };
 };

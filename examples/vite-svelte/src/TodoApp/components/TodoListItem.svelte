@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { changeTodoCompletedById, deleteTodoById, updateTodoContent } from "../model/model.svelte";
   import type { TodoItem } from "../model/types";
+  import { changeTodoCompletedById, deleteTodoById, updateTodoContent } from "../model/model.svelte";
 
   // * ---------------- props
 

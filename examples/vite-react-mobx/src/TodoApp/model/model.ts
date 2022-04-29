@@ -3,11 +3,7 @@ import { nanoid } from "nanoid";
 
 // * ---------------------------------------------------------------- types
 
-export enum FILTER_MODE {
-  "ALL",
-  "ACTIVE",
-  "COMPLETED",
-}
+export type FilterMode = "ALL" | "ACTIVE" | "COMPLETED";
 
 export interface TodoItem {
   id: string;
@@ -19,7 +15,7 @@ export interface TodoItem {
 
 export const todos = observable<TodoItem>([]);
 
-export const filter = observable.box<FILTER_MODE>(FILTER_MODE.ALL);
+export const filter = observable.box<FilterMode>("ALL");
 
 export const completedTodos = computed(() => todos.filter((e) => e.completed));
 
@@ -30,7 +26,7 @@ export const hasCompleted = computed(() => completedTodos.get().length > 0);
 export const remainCount = computed(() => activeTodos.get().length);
 
 export const filtedTodos = computed(() =>
-  filter.get() === FILTER_MODE.COMPLETED ? completedTodos : filter.get() === FILTER_MODE.ACTIVE ? activeTodos : todos,
+  filter.get() === "COMPLETED" ? completedTodos : filter.get() === "ACTIVE" ? activeTodos : todos,
 );
 
 export const isAllCompleted = computed(() => todos.length !== 0 && todos.every((e) => e.completed));
@@ -58,7 +54,7 @@ export const deleteTodoById = action((id: string) => {
   todos.replace(todos.filter((e) => e.id !== id));
 });
 
-export const changeVisibility = action((value: FILTER_MODE) => filter.set(value));
+export const changeVisibility = action((value: FilterMode) => filter.set(value));
 
 export const toggleAllTodos = action(() => {
   const nextCompleted = todos.every((e) => e.completed) ? false : true;

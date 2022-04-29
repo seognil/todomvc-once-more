@@ -23,7 +23,7 @@ export const ProjBlock: FC = () => {
     "vite-react-jotai",
   ];
 
-  const frameworkList: ExampleNames[] = ["vite-svelte"];
+  const frameworkList: ExampleNames[] = ["vite-svelte", "vite-solidjs"];
 
   const allProjects = [...reactList, ...frameworkList];
   const rest = stats.filter((p) => !allProjects.includes(p.projName as ExampleNames));
@@ -39,7 +39,7 @@ export const ProjBlock: FC = () => {
 
       <ProjListByCate
         list={frameworkList}
-        wait={["Preact + Jotai", "Vue3 + Pinia", "Svelte", "SolidJS", "Reason", "Elm"]}
+        wait={["Preact + Jotai", "Vue3 + Pinia", "Reason", "Elm"]}
         anchor="projects-frameworks"
         title="Framework Baseline: Preact + Jotai"
       />

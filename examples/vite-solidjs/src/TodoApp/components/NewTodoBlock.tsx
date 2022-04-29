@@ -1,5 +1,4 @@
-import { Component, createEffect } from "solid-js";
-import { createSignal } from "solid-js";
+import { Component, createSignal } from "solid-js";
 import { model } from "../model/model";
 
 // * ================================================================================

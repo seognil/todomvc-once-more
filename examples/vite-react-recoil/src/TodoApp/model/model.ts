@@ -3,11 +3,7 @@ import { atom, selector, useRecoilValue, useSetRecoilState } from "recoil";
 
 // * ---------------------------------------------------------------- types
 
-export enum FILTER_MODE {
-  "ALL",
-  "ACTIVE",
-  "COMPLETED",
-}
+export type FilterMode = "ALL" | "ACTIVE" | "COMPLETED";
 
 export interface TodoItem {
   id: string;
@@ -19,30 +15,20 @@ export interface TodoItem {
 
 const todos = atom<TodoItem[]>({ key: "todos", default: [] });
 
-const filter = atom<FILTER_MODE>({ key: "visibilityFilter", default: FILTER_MODE.ALL });
+const filter = atom<FilterMode>({ key: "visibilityFilter", default: "ALL" });
 
-const completedTodos = selector<TodoItem[]>({
-  key: "completedTodos",
-  get: ({ get }) => get(todos).filter((e) => e.completed),
-});
+const completedTodos = selector({ key: "completedTodos", get: ({ get }) => get(todos).filter((e) => e.completed) });
 
-const activeTodos = selector<TodoItem[]>({
-  key: "activeTodos",
-  get: ({ get }) => get(todos).filter((e) => !e.completed),
-});
+const activeTodos = selector({ key: "activeTodos", get: ({ get }) => get(todos).filter((e) => !e.completed) });
 
-const hasCompleted = selector<boolean>({ key: "hasCompleted", get: ({ get }) => get(completedTodos).length > 0 });
+const hasCompleted = selector({ key: "hasCompleted", get: ({ get }) => get(completedTodos).length > 0 });
 
-const remainCount = selector<number>({ key: "remainCount", get: ({ get }) => get(activeTodos).length });
+const remainCount = selector({ key: "remainCount", get: ({ get }) => get(activeTodos).length });
 
-const filtedTodos = selector<TodoItem[]>({
+const filtedTodos = selector({
   key: "filteredTodos",
   get: ({ get }) =>
-    get(filter) === FILTER_MODE.COMPLETED
-      ? get(completedTodos)
-      : get(filter) === FILTER_MODE.ACTIVE
-      ? get(activeTodos)
-      : get(todos),
+    get(filter) === "COMPLETED" ? get(completedTodos) : get(filter) === "ACTIVE" ? get(activeTodos) : get(todos),
 });
 
 const isAllCompleted = selector({
@@ -93,7 +79,7 @@ export const useHasCompleted = () => useRecoilValue(hasCompleted);
 export const useFilterValue = () => useRecoilValue(filter);
 export const useChangeVisibility = () => {
   const setVisibility = useSetRecoilState(filter);
-  return (mode: FILTER_MODE) => {
+  return (mode: FilterMode) => {
     setVisibility(mode);
   };
 };

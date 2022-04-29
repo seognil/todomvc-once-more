@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import type { FC } from "react";
 import { useEffect, useRef, useState } from "react";
-import { TodoItem, useTodoModel } from "../model/model";
+import type { TodoItem } from "../model/model";
+import { useTodoModel } from "../model/model";
 
 // * ================================================================================
 

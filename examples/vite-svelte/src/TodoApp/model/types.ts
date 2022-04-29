@@ -1,8 +1,4 @@
-export enum FILTER_MODE {
-  "ALL",
-  "ACTIVE",
-  "COMPLETED",
-}
+export type FilterMode = "ALL" | "ACTIVE" | "COMPLETED";
 
 export interface TodoItem {
   id: string;

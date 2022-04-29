@@ -5,11 +5,7 @@ import { map, switchMap } from "rxjs/operators";
 
 // * ---------------------------------------------------------------- types
 
-export enum FILTER_MODE {
-  "ALL",
-  "ACTIVE",
-  "COMPLETED",
-}
+export type FilterMode = "ALL" | "ACTIVE" | "COMPLETED";
 
 export interface TodoItem {
   id: string;
@@ -21,7 +17,7 @@ export interface TodoItem {
 
 const todos$ = new BehaviorSubject<TodoItem[]>([]);
 
-const filter$ = new BehaviorSubject<FILTER_MODE>(FILTER_MODE.ALL);
+const filter$ = new BehaviorSubject<FilterMode>("ALL");
 
 const completedTodos$ = todos$.pipe(map((todos) => todos.filter((e) => e.completed)));
 
@@ -32,9 +28,7 @@ const hasCompleted$ = completedTodos$.pipe(map((list) => list.length > 0));
 const remainCount$ = activeTodos$.pipe(map((list) => list.length));
 
 const filtedTodos$ = filter$.pipe(
-  switchMap((filter) =>
-    filter === FILTER_MODE.COMPLETED ? completedTodos$ : filter === FILTER_MODE.ACTIVE ? activeTodos$ : todos$,
-  ),
+  switchMap((filter) => (filter === "COMPLETED" ? completedTodos$ : filter === "ACTIVE" ? activeTodos$ : todos$)),
 );
 
 const isAllCompleted$ = todos$.pipe(map((todos) => todos.length !== 0 && todos.every((e) => e.completed)));
@@ -69,7 +63,7 @@ export const useHasCompleted = () => useObservableEagerState(hasCompleted$);
 
 export const useFilterValue = () => useObservableEagerState(filter$);
 
-export const changeVisibility = (value: FILTER_MODE) => {
+export const changeVisibility = (value: FilterMode) => {
   filter$.next(value);
 };
 

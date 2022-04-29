@@ -1,5 +1,5 @@
 import { Component } from "solid-js";
-import { FILTER_MODE } from "../model/model";
+import type { FilterMode } from "../model/model";
 import { model } from "../model/model";
 
 // * ================================================================================
@@ -17,9 +17,9 @@ export const StatusBar: Component = () => {
       <span className="todo-count">{remainText()}</span>
 
       <ul className="filters">
-        <FilterButton target={FILTER_MODE.ALL} text="All" />
-        <FilterButton target={FILTER_MODE.ACTIVE} text="Active" />
-        <FilterButton target={FILTER_MODE.COMPLETED} text="Completed" />
+        <FilterButton target="ALL" text="All" />
+        <FilterButton target="ACTIVE" text="Active" />
+        <FilterButton target="COMPLETED" text="Completed" />
       </ul>
 
       {model.getHasCompleted() && (
@@ -33,7 +33,7 @@ export const StatusBar: Component = () => {
 
 // * ---------------------------------------------------------------- FilterButton
 
-const FilterButton: Component<{ target: FILTER_MODE; text: string }> = ({ target, text }) => {
+const FilterButton: Component<{ target: FilterMode; text: string }> = ({ target, text }) => {
   return (
     <li>
       <a classList={{ selected: model.filter() === target }} onClick={() => model.changeVisibility(target)}>

@@ -48,6 +48,11 @@ const rawData = {
     url: "https://kit.svelte.dev/",
     desc: "SvelteKit is a framework for building web applications of all sizes, with a beautiful development experience and flexible filesystem-based routing.",
   },
+  "solid": {
+    name: "Solid.js",
+    url: "https://www.solidjs.com/",
+    desc: "Solid follows the same philosophy as React with unidirectional data flow, read/write segregation, and immutable interfaces. It however has a completely different implementation that forgoes using a Virtual DOM.",
+  },
 
   "redux": {
     name: "redux (core)",
