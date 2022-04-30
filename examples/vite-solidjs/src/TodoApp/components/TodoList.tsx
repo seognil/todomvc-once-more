@@ -41,7 +41,8 @@ const TodoListItem: Component<{ item: TodoItem }> = ({ item }) => {
 
   const exitTextEdition = () => {
     setEditing(false);
-    if (getLocalText() !== content) model.updateTodoContent({ id, content: getLocalText() });
+    if (!getLocalText()) return model.deleteTodoById(id);
+    if (getLocalText() !== content) return model.updateTodoContent({ id, content: getLocalText() });
   };
 
   // * ---------------- render

@@ -49,7 +49,8 @@ const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
 
   const exitTextEdition = () => {
     setEditing(false);
-    if (localText !== content) updateTodoContent({ id, content: localText });
+    if (!localText) return deleteTodoById(id);
+    if (localText !== content) return updateTodoContent({ id, content: localText });
   };
 
   // * ---------------- render

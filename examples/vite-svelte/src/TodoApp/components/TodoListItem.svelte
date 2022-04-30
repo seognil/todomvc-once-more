@@ -32,7 +32,8 @@
 
   const exitTextEdition = () => {
     editing = false;
-    if (localText !== content) updateTodoContent({ id, content: localText });
+    if (!localText) return deleteTodoById(id);
+    if (localText !== content) return updateTodoContent({ id, content: localText });
   };
 </script>
 

@@ -48,7 +48,8 @@ const TodoListItem = observer<{ item: TodoItem }>(({ item }) => {
 
   const exitTextEdition = () => {
     setEditing(false);
-    if (localText !== content) updateTodoContent();
+    if (!localText) return deleteTodoById(id);
+    if (localText !== content) return updateTodoContent();
   };
 
   // * ---------------- render

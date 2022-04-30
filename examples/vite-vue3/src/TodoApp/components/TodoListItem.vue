@@ -34,7 +34,7 @@ const intoTextEditing = () => {
 
 const exitTextEdition = () => {
   editing.value = false;
-  if (!item.content) deleteTodoById(id);
+  if (!item.content) return deleteTodoById(id);
 };
 </script>
 
