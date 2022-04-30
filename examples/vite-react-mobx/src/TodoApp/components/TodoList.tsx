@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import { observer } from "mobx-react-lite";
 import { useEffect, useRef, useState } from "react";
-import { changeTodoCompletedById, deleteTodoById, TodoItem, todos, updateTodoContent } from "../model/model";
+import type { TodoItem } from "../model/model";
+import { deleteTodoById, filtedTodos } from "../model/model";
 
 // * ================================================================================
 
@@ -10,7 +11,7 @@ import { changeTodoCompletedById, deleteTodoById, TodoItem, todos, updateTodoCon
 export const TodoList = observer(() => {
   return (
     <ul className="todo-list">
-      {todos.map((item) => (
+      {filtedTodos.get().map((item) => (
         <TodoListItem key={item.id} item={item} />
       ))}
     </ul>
@@ -30,7 +31,15 @@ const TodoListItem = observer<{ item: TodoItem }>(({ item }) => {
   const todoEditInputRef = useRef<HTMLInputElement>(null);
   useEffect(() => todoEditInputRef.current?.focus(), [editing]);
 
-  // * ---------------- action
+  // * ---------------- actions
+
+  const updateTodoContent = () => {
+    item.content = localText;
+  };
+
+  const changeTodoCompleted = () => {
+    item.completed = !item.completed;
+  };
 
   const intoTextEditing = () => {
     setEditing(true);
@@ -39,7 +48,8 @@ const TodoListItem = observer<{ item: TodoItem }>(({ item }) => {
 
   const exitTextEdition = () => {
     setEditing(false);
-    if (localText !== content) updateTodoContent({ id, content: localText });
+    if (!localText) return deleteTodoById(id);
+    if (localText !== content) return updateTodoContent();
   };
 
   // * ---------------- render
@@ -51,7 +61,7 @@ const TodoListItem = observer<{ item: TodoItem }>(({ item }) => {
           className="toggle"
           type="checkbox"
           checked={completed}
-          onChange={() => changeTodoCompletedById(id)}
+          onChange={changeTodoCompleted}
           aria-label="toggle todo"
         />
         <label onDoubleClick={intoTextEditing}>{content}</label>

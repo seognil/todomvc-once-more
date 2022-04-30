@@ -12,9 +12,16 @@ const prettyKB = (size: number) => `${prettySize(size)} kB`;
 // * ================================================================================
 
 export const ProjBlock: FC = () => {
-  const order: ExampleNames[] = [
+  const frameworkList: ExampleNames[] = [
     "vite-react-context",
     "vite-preact-context",
+    "vite-vue3",
+    "vite-vue3-pinia",
+    "vite-svelte",
+    "vite-solidjs",
+  ];
+
+  const reactList: ExampleNames[] = [
     "vite-react-context-immer",
     "vite-react-redux",
     "vite-react-mobx",
@@ -23,77 +30,84 @@ export const ProjBlock: FC = () => {
     "vite-react-jotai",
   ];
 
-  const list = [
-    ...order.map((name) => stats.find((p) => p.projName === name)).filter(Boolean),
-    ...stats.filter((p) => !order.includes(p.projName as ExampleNames)),
-  ] as ProjectStatsFull[];
+  const allProjects = [...reactList, ...frameworkList];
+  const rest = stats.filter((p) => !allProjects.includes(p.projName as ExampleNames));
 
   return (
     <>
-      <h2 id="projects-react">
-        <a href="#projects-react">React Baseline: React Hooks + React Context</a>
-      </h2>
+      <ProjListByCate
+        list={frameworkList}
+        wait={["Vue 2", "Vue 2 + Vuex", "Angular", "Reason", "Elm"]}
+        anchor="projects-frameworks"
+        title="Frameworks"
+      />
 
-      <div>
-        {list.map((p, i) => (
-          <ProjListBlock key={p.projName} p={p} index={i} />
-        ))}
-      </div>
+      <ProjListByCate
+        list={reactList}
+        wait={["Zusland", "Xstate", "resso"]}
+        anchor="projects-react"
+        title="React and Libraries"
+      />
 
-      <b>Wait List</b>
+      <ProjListByCate
+        list={[]}
+        wait={["React + Sass", "TailwindCSS", "React + UnoCSS", "Vue + UnoCSS", "Twind", "Emotion"]}
+        anchor="projects-styling"
+        title="Styling"
+      />
 
-      <ul>
-        <li>Zusland</li>
-        <li>Xstate</li>
-        <li>resso</li>
-      </ul>
+      <ProjListByCate
+        list={[]}
+        wait={["Vite", "Create-React-App", "Vue CLI", "Astro"]}
+        anchor="projects-cli"
+        title="CLI Comparation"
+      />
 
-      <h2 id="projects-frameworks">
-        <a href="#projects-frameworks">Framework Baseline: Preact + Jotai</a>
-      </h2>
-
-      <b>Wait List</b>
-
-      <ul>
-        <li>Preact + Jotai</li>
-        <li>Vue3 + Pinia</li>
-        <li>Svelte</li>
-        <li>SolidJS</li>
-        <li>Reason</li>
-        <li>Elm</li>
-      </ul>
-
-      <h2 id="projects-styling">
-        <a href="#projects-styling">Style Baseline: React + Sass</a>
-      </h2>
-
-      <b>Wait List</b>
-
-      <ul>
-        <li>React + Sass</li>
-        <li>TailwindCSS</li>
-        <li>React + UnoCSS</li>
-        <li>Vue + UnoCSS</li>
-        <li>Twind</li>
-        <li>Emotion</li>
-      </ul>
-
-      <h2 id="projects-cli">
-        <a href="#projects-cli">CLI Baseline: Vite</a>
-      </h2>
-
-      <b>Wait List</b>
-
-      <ul>
-        <li>Vite</li>
-        <li>Create-React-App</li>
-        <li>Astro</li>
-      </ul>
+      <ProjListByCate list={rest} anchor="projects-rest" title="Others" />
     </>
   );
 };
 
-const ProjListBlock: FC<{ p: ProjectStatsFull; index: number }> = ({ p, index }) => {
+const getProjs = (list: ExampleNames[] | ProjectStatsFull[]) =>
+  list.map((name) => stats.find((p) => p.projName === name)).filter(Boolean) as ProjectStatsFull[];
+
+const ProjListByCate: FC<{
+  list: ExampleNames[] | ProjectStatsFull[];
+  wait?: string[];
+  anchor: string;
+  title: string;
+}> = ({ list, wait, anchor, title }) => {
+  const notEmpty = list.length > 0 || (wait && wait?.length > 0);
+  if (!notEmpty) return null;
+
+  return (
+    <>
+      <h2 id={anchor}>
+        <a href={"#" + anchor}>{title}</a>
+      </h2>
+
+      <div>
+        {getProjs(list).map((p, i) => (
+          <ProjListItem key={p.projName} p={p} index={i} />
+        ))}
+      </div>
+
+      {(wait?.length ?? 0) > 0 && (
+        <>
+          <b>Wait List</b>
+
+          <ul>
+            {wait?.map((e) => (
+              <li key={e}>{e}</li>
+            ))}
+          </ul>
+        </>
+      )}
+    </>
+  );
+};
+
+const ProjListItem: FC<{ p: ProjectStatsFull; index: number }> = ({ p, index }) => {
   return (
     <div className="w-full flex items-center mb-48px" style={{ "--index": index }}>
       <div className="w-40% min-w-200px">

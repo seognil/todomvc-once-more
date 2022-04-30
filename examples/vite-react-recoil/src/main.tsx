@@ -9,5 +9,5 @@ ReactDOM.render(
       <TodoApp />
     </RecoilRoot>
   </React.StrictMode>,
-  document.getElementById("root"),
+  document.getElementById("app"),
 );

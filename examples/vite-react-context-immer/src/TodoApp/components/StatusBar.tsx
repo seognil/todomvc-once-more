@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import type { FC } from "react";
-import { FILTER_MODE, useTodoModel } from "../model/model";
+import type { FilterMode } from "../model/model";
+import { useTodoModel } from "../model/model";
 
 // * ================================================================================
 
@@ -18,9 +19,9 @@ export const StatusBar: FC = () => {
       <span className="todo-count">{remainText}</span>
 
       <ul className="filters">
-        <FilterButton target={FILTER_MODE.ALL} text="All" />
-        <FilterButton target={FILTER_MODE.ACTIVE} text="Active" />
-        <FilterButton target={FILTER_MODE.COMPLETED} text="Completed" />
+        <FilterButton target="ALL" text="All" />
+        <FilterButton target="ACTIVE" text="Active" />
+        <FilterButton target="COMPLETED" text="Completed" />
       </ul>
 
       {hasCompleted && (
@@ -34,7 +35,7 @@ export const StatusBar: FC = () => {
 
 // * ---------------------------------------------------------------- FilterButton
 
-const FilterButton: FC<{ target: FILTER_MODE; text: string }> = ({ target, text }) => {
+const FilterButton: FC<{ target: FilterMode; text: string }> = ({ target, text }) => {
   const model = useTodoModel();
   const filter = model.getFilterValue();
   const changeVisibility = model.changeVisibility;

@@ -6,5 +6,5 @@ ReactDOM.render(
   <React.StrictMode>
     <TodoApp />
   </React.StrictMode>,
-  document.getElementById("root"),
+  document.getElementById("app"),
 );

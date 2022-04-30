@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import type { FunctionalComponent as FC } from "preact";
 import { useEffect, useRef, useState } from "preact/compat";
-import { TodoItem, useTodoModel } from "../model/model";
+import type { TodoItem } from "../model/model";
+import { useTodoModel } from "../model/model";
 
 // * ================================================================================
 
@@ -9,11 +10,11 @@ import { TodoItem, useTodoModel } from "../model/model";
 
 export const TodoList: FC = () => {
   const model = useTodoModel();
-  const todos = model.getDisplayTodos();
+  const filtedTodos = model.getFiltedTodos();
 
   return (
     <ul className="todo-list">
-      {todos.map((item) => (
+      {filtedTodos.map((item) => (
         <TodoListItem key={item.id} item={item} />
       ))}
     </ul>
@@ -35,10 +36,10 @@ const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
   const todoEditInputRef = useRef<HTMLInputElement>(null);
   useEffect(() => todoEditInputRef.current?.focus(), [editing]);
 
-  // * ---------------- action
+  // * ---------------- actions
 
   const updateTodoContent = model.updateTodoContent;
-  const changeTodoCompleted = model.changeTodoCompletedById;
+  const changeTodoCompletedById = model.changeTodoCompletedById;
   const deleteTodoById = model.deleteTodoById;
 
   const intoTextEditing = () => {
@@ -48,7 +49,8 @@ const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
 
   const exitTextEdition = () => {
     setEditing(false);
-    if (localText !== content) updateTodoContent({ id, content: localText });
+    if (!localText) return deleteTodoById(id);
+    if (localText !== content) return updateTodoContent({ id, content: localText });
   };
 
   // * ---------------- render
@@ -60,7 +62,7 @@ const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
           className="toggle"
           type="checkbox"
           checked={completed}
-          onChange={() => changeTodoCompleted(id)}
+          onChange={() => changeTodoCompletedById(id)}
           aria-label="toggle todo"
         />
         <label onDblClick={intoTextEditing}>{content}</label>

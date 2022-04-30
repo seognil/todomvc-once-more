@@ -5,7 +5,7 @@ import {
   TodoItem,
   useChangeTodoCompletedById,
   useDeleteTodoById,
-  useDisplayTodos,
+  useFiltedTodos,
   useUpdateTodoContent,
 } from "../model/model";
 
@@ -14,7 +14,7 @@ import {
 // * ---------------------------------------------------------------- TodoList
 
 export const TodoList: FC = () => {
-  const todos = useDisplayTodos();
+  const todos = useFiltedTodos();
 
   return (
     <ul className="todo-list">
@@ -38,10 +38,10 @@ const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
   const todoEditInputRef = useRef<HTMLInputElement>(null);
   useEffect(() => todoEditInputRef.current?.focus(), [editing]);
 
-  // * ---------------- action
+  // * ---------------- actions
 
   const updateTodoContent = useUpdateTodoContent();
-  const changeTodoCompleted = useChangeTodoCompletedById();
+  const changeTodoCompletedById = useChangeTodoCompletedById();
   const deleteTodoById = useDeleteTodoById();
 
   const intoTextEditing = () => {
@@ -51,7 +51,8 @@ const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
 
   const exitTextEdition = () => {
     setEditing(false);
-    if (localText !== content) updateTodoContent({ id, content: localText });
+    if (!localText) return deleteTodoById(id);
+    if (localText !== content) return updateTodoContent({ id, content: localText });
   };
 
   // * ---------------- render
@@ -63,7 +64,7 @@ const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
           className="toggle"
           type="checkbox"
           checked={completed}
-          onChange={() => changeTodoCompleted(id)}
+          onChange={() => changeTodoCompletedById(id)}
           aria-label="toggle todo"
         />
         <label onDoubleClick={intoTextEditing}>{content}</label>

@@ -3,11 +3,7 @@ import { createContext, useContext, useState } from "react";
 
 // * ---------------------------------------------------------------- types and difinitions
 
-export enum FILTER_MODE {
-  "ALL",
-  "ACTIVE",
-  "COMPLETED",
-}
+export type FilterMode = "ALL" | "ACTIVE" | "COMPLETED";
 
 export interface TodoItem {
   id: string;
@@ -16,12 +12,12 @@ export interface TodoItem {
 }
 
 export interface TodoData {
-  filter: FILTER_MODE;
+  filter: FilterMode;
   todos: TodoItem[];
 }
 
 const DEFAULT_TODO_DATA: TodoData = {
-  filter: FILTER_MODE.ALL,
+  filter: "ALL",
   todos: [],
 };
 
@@ -45,10 +41,10 @@ export const useTodoModel = () => {
   const model = {
     // * ---------------- todo crud
 
-    getDisplayTodos: () =>
-      filter === FILTER_MODE.COMPLETED
+    getFiltedTodos: () =>
+      filter === "COMPLETED"
         ? todos.filter((e) => e.completed)
-        : filter === FILTER_MODE.ACTIVE
+        : filter === "ACTIVE"
         ? todos.filter((e) => !e.completed)
         : todos,
 
@@ -87,7 +83,7 @@ export const useTodoModel = () => {
     getHasCompleted: () => todos.filter((e) => e.completed).length > 0,
 
     getFilterValue: () => filter,
-    changeVisibility: (filter: FILTER_MODE) => {
+    changeVisibility: (filter: FilterMode) => {
       setData((data) => ({
         ...data,
         filter,

@@ -10,5 +10,5 @@ ReactDOM.render(
   <React.StrictMode>
     <Layout data={MockData} />
   </React.StrictMode>,
-  document.getElementById("root")!,
+  document.getElementById("app")!,
 );

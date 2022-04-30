@@ -4,11 +4,7 @@ import { createStore } from "redux";
 
 // * ---------------------------------------------------------------- types and difinitions
 
-export enum FILTER_MODE {
-  "ALL",
-  "ACTIVE",
-  "COMPLETED",
-}
+export type FilterMode = "ALL" | "ACTIVE" | "COMPLETED";
 
 export interface TodoItem {
   id: string;
@@ -17,12 +13,12 @@ export interface TodoItem {
 }
 
 export interface TodoData {
-  filter: FILTER_MODE;
+  filter: FilterMode;
   todos: TodoItem[];
 }
 
 const DEFAULT_TODO_DATA: TodoData = {
-  filter: FILTER_MODE.ALL,
+  filter: "ALL",
   todos: [],
 };
 
@@ -51,11 +47,11 @@ const useTodoDispatch = () => {
 
 // * ---------------- todo crud
 
-export const useDisplayTodos = () =>
+export const useFiltedTodos = () =>
   useSelector(({ filter, todos }: TodoData) =>
-    filter === FILTER_MODE.COMPLETED
+    filter === "COMPLETED"
       ? todos.filter((e) => e.completed)
-      : filter === FILTER_MODE.ACTIVE
+      : filter === "ACTIVE"
       ? todos.filter((e) => !e.completed)
       : todos,
   );
@@ -109,7 +105,7 @@ export const useHasCompleted = () => useSelector(({ todos }: TodoData) => todos.
 export const useFilterValue = () => useSelector(({ filter }: TodoData) => filter);
 export const useChangeVisibility = () => {
   const setData = useTodoDispatch();
-  return (filter: FILTER_MODE) => {
+  return (filter: FilterMode) => {
     setData((data) => ({
       ...data,
       filter,

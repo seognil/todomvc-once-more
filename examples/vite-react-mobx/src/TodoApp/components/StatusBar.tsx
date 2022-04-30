@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { observer } from "mobx-react-lite";
-import { changeVisibility, clearCompleted, filter, FILTER_MODE, hasCompleted, remainCount } from "../model/model";
+import type { FilterMode } from "../model/model";
+import { changeVisibility, clearCompleted, filter, hasCompleted, remainCount } from "../model/model";
 
 // * ================================================================================
 
@@ -14,9 +15,9 @@ export const StatusBar = observer(() => {
       <span className="todo-count">{remainText}</span>
 
       <ul className="filters">
-        <FilterButton value={FILTER_MODE.ALL} text="All" />
-        <FilterButton value={FILTER_MODE.ACTIVE} text="Active" />
-        <FilterButton value={FILTER_MODE.COMPLETED} text="Completed" />
+        <FilterButton value={"ALL"} text="All" />
+        <FilterButton value={"ACTIVE"} text="Active" />
+        <FilterButton value={"COMPLETED"} text="Completed" />
       </ul>
 
       {hasCompleted.get() && (
@@ -30,7 +31,7 @@ export const StatusBar = observer(() => {
 
 // * ---------------------------------------------------------------- FilterButton
 
-const FilterButton = observer<{ value: FILTER_MODE; text: string }>(({ value, text }) => {
+const FilterButton = observer<{ value: FilterMode; text: string }>(({ value, text }) => {
   return (
     <li>
       <a className={clsx({ selected: filter.get() === value })} onClick={() => changeVisibility(value)}>
