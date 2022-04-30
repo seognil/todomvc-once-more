@@ -5,7 +5,7 @@ import {
   TodoItem,
   useChangeTodoCompletedById,
   useDeleteTodoById,
-  useDisplayTodos,
+  useFiltedTodos,
   useUpdateTodoContent,
 } from "../model/model";
 
@@ -14,11 +14,11 @@ import {
 // * ---------------------------------------------------------------- TodoList
 
 export const TodoList: FC = () => {
-  const todos = useDisplayTodos();
+  const filtedTodos = useFiltedTodos();
 
   return (
     <ul className="todo-list">
-      {todos.map((item) => (
+      {filtedTodos.map((item) => (
         <TodoListItem key={item.id} item={item} />
       ))}
     </ul>

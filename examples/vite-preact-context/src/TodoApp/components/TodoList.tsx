@@ -10,11 +10,11 @@ import { useTodoModel } from "../model/model";
 
 export const TodoList: FC = () => {
   const model = useTodoModel();
-  const todos = model.getDisplayTodos();
+  const filtedTodos = model.getFiltedTodos();
 
   return (
     <ul className="todo-list">
-      {todos.map((item) => (
+      {filtedTodos.map((item) => (
         <TodoListItem key={item.id} item={item} />
       ))}
     </ul>

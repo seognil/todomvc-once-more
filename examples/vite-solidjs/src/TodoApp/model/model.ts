@@ -21,7 +21,7 @@ export const model = createRoot(() => {
   const model = {
     // * ---------------- todo crud
 
-    getDisplayTodos: createMemo(() =>
+    getFiltedTodos: createMemo(() =>
       filter() === "COMPLETED"
         ? todos().filter((e) => e.completed)
         : filter() === "ACTIVE"

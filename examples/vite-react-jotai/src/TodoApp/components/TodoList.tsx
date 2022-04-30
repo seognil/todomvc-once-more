@@ -5,7 +5,7 @@ import {
   TodoItem,
   useChangeTodoCompletedById,
   useDeleteTodoById,
-  useDisplayTodos,
+  useFiltedTodos,
   useUpdateTodoContent,
 } from "../model/model";
 
@@ -14,7 +14,7 @@ import {
 // * ---------------------------------------------------------------- TodoList
 
 export const TodoList: FC = () => {
-  const todos = useDisplayTodos();
+  const todos = useFiltedTodos();
 
   return (
     <ul className="todo-list">

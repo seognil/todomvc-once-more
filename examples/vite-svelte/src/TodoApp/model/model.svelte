@@ -6,9 +6,9 @@
 
   // * ---------------------------------------------------------------- svelte writable values
 
-  export const todos = writable<TodoItem[]>([]);
+  export const filter = writable<FilterMode>("ALL");
 
-  export const filter = writable<FilterMode>('ALL');
+  export const todos = writable<TodoItem[]>([]);
 
   export const completedTodos = derived(todos, ($todos) => $todos.filter((e) => e.completed));
 
@@ -19,16 +19,14 @@
   export const remainCount = derived(activeTodos, ($activeTodos) => $activeTodos.length);
 
   export const filtedTodos = derived([todos, filter], () =>
-    get(filter) === 'COMPLETED'
-      ? get(completedTodos)
-      : get(filter) === 'ACTIVE'
-      ? get(activeTodos)
-      : get(todos),
-  ) as Readable<TodoItem[]>;
+    get(filter) === "COMPLETED" ? get(completedTodos) : get(filter) === "ACTIVE" ? get(activeTodos) : get(todos),
+  );
 
   export const isAllCompleted = derived(todos, ($todos) => $todos.length !== 0 && $todos.every((e) => e.completed));
 
   // * ---------------------------------------------------------------- actions
+
+  // * ---------------- todos
 
   export const createTodo = (todoText: string) => {
     if (!todoText) return;

@@ -1,5 +1,5 @@
-import { ref, computed, watch } from "vue";
 import { nanoid } from "nanoid";
+import { computed, ref } from "vue";
 
 // * ---------------------------------------------------------------- types
 

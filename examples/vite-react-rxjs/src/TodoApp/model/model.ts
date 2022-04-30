@@ -15,9 +15,9 @@ export interface TodoItem {
 
 // * ---------------------------------------------------------------- RxJS observables
 
-const todos$ = new BehaviorSubject<TodoItem[]>([]);
-
 const filter$ = new BehaviorSubject<FilterMode>("ALL");
+
+const todos$ = new BehaviorSubject<TodoItem[]>([]);
 
 const completedTodos$ = todos$.pipe(map((todos) => todos.filter((e) => e.completed)));
 
@@ -37,7 +37,7 @@ const isAllCompleted$ = todos$.pipe(map((todos) => todos.length !== 0 && todos.e
 
 // * ---------------- todo crud
 
-export const useDisplayTodos = () => useObservableEagerState(filtedTodos$);
+export const useFiltedTodos = () => useObservableEagerState(filtedTodos$);
 
 export const createTodo = (todoText: string) => {
   if (!todoText) return;

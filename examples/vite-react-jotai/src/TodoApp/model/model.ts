@@ -13,9 +13,9 @@ export interface TodoItem {
 
 // * ---------------------------------------------------------------- Recoil atoms
 
-const todos = atom<TodoItem[]>([]);
-
 const filter = atom<FilterMode>("ALL");
+
+const todos = atom<TodoItem[]>([]);
 
 const completedTodos = atom((get) => get(todos).filter((e) => e.completed));
 
@@ -35,7 +35,7 @@ const isAllCompleted = atom((get) => get(todos).length !== 0 && get(todos).every
 
 // * ---------------- todo crud
 
-export const useDisplayTodos = () => useAtom(filtedTodos)[0];
+export const useFiltedTodos = () => useAtom(filtedTodos)[0];
 
 export const useCreateTodo = () => {
   const [, setTodo] = useAtom(todos);

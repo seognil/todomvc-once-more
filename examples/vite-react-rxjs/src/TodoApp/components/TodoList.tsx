@@ -2,18 +2,18 @@ import clsx from "clsx";
 import type { FC } from "react";
 import { useEffect, useRef, useState } from "react";
 import type { TodoItem } from "../model/model";
-import { changeTodoCompletedById, deleteTodoById, updateTodoContent, useDisplayTodos } from "../model/model";
+import { changeTodoCompletedById, deleteTodoById, updateTodoContent, useFiltedTodos } from "../model/model";
 
 // * ================================================================================
 
 // * ---------------------------------------------------------------- TodoList
 
 export const TodoList: FC = () => {
-  const todos = useDisplayTodos();
+  const filtedTodos = useFiltedTodos();
 
   return (
     <ul className="todo-list">
-      {todos.map((item) => (
+      {filtedTodos.map((item) => (
         <TodoListItem key={item.id} item={item} />
       ))}
     </ul>

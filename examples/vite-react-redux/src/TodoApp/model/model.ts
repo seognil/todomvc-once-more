@@ -47,7 +47,7 @@ const useTodoDispatch = () => {
 
 // * ---------------- todo crud
 
-export const useDisplayTodos = () =>
+export const useFiltedTodos = () =>
   useSelector(({ filter, todos }: TodoData) =>
     filter === "COMPLETED"
       ? todos.filter((e) => e.completed)

@@ -9,7 +9,7 @@ import { model } from "../model/model";
 export const TodoList: Component = () => {
   return (
     <ul className="todo-list">
-      {model.getDisplayTodos().map((item) => (
+      {model.getFiltedTodos().map((item) => (
         <TodoListItem item={item} />
       ))}
     </ul>

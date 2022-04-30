@@ -42,7 +42,7 @@ export const useTodoModel = () => {
   const model = {
     // * ---------------- todo crud
 
-    getDisplayTodos: () =>
+    getFiltedTodos: () =>
       filter === "COMPLETED"
         ? todos.filter((e) => e.completed)
         : filter === "ACTIVE"
