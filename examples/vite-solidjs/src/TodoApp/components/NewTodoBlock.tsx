@@ -1,5 +1,5 @@
 import { Component, createSignal } from "solid-js";
-import { model } from "../model/model";
+import { model } from "../model";
 
 // * ================================================================================
 

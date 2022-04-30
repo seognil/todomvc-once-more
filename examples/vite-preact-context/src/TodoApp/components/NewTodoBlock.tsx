@@ -1,6 +1,6 @@
 import type { FunctionalComponent as FC } from "preact";
 import { useState } from "preact/compat";
-import { useTodoModel } from "../model/model";
+import { useTodoModel } from "../model";
 
 // * ================================================================================
 

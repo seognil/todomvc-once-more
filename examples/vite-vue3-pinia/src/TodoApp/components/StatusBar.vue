@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
-import type { FilterMode } from "../model/model";
-import { useFilter, useTodos } from "../model/model";
+import type { FilterMode } from "../model";
+import { useFilter, useTodos } from "../model";
 
 const filterStore = useFilter();
 const { filter } = storeToRefs(filterStore);

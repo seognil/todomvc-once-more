@@ -1,6 +1,6 @@
 import { Component } from "solid-js";
-import type { FilterMode } from "../model/model";
-import { model } from "../model/model";
+import type { FilterMode } from "../model";
+import { model } from "../model";
 
 // * ================================================================================
 

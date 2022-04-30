@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TodoListItem from "./TodoListItem.vue";
-import { useTodos } from "../model/model";
+import { useTodos } from "../model";
 import { storeToRefs } from "pinia";
 
 const { filtedTodos } = storeToRefs(useTodos());

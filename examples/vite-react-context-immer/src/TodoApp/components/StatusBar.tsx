@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import type { FC } from "react";
-import type { FilterMode } from "../model/model";
-import { useTodoModel } from "../model/model";
+import type { FilterMode } from "../model";
+import { useTodoModel } from "../model";
 
 // * ================================================================================
 

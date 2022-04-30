@@ -1,6 +1,6 @@
 import { Component, createEffect, createSignal } from "solid-js";
-import type { TodoItem } from "../model/model";
-import { model } from "../model/model";
+import type { TodoItem } from "../model";
+import { model } from "../model";
 
 // * ================================================================================
 

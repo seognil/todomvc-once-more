@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { observer } from "mobx-react-lite";
-import type { FilterMode } from "../model/model";
-import { changeVisibility, clearCompleted, filter, hasCompleted, remainCount } from "../model/model";
+import type { FilterMode } from "../model";
+import { changeVisibility, clearCompleted, filter, hasCompleted, remainCount } from "../model";
 
 // * ================================================================================
 

@@ -1,6 +1,6 @@
 import type { FC, KeyboardEvent } from "react";
 import { useState } from "react";
-import { useCreateTodo, useIsAllCompleted, useToggleAllTodos } from "../model/model";
+import { useCreateTodo, useIsAllCompleted, useToggleAllTodos } from "../model";
 
 // * ================================================================================
 

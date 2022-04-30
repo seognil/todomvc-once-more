@@ -7,7 +7,7 @@ import {
   useFilterValue,
   useHasCompleted,
   useRemainCount,
-} from "../model/model";
+} from "../model";
 
 // * ================================================================================
 

@@ -1,5 +1,5 @@
 import type { FunctionalComponent as FC } from "preact";
-import { TodoContext, useCreateTodoContextValue } from "../model/model";
+import { TodoContext, useCreateTodoContextValue } from "../model";
 import "../styles/style-from-todo-mvc-website.scss";
 import "../styles/style-patch.scss";
 import { NewTodoBlock } from "./NewTodoBlock";

@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import type { FC } from "react";
 import { useEffect, useRef, useState } from "react";
-import type { TodoItem } from "../model/model";
-import { changeTodoCompletedById, deleteTodoById, updateTodoContent, useFiltedTodos } from "../model/model";
+import type { TodoItem } from "../model";
+import { changeTodoCompletedById, deleteTodoById, updateTodoContent, useFiltedTodos } from "../model";
 
 // * ================================================================================
 

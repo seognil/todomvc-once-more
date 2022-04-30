@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import ToggleAll from "./ToggleAll.vue";
-import { createTodo } from "../model/model";
+import { createTodo } from "../model";
 
 const newTodoInputText = ref("");
 

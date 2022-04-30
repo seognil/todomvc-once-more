@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import type { FilterMode } from "../model/model";
-import { changeVisibility, clearCompleted, filter, hasCompleted, remainCount } from "../model/model";
+import type { FilterMode } from "../model";
+import { changeVisibility, clearCompleted, filter, hasCompleted, remainCount } from "../model";
 
 const remainText = computed(() => `${remainCount.value} ${remainCount.value === 1 ? "item" : "items"} left`);
 

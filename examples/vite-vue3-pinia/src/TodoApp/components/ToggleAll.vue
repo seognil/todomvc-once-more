@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { useTodos } from "../model/model";
+import { useTodos } from "../model";
 
 const todoStore = useTodos();
 
