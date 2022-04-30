@@ -9,8 +9,9 @@ import { ClocInfo, DistType, FileInfo, FileTypeSum, FullPath, ProjectStatsRaw } 
 
 // * ================================================================================ const and type
 
-// @ts-ignore
-const getColor = (type: string): string => colors[type] ?? "#ededed";
+type ColorType = keyof typeof colors;
+
+const getColor = (type: string): string => colors[type as ColorType] ?? "#bfbfbf";
 
 // * ================================================================================ process
 
@@ -48,11 +49,14 @@ const analyzeCloc = async (projFullPath: FullPath): Promise<ClocInfo[]> => {
     .split("\n")
     .slice(1, -1)
     .map((e) => {
-      const [files, type, blank, comment, code] = e.split(",") as [string, string, string, string, string];
+      const [files, clocType, blank, comment, code] = e.split(",") as [string, string, string, string, string];
+
+      const mappedType = { "Vuejs Component": "Vue" }[clocType] ?? clocType;
+
+      const type = mappedType in colors ? mappedType : "Other";
 
       return {
-        // @ts-ignore
-        type: colors[type] ? type : "Other",
+        type: type,
         color: getColor(type),
         files: Number(files),
         blank: Number(blank),

@@ -23,7 +23,7 @@ export const ProjBlock: FC = () => {
     "vite-react-jotai",
   ];
 
-  const frameworkList: ExampleNames[] = ["vite-svelte", "vite-solidjs"];
+  const frameworkList: ExampleNames[] = ["vite-vue3", "vite-svelte", "vite-solidjs"];
 
   const allProjects = [...reactList, ...frameworkList];
   const rest = stats.filter((p) => !allProjects.includes(p.projName as ExampleNames));
@@ -44,45 +44,34 @@ export const ProjBlock: FC = () => {
         title="Framework Baseline: Preact + Jotai"
       />
 
-      <h2 id="projects-styling">
-        <a href="#projects-styling">Style Baseline: React + Sass</a>
-      </h2>
+      <ProjListByCate
+        list={[]}
+        wait={["React + Sass", "TailwindCSS", "React + UnoCSS", "Vue + UnoCSS", "Twind", "Emotion"]}
+        anchor="projects-styling"
+        title="Styling"
+      />
 
-      <b>Wait List</b>
+      <ProjListByCate
+        list={[]}
+        wait={["Vite", "Create-React-App", "Vue CLI", "Astro"]}
+        anchor="projects-cli"
+        title="CLI Comparation"
+      />
 
-      <ul>
-        <li>React + Sass</li>
-        <li>TailwindCSS</li>
-        <li>React + UnoCSS</li>
-        <li>Vue + UnoCSS</li>
-        <li>Twind</li>
-        <li>Emotion</li>
-      </ul>
-
-      <h2 id="projects-cli">
-        <a href="#projects-cli">CLI Baseline: Vite</a>
-      </h2>
-
-      <b>Wait List</b>
-
-      <ul>
-        <li>Vite</li>
-        <li>Create-React-App</li>
-        <li>Astro</li>
-      </ul>
+      <ProjListByCate list={rest} anchor="projects-cli" title="CLI Comparation" />
     </>
   );
 };
 
-const getProjs = (list: ExampleNames[]) =>
+const getProjs = (list: ExampleNames[] | ProjectStatsFull[]) =>
   list.map((name) => stats.find((p) => p.projName === name)).filter(Boolean) as ProjectStatsFull[];
 
-const ProjListByCate: FC<{ list: ExampleNames[]; wait?: string[]; anchor: string; title: string }> = ({
-  list,
-  wait,
-  anchor,
-  title,
-}) => {
+const ProjListByCate: FC<{
+  list: ExampleNames[] | ProjectStatsFull[];
+  wait?: string[];
+  anchor: string;
+  title: string;
+}> = ({ list, wait, anchor, title }) => {
   return (
     <>
       <h2 id={anchor}>

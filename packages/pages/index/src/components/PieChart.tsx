@@ -14,11 +14,19 @@ export const PieChart: FC<{ clocs: ClocInfo[]; className?: string }> = ({ clocs,
 
   // * ----------------
 
+  const size = 200;
+  const [w, h] = [size, size];
+  const [x, y] = [w / 2, h / 2];
+  const origin = [x, y] as const;
+  const getRadius = (val: number) => Math.pow(val / localMax, 1 / 2) * (size / 2) * (csum / csumMax);
+
+  // * ----------------
+
   let tmp = 0;
   const piesData = clocs.map((e) => {
     const result = {
       color: e.color,
-      val: e.code,
+      val: getRadius(e.code),
       start: tmp / csum,
       percent: e.code / csum,
       type: e.type,
@@ -30,26 +38,11 @@ export const PieChart: FC<{ clocs: ClocInfo[]; className?: string }> = ({ clocs,
 
   // * ----------------
 
-  const size = 200;
-  const [w, h] = [size, size];
-  const [x, y] = [w / 2, h / 2];
-  const origin = [x, y] as const;
-  const radiusUnit = ((size / 2) * (csum / csumMax)) / localMax;
-
-  // * ----------------
-
   return (
     <svg className={clsx("animate-pie", className)} width="1em" height="1em" viewBox={`0 0 ${w} ${h}`}>
       {piesData
         .map((e, i) => (
-          <PiePiece
-            key={i}
-            val={radiusUnit * e.val}
-            origin={origin}
-            color={e.color}
-            start={e.start}
-            percent={e.percent}
-          />
+          <PiePiece key={i} val={e.val} origin={origin} color={e.color} start={e.start} percent={e.percent} />
         ))
         .reverse()}
     </svg>
