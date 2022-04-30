@@ -12,9 +12,16 @@ const prettyKB = (size: number) => `${prettySize(size)} kB`;
 // * ================================================================================
 
 export const ProjBlock: FC = () => {
-  const reactList: ExampleNames[] = [
+  const frameworkList: ExampleNames[] = [
     "vite-react-context",
     "vite-preact-context",
+    "vite-vue3",
+    "vite-vue3-pinia",
+    "vite-svelte",
+    "vite-solidjs",
+  ];
+
+  const reactList: ExampleNames[] = [
     "vite-react-context-immer",
     "vite-react-redux",
     "vite-react-mobx",
@@ -23,25 +30,23 @@ export const ProjBlock: FC = () => {
     "vite-react-jotai",
   ];
 
-  const frameworkList: ExampleNames[] = ["vite-vue3", "vite-vue3-pinia", "vite-svelte", "vite-solidjs"];
-
   const allProjects = [...reactList, ...frameworkList];
   const rest = stats.filter((p) => !allProjects.includes(p.projName as ExampleNames));
 
   return (
     <>
       <ProjListByCate
-        list={reactList}
-        wait={["Zusland", "Xstate", "resso"]}
-        anchor="projects-react"
-        title="React Baseline: React Hooks + React Context"
+        list={frameworkList}
+        wait={["Vue 2", "Vue 2 + Vuex", "Angular", "Reason", "Elm"]}
+        anchor="projects-frameworks"
+        title="Frameworks"
       />
 
       <ProjListByCate
-        list={frameworkList}
-        wait={["Preact + Jotai", "Vue3 + Pinia", "Reason", "Elm"]}
-        anchor="projects-frameworks"
-        title="Framework Baseline: Preact + Jotai"
+        list={reactList}
+        wait={["Zusland", "Xstate", "resso"]}
+        anchor="projects-react"
+        title="React and Libraries"
       />
 
       <ProjListByCate
@@ -58,7 +63,7 @@ export const ProjBlock: FC = () => {
         title="CLI Comparation"
       />
 
-      <ProjListByCate list={rest} anchor="projects-cli" title="CLI Comparation" />
+      <ProjListByCate list={rest} anchor="projects-rest" title="Others" />
     </>
   );
 };
@@ -72,6 +77,9 @@ const ProjListByCate: FC<{
   anchor: string;
   title: string;
 }> = ({ list, wait, anchor, title }) => {
+  const notEmpty = list.length > 0 || (wait && wait?.length > 0);
+  if (!notEmpty) return null;
+
   return (
     <>
       <h2 id={anchor}>
