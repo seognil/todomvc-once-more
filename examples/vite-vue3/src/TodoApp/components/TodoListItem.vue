@@ -11,7 +11,6 @@ const { id } = item;
 
 // * ---------------- states
 
-const localText = ref("");
 const editing = ref(false);
 
 // * ---------------- auto focus
@@ -29,23 +28,13 @@ watchEffect(() => {
 
 // * ---------------- action
 
-// * use v-model instead
-// const changeTodoCompleted = () => {
-//   item.completed = !item.completed;
-// };
-
-const updateTodoContent = () => {
-  item.content = localText.value;
-};
-
 const intoTextEditing = () => {
   editing.value = true;
-  localText.value = item.content;
 };
 
 const exitTextEdition = () => {
   editing.value = false;
-  if (localText.value !== item.content) updateTodoContent();
+  if (!item.content) deleteTodoById(id);
 };
 </script>
 
@@ -61,7 +50,7 @@ const exitTextEdition = () => {
     <input
       ref="todoEditInputRef"
       class="edit"
-      v-model="localText"
+      v-model="item.content"
       @keydown="(e) => e.key === 'Enter' && exitTextEdition()"
       @blur="exitTextEdition"
       aria-label="edit todo"
