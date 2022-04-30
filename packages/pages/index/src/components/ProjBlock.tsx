@@ -23,7 +23,7 @@ export const ProjBlock: FC = () => {
     "vite-react-jotai",
   ];
 
-  const frameworkList: ExampleNames[] = ["vite-vue3", "vite-svelte", "vite-solidjs"];
+  const frameworkList: ExampleNames[] = ["vite-vue3", "vite-vue3-pinia", "vite-svelte", "vite-solidjs"];
 
   const allProjects = [...reactList, ...frameworkList];
   const rest = stats.filter((p) => !allProjects.includes(p.projName as ExampleNames));
