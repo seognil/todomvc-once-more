@@ -17,11 +17,15 @@ const rawData = {
     desc: "CSS (Cascading Style Sheets) is the code that styles web content. CSS basics walks through what you need to get started.",
   },
 
+  // * ----------------
+
   "sass": {
     name: "Sass",
     url: "https://sass-lang.com/",
     desc: "Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.",
   },
+
+  // * ----------------
 
   "react": {
     name: "React",
@@ -38,6 +42,7 @@ const rawData = {
     url: "https://reactjs.org/docs/hooks-intro.html",
     desc: "Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks solve a wide variety of seemingly unconnected problems in React that we’ve encountered over five years of writing and maintaining tens of thousands of components.",
   },
+
   "svelte": {
     name: "Svelte",
     url: "https://svelte.dev/",
@@ -48,11 +53,25 @@ const rawData = {
     url: "https://kit.svelte.dev/",
     desc: "SvelteKit is a framework for building web applications of all sizes, with a beautiful development experience and flexible filesystem-based routing.",
   },
+
   "solid": {
     name: "Solid.js",
     url: "https://www.solidjs.com/",
     desc: "Solid follows the same philosophy as React with unidirectional data flow, read/write segregation, and immutable interfaces. It however has a completely different implementation that forgoes using a Virtual DOM.",
   },
+
+  "vue3": {
+    name: "Vue 3",
+    url: "https://vuejs.org/",
+    desc: "Vue (pronounced /vjuː/, like view) is a JavaScript framework for building user interfaces. It builds on top of standard HTML, CSS and JavaScript, and provides a declarative and component-based programming model that helps you efficiently develop user interfaces, be it simple or complex.",
+  },
+  "pinia": {
+    name: "Pinia",
+    url: "https://pinia.vuejs.org/",
+    desc: "Pinia started as an experiment to redesign what a Store for Vue could look like with the Composition API around November 2019. Since then, the initial principles are still the same, but Pinia works for both Vue 2 and Vue 3 and doesn't require you to use the composition API. The API is the same for both except for installation and SSR, and these docs are targeted to Vue 3 with notes about Vue 2 whenever necessary so it can be read by Vue 2 and Vue 3 users!",
+  },
+
+  // * ----------------
 
   "redux": {
     name: "redux (core)",
@@ -107,6 +126,8 @@ const rawData = {
     url: "https://jotai.org/",
     desc: "Jotai takes a bottom-up approach to React state management with an atomic model inspired by Recoil. One can build state by combining atoms and renders are optimized based on atom dependency. This solves the extra re-render issue of React context and eliminates the need for the memoization technique.",
   },
+
+  // * ----------------
 
   "vite": {
     name: "Vite",
