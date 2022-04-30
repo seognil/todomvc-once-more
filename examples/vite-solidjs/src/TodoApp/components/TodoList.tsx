@@ -32,7 +32,7 @@ const TodoListItem: Component<{ item: TodoItem }> = ({ item }) => {
     isEditing() && todoEditInputRef?.focus();
   });
 
-  // * ---------------- action
+  // * ---------------- actions
 
   const intoTextEditing = () => {
     setEditing(true);

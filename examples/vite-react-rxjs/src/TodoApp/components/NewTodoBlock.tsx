@@ -9,7 +9,7 @@ import { createTodo, toggleAllTodos, useIsAllCompleted } from "../model/model";
 export const NewTodoBlock: FC = () => {
   const [newTodoInputText, setNewTodoInputText] = useState("");
 
-  // * ---------------- action
+  // * ---------------- actions
 
   const createNewTodo = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key !== "Enter") return;

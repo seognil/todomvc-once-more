@@ -10,7 +10,7 @@ export const NewTodoBlock: FC = () => {
   const [newTodoInputText, setNewTodoInputText] = useState("");
   const model = useTodoModel();
 
-  // * ---------------- action
+  // * ---------------- actions
 
   const createNewTodo = (e: KeyboardEvent) => {
     if (e.key !== "Enter") return;

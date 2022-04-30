@@ -36,7 +36,7 @@ const TodoListItem: FC<{ item: TodoItem }> = ({ item }) => {
   const todoEditInputRef = useRef<HTMLInputElement>(null);
   useEffect(() => todoEditInputRef.current?.focus(), [editing]);
 
-  // * ---------------- action
+  // * ---------------- actions
 
   const updateTodoContent = model.updateTodoContent;
   const changeTodoCompletedById = model.changeTodoCompletedById;

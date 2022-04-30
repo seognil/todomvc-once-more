@@ -26,7 +26,7 @@ watchEffect(() => {
   }
 });
 
-// * ---------------- action
+// * ---------------- actions
 
 const intoTextEditing = () => {
   editing.value = true;

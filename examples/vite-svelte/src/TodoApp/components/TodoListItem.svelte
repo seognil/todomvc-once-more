@@ -23,7 +23,7 @@
     }, 0);
   }
 
-  // * ---------------- action
+  // * ---------------- actions
 
   const intoTextEditing = () => {
     editing = true;

@@ -31,7 +31,7 @@ const TodoListItem = observer<{ item: TodoItem }>(({ item }) => {
   const todoEditInputRef = useRef<HTMLInputElement>(null);
   useEffect(() => todoEditInputRef.current?.focus(), [editing]);
 
-  // * ---------------- action
+  // * ---------------- actions
 
   const updateTodoContent = () => {
     item.content = localText;

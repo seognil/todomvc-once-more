@@ -8,7 +8,7 @@ import { model } from "../model/model";
 export const NewTodoBlock: Component = () => {
   const [getNewTodoInputText, setNewTodoInputText] = createSignal("");
 
-  // * ---------------- action
+  // * ---------------- actions
 
   const createNewTodo = (e: KeyboardEvent) => {
     if (e.key !== "Enter") return;
