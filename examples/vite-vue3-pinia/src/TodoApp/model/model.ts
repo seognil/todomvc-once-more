@@ -1,5 +1,5 @@
-import { defineStore, storeToRefs } from "pinia";
 import { nanoid } from "nanoid";
+import { defineStore, storeToRefs } from "pinia";
 import { computed, ref } from "vue";
 
 // * ---------------------------------------------------------------- types

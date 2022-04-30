@@ -4,7 +4,6 @@ import { useTodos } from "../model/model";
 import { storeToRefs } from "pinia";
 
 const { filtedTodos } = storeToRefs(useTodos());
-
 </script>
 
 <template>
