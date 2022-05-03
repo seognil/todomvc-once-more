@@ -1,7 +1,6 @@
 import type { FileTypeSum, LayoutData } from "@/data";
 import React, { FC } from "react";
 import { FaClone, FaGithub, FaSquare } from "react-icons/fa";
-
 import { MdxRemote, MDXRemoteSerializeResult } from "../Mdx/MdxRemote";
 
 // * ----------------------------------------------------------------

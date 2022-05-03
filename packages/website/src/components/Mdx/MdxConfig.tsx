@@ -1,8 +1,8 @@
+import type { FC, ReactElement } from "react";
+import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // @ts-ignore for tsno
 import { materialLight, vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism/index.js";
-import React from "react";
-import type { FC, ReactElement } from "react";
 
 // * ----------------------------------------------------------------
 

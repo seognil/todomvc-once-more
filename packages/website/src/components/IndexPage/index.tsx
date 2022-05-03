@@ -1,15 +1,11 @@
-import Head from "next/head";
-
-import { FC } from "react";
-
-import { Mdx } from "../Mdx";
-
 import { githubUrl } from "@/data";
 import clsx from "clsx";
-
+import Head from "next/head";
+import { FC } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcTodoList } from "react-icons/fc";
 import { FiActivity } from "react-icons/fi";
+import { Mdx } from "../Mdx";
 import Article from "./article.md";
 import { ProjBlock } from "./ProjBlock";
 

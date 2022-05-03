@@ -1,9 +1,9 @@
-import "../components/Mdx/CodeStyle.scss";
-import "../components/IndexPage/style.scss";
-import "../components/ExamplePage/style.scss";
-import "uno.css";
-import { Mdx } from "../components/Mdx";
 import type { AppProps } from "next/app";
+import "uno.css";
+import "../components/ExamplePage/style.scss";
+import "../components/IndexPage/style.scss";
+import { Mdx } from "../components/Mdx";
+import "../components/Mdx/CodeStyle.scss";
 
 export default function ({ Component, pageProps }: AppProps) {
   return (

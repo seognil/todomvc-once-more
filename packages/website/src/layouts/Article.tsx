@@ -1,5 +1,5 @@
-import React from "react";
 import type { FC } from "react";
+import React from "react";
 
 export const Article: FC = ({ children }) => {
   return (

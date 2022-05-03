@@ -1,9 +1,9 @@
-import { serialize } from "next-mdx-remote/serialize";
+import { LayoutData } from "@todo/data";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import React from "react";
+import { serialize } from "next-mdx-remote/serialize";
 import type { FC } from "react";
+import React from "react";
 import { components } from "./MdxConfig";
-import { LayoutData, ProjectStatsFull } from "@todo/data";
 
 // * ----------------------------------------------------------------
 
