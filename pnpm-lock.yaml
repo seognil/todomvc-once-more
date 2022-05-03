@@ -432,6 +432,8 @@ importers:
       react-icons: ^4.3.1
       react-syntax-highlighter: ^15.5.0
       sass: ^1.51.0
+      tsno: ^2.0.0
+      tsup: ^5.12.5
       typescript: ^4.6.4
     dependencies:
       '@mdx-js/react': 2.1.1_react@17.0.2
@@ -457,11 +459,14 @@ importers:
       eslint: 8.14.0
       eslint-config-next: 12.1.6_27u4zztysjhw3gcwzw7kecgb4y
       sass: 1.51.0
+      tsno: 2.0.0
+      tsup: 5.12.5_typescript@4.6.4
       typescript: 4.6.4
 
   scripts/build:
     specifiers:
       '@todo/data': workspace:*
+      '@todo/examlpe-layout': workspace:*
       '@todo/pages-layout': workspace:*
       '@types/fs-extra': ^9.0.13
       '@types/jsdom': ^16.2.14
@@ -482,6 +487,7 @@ importers:
       typescript: ^4.5.4
     devDependencies:
       '@todo/data': link:../../packages/data
+      '@todo/examlpe-layout': link:../../packages/website
       '@todo/pages-layout': link:../../packages/pages/layout
       '@types/fs-extra': 9.0.13
       '@types/jsdom': 16.2.14
@@ -7297,6 +7303,36 @@ packages:
       sucrase: 3.21.0
       tree-kill: 1.2.2
       typescript: 4.6.3
+    transitivePeerDependencies:
+      - postcss
+      - supports-color
+      - ts-node
+    dev: true
+
+  /tsup/5.12.5_typescript@4.6.4:
+    resolution: {integrity: sha512-lKwzJsB49sDto51QjqOB4SdiBLKRvgTymEBuBCovcksdDwFEz3esrkbf3m497PXntUKVTzcgOfPdTgknMtvufw==}
+    hasBin: true
+    peerDependencies:
+      typescript: ^4.1.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      bundle-require: 3.0.4_esbuild@0.14.36
+      cac: 6.7.12
+      chokidar: 3.5.3
+      debug: 4.3.4
+      esbuild: 0.14.36
+      execa: 5.1.1
+      globby: 11.1.0
+      joycon: 3.1.1
+      postcss-load-config: 3.1.4
+      resolve-from: 5.0.0
+      rollup: 2.70.2
+      source-map: 0.7.3
+      sucrase: 3.21.0
+      tree-kill: 1.2.2
+      typescript: 4.6.4
     transitivePeerDependencies:
       - postcss
       - supports-color

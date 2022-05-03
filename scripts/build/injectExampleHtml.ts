@@ -1,5 +1,5 @@
 import type { FullPath, LayoutData, LinkUrl, ProjectStatsFull, SubPath } from "@todo/data";
-import { Layout, prettyCodeBlock } from "@todo/pages-layout";
+import { ExamplePage } from "@todo/examlpe-layout";
 import { JSDOM } from "jsdom";
 import { createElement } from "react";
 import { renderToString } from "react-dom/server";
@@ -22,10 +22,7 @@ export const injectExampleHtml = (html: string, data: LayoutData, inject: Inject
   const document = root.window.document;
   const { head, body } = document;
 
-  const layoutBody = new JSDOM(renderToString(createElement(Layout, { data, server: true }, null))).window.document
-    .body;
-
-  prettyCodeBlock(layoutBody, document);
+  const layoutBody = new JSDOM(renderToString(createElement(ExamplePage, { data }, null))).window.document.body;
 
   // * ---------------- head
 

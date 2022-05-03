@@ -1,4 +1,4 @@
-import "../components/Mdx/CodeStyle.css";
+import "../components/Mdx/CodeStyle.scss";
 import "../components/IndexPage/style.scss";
 import "../components/ExamplePage/style.scss";
 import "uno.css";

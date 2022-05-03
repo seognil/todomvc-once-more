@@ -4,7 +4,7 @@
   },
   "devDependencies": {
     "@todo/data": "workspace:*",
-    "@todo/pages-layout": "workspace:*",
+    "@todo/examlpe-layout": "workspace:*",
     "@types/fs-extra": "^9.0.13",
     "@types/jsdom": "^16.2.14",
     "@types/md5": "^2.3.2",

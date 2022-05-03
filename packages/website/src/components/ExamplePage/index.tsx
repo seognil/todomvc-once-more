@@ -10,7 +10,7 @@ const { code: Code, pre: Pre } = components;
 
 // * ----------------------------------------------------------------
 
-export const ExamplePage: FC<{ data: LayoutData; server?: boolean }> = ({ data = MockData, server = false }) => {
+export const ExamplePage: FC<{ data: LayoutData }> = ({ data = MockData }) => {
   const { stats } = data;
   const { meta } = stats;
 

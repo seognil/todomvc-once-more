@@ -1,11 +1,14 @@
 {
-  "name": "demo-page",
-  "version": "0.1.0",
+  "name": "@todo/examlpe-layout",
   "private": true,
+  "main": "dist/layout.js",
+  "types": "expor/layout.ts",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export && pnpm build:css",
-    "build:css": "sass src/components/ExamplePage/style.scss out/layout.css",
+    "build": "pnpm build:static && pnpm build:layout && pnpm build:css",
+    "build:static": "next build && next export",
+    "build:layout": "tsup --format=cjs,esm export/layout.tsx",
+    "build:css": "sass export/layout.scss out/layout.css --style=compressed",
     "start": "next start",
     "lint": "next lint"
   },
@@ -34,6 +37,7 @@
     "eslint": "^8.14.0",
     "eslint-config-next": "^12.1.5",
     "sass": "^1.51.0",
+    "tsup": "^5.12.5",
     "typescript": "^4.6.4"
   }
 }
