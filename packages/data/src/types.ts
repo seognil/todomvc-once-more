@@ -77,14 +77,7 @@ export interface ProjectMetaRaw {
 
   stacks: StackName[];
 
-  core: StackName[];
-  usage: {
-    lang: SyntaxLang;
-    code: CodeSnippet[];
-    note: string[];
-    snippet: CodeSnippet;
-  };
-  resources: (StackName | ArticleLink)[];
+  markdown?: string;
 }
 
 // * ----------------
@@ -95,14 +88,7 @@ export interface ProjectMetaFull {
 
   stacks: StackInfo[];
 
-  core: StackInfo[];
-  usage: {
-    lang: SyntaxLang;
-    code: CodeSnippet[];
-    note: string | string[];
-    snippet: CodeSnippet;
-  };
-  resources: (StackInfo | ArticleLink)[];
+  markdown?: string;
 }
 
 // * ----------------

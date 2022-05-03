@@ -1,5 +1,5 @@
-import type { FullPath, LayoutData, LinkUrl, ProjectStatsFull, SubPath } from "@todo/data";
-import { ExamplePage } from "@todo/examlpe-layout";
+import type { FullPath, LinkUrl, ProjectStatsFull, SubPath } from "@todo/data";
+import { ExamplePage, ExamplePageProps } from "@todo/examlpe-layout";
 import { JSDOM } from "jsdom";
 import { createElement } from "react";
 import { renderToString } from "react-dom/server";
@@ -17,12 +17,12 @@ export interface InjectConfig {
 
 // * ================================================================================
 
-export const injectExampleHtml = (html: string, data: LayoutData, inject: InjectConfig) => {
+export const injectExampleHtml = (html: string, props: ExamplePageProps, inject: InjectConfig) => {
   const root = new JSDOM(html);
   const document = root.window.document;
   const { head, body } = document;
 
-  const layoutBody = new JSDOM(renderToString(createElement(ExamplePage, { data }, null))).window.document.body;
+  const layoutBody = new JSDOM(renderToString(createElement(ExamplePage, props, null))).window.document.body;
 
   // * ---------------- head
 
@@ -39,14 +39,14 @@ export const injectExampleHtml = (html: string, data: LayoutData, inject: Inject
   css.setAttribute("href", inject.css);
 
   const title = document.head.querySelector("title") ?? document.createElement("title");
-  title.textContent = inject.title(data.stats.meta.title);
+  title.textContent = inject.title(props.data.stats.meta.title);
 
   const favicon = document.head.querySelector("link[rel='icon']") ?? document.createElement("link");
   favicon.setAttribute("rel", "icon");
   favicon.setAttribute("href", inject.favicon);
 
   const base = document.head.querySelector("base") ?? document.createElement("base");
-  base.setAttribute("href", data.baseUrl);
+  base.setAttribute("href", props.data.baseUrl);
 
   head.prepend(base, title, favicon, css);
 

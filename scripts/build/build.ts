@@ -1,4 +1,5 @@
 import { DIR_ROOT, githubUrl, LayoutData, ProjectStatsFull, stats } from "@todo/data";
+import { ExamplePageProps, parseMd } from "@todo/examlpe-layout";
 import fs from "fs-extra";
 import { globby } from "globby";
 import md5 from "md5";
@@ -71,7 +72,9 @@ const rebuildSingle = async (p: ProjectStatsFull, inject: InjectConfig) => {
 
   const data = toLayoutData(p, inject);
 
-  await fs.writeFile(outProjIndex, injectExampleHtml(await fs.readFile(outProjIndex, "utf8"), data, inject));
+  const props: ExamplePageProps = { data, mdx: await parseMd(data) };
+
+  await fs.writeFile(outProjIndex, injectExampleHtml(await fs.readFile(outProjIndex, "utf8"), props, inject));
 };
 
 // * ================================================================================ run

@@ -131,14 +131,18 @@ export const MockData: LayoutData = {
 
       stacks: [stacks.react, stacks.recoil, stacks.ts],
 
-      core: [stacks.recoil],
-      usage: {
-        lang: "tsx",
-        code: ["<RecoilRoot>", "atom()", "selector()", "useRecoilState()"],
-        note: "Anim aliquip et cillum eu laboris id consequat. In sit reprehenderit cupidatat adipisicing nulla quis. Nisi quis reprehenderit ad qui quis nisi mollit. Enim minim velit ipsum duis aliquip ex consequat laboris et culpa. Velit magna consectetur anim id.",
-        snippet: coreSnippet,
-      },
-      resources: [stacks.jotai],
+      markdown: `Some **mdx** text, with a component
+
+-  hello \`code()\`
+-  hello \`code()\`
+-  hello \`code()\`
+
+  \`\`\`js
+    const memo = () => {}
+  \`\`\`
+
+  12
+  `,
     },
   },
 };

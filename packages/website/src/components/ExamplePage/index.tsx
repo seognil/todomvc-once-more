@@ -1,18 +1,20 @@
-import type { FileTypeSum, LayoutData, ProjectMetaFull } from "@/data";
+import type { FileTypeSum, LayoutData } from "@/data";
 import React, { FC } from "react";
 import { FaClone, FaGithub, FaSquare } from "react-icons/fa";
 
-import { MockData } from "./mockData";
-
-import { components } from "@/components/Mdx/MdxConfig";
-
-const { code: Code, pre: Pre } = components;
+import { MdxRemote, MDXRemoteSerializeResult } from "../Mdx/MdxRemote";
 
 // * ----------------------------------------------------------------
 
-export const ExamplePage: FC<{ data: LayoutData }> = ({ data = MockData }) => {
+export interface ExamplePageProps {
+  data: LayoutData;
+  mdx: MDXRemoteSerializeResult | null;
+}
+
+export const ExamplePage: FC<ExamplePageProps> = ({ data, mdx }) => {
   const { stats } = data;
-  const { meta } = stats;
+
+  const { title, desc, stacks } = stats.meta;
 
   return (
     <div className="todomvc-layout">
@@ -26,20 +28,20 @@ export const ExamplePage: FC<{ data: LayoutData }> = ({ data = MockData }) => {
         </a>
       </div>
 
-      <h1>{meta.title}</h1>
+      <h1>{title}</h1>
 
-      <p>{meta.desc}</p>
+      <p>{desc}</p>
 
       <div className="todomvc-app-container">
         <div className="todomvc-info">
-          {meta.stacks.length > 0 && (
+          {stacks.length > 0 && (
             <>
               <h2>
                 Stacks (<a href={data.sourceUrl}>Source Code</a>)
               </h2>
 
               <ul>
-                {meta.stacks.map((e) => (
+                {stacks.map((e) => (
                   <li key={e.url}>
                     <a href={e.url}>{e.name}</a>
                   </li>
@@ -63,52 +65,7 @@ export const ExamplePage: FC<{ data: LayoutData }> = ({ data = MockData }) => {
         </div>
       </div>
 
-      <h2>Core Libraries</h2>
-
-      {meta.core.length > 0 && (
-        <>
-          {meta.core.map((e) => (
-            <div key={e.name} className="desc">
-              <blockquote>
-                <p className="desc-link">
-                  <a href={e.url}>{e.name}</a>
-                </p>
-                <p>{e.desc}</p>
-              </blockquote>
-            </div>
-          ))}
-        </>
-      )}
-
-      <h2>Basic Usage</h2>
-
-      <div>
-        <CodeBlock meta={meta} />
-
-        {[stats.meta.usage.note].flat().map((e, i) => (
-          <p key={i}>{e}</p>
-        ))}
-
-        <div className="core-snippet">
-          <Pre>{meta.usage.snippet}</Pre>
-        </div>
-      </div>
-
-      <h2>Rescources</h2>
-
-      <ul>
-        {stats.meta.resources.map((e) => (
-          <li key={e.url}>
-            {"name" in e ? (
-              <>
-                <a href={e.url}>{e.name}</a>
-              </>
-            ) : (
-              <a href={e.url}>{e.title}</a>
-            )}
-          </li>
-        ))}
-      </ul>
+      {mdx && <MdxRemote source={mdx} />}
     </div>
   );
 };
@@ -174,20 +131,6 @@ const GzipBar: FC<{ files: FileTypeSum[] }> = ({ files }) => {
         <rect key={i} y={e.start * 100 + "%"} height={e.percent * 100 + "%"} width="100%" rx="2" fill={e.color} />
       ))}
     </svg>
-  );
-};
-
-// * ---------------------------------------------------------------- CodeBlock
-
-const CodeBlock: FC<{ meta: ProjectMetaFull }> = ({ meta }) => {
-  return (
-    <ul className="core-code">
-      {meta.usage.code.map((e) => (
-        <li key={e}>
-          <Code>{e}</Code>
-        </li>
-      ))}
-    </ul>
   );
 };
 
