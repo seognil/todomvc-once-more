@@ -432,7 +432,6 @@ importers:
       react-icons: ^4.3.1
       react-syntax-highlighter: ^15.5.0
       sass: ^1.51.0
-      tsno: ^2.0.0
       tsup: ^5.12.5
       typescript: ^4.6.4
     dependencies:
@@ -459,7 +458,6 @@ importers:
       eslint: 8.14.0
       eslint-config-next: 12.1.6_27u4zztysjhw3gcwzw7kecgb4y
       sass: 1.51.0
-      tsno: 2.0.0
       tsup: 5.12.5_typescript@4.6.4
       typescript: 4.6.4
 
@@ -467,7 +465,6 @@ importers:
     specifiers:
       '@todo/data': workspace:*
       '@todo/examlpe-layout': workspace:*
-      '@todo/pages-layout': workspace:*
       '@types/fs-extra': ^9.0.13
       '@types/jsdom': ^16.2.14
       '@types/md5': ^2.3.2
@@ -488,7 +485,6 @@ importers:
     devDependencies:
       '@todo/data': link:../../packages/data
       '@todo/examlpe-layout': link:../../packages/website
-      '@todo/pages-layout': link:../../packages/pages/layout
       '@types/fs-extra': 9.0.13
       '@types/jsdom': 16.2.14
       '@types/md5': 2.3.2
