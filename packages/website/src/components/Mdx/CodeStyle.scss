@@ -52,3 +52,34 @@
   tab-size: 4;
   hyphens: none; */
 }
+
+:root {
+  --sky-500: #0ea5e9;
+}
+
+a {
+  color: var(--sky-500);
+}
+
+h2 {
+  position: relative;
+}
+h2 > a:first-child {
+  opacity: 0;
+
+  color: inherit;
+
+  transition-duration: 100ms;
+  position: absolute;
+  left: 0;
+  transform: translateX(-100%);
+  padding: 8px;
+  margin-top: -8px;
+}
+h2:hover > a:first-child {
+  opacity: 1;
+
+  &:hover {
+    color: var(--sky-500);
+  }
+}

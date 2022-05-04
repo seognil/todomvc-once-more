@@ -130,19 +130,26 @@ export const MockData: LayoutData = {
       desc: "Use several atoms to organize ui state",
 
       stacks: [stacks.react, stacks.recoil, stacks.ts],
+      core: [stacks.react],
+      resources: [stacks.recoil],
 
-      markdown: `Some **mdx** text, with a component
+      article: `
 
--  hello \`code()\`
--  hello \`code()\`
--  hello \`code()\`
+Some **mdx** text, with a component
 
-  \`\`\`js
-    const memo = () => {}
-  \`\`\`
+## section
 
-  12
-  `,
+- \`code()\`
+- \`code()\`
+- \`code()\`
+- \`<code()/>\`
+
+\`\`\`js
+  const memo = () => {}
+\`\`\`
+
+12
+`,
     },
   },
 };

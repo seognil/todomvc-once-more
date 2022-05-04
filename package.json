@@ -3,9 +3,11 @@
     "dev:website": "pnpm --filter './packages/website' dev",
     "build": "pnpm build:examples && pnpm build:website",
     "build:examples": "pnpm --filter './examples/**' build",
-    "build:website": "pnpm build:data && pnpm build:pages && pnpm build:inject",
+    "build:website": "pnpm build:data && pnpm build:static && pnpm build:ssr && pnpm build:inject",
+    "build:website-meta-only": "pnpm build:data && pnpm build:ssr && pnpm build:inject",
     "build:data": "pnpm --filter './packages/data' build",
-    "build:pages": "pnpm --filter './packages/website' build",
+    "build:static": "pnpm --filter './packages/website' build:static",
+    "build:ssr": "pnpm --filter './packages/website' build:ssr",
     "build:inject": "pnpm --filter './scripts/build' build",
     "preview": "serve dist",
     "pretty": "prettier -w **/{src,scripts}/** --plugin-search-dir=."

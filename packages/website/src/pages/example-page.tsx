@@ -7,7 +7,7 @@ export async function getStaticProps() {
 
   const props: ExamplePageProps = { data: MockData, mdx: await parseMd(data) };
 
-  return { props };
+  return { props, notFound: process.env.NODE_ENV === "production" };
 }
 
 export { ExamplePage as default } from "@/components/ExamplePage";

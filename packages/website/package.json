@@ -2,12 +2,13 @@
   "name": "@todo/examlpe-layout",
   "private": true,
   "main": "dist/layout.js",
-  "types": "src/export/layout.ts",
+  "types": "src/export/layout.tsx",
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm build:static && pnpm build:layout && pnpm build:css",
+    "build": "pnpm build:static && pnpm build:ssr",
     "build:static": "next build && next export",
-    "build:layout": "esbuild src/export/layout.ts --target=es6 --platform=node --bundle --minify --outfile=dist/layout.js",
+    "build:ssr": "pnpm build:layout && pnpm build:css",
+    "build:layout": "esbuild src/export/layout.tsx --target=es6 --platform=node --bundle --minify --outfile=dist/layout.js",
     "build:css": "sass src/export/layout.scss out/layout.css --style=compressed",
     "start": "next start",
     "lint": "next lint"

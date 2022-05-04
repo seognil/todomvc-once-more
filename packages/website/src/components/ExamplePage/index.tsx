@@ -1,6 +1,7 @@
 import type { FileTypeSum, LayoutData } from "@/data";
 import React, { FC } from "react";
 import { FaClone, FaGithub, FaSquare } from "react-icons/fa";
+import { H2 } from "../Mdx/MdxConfig";
 import { MdxRemote, MDXRemoteSerializeResult } from "../Mdx/MdxRemote";
 
 // * ----------------------------------------------------------------
@@ -13,7 +14,7 @@ export interface ExamplePageProps {
 export const ExamplePage: FC<ExamplePageProps> = ({ data, mdx }) => {
   const { stats } = data;
 
-  const { title, desc, stacks } = stats.meta;
+  const { title, desc, stacks, core, resources } = stats.meta;
 
   return (
     <div className="todomvc-layout">
@@ -35,9 +36,9 @@ export const ExamplePage: FC<ExamplePageProps> = ({ data, mdx }) => {
         <div className="todomvc-info">
           {stacks.length > 0 && (
             <>
-              <h2>
+              <H2 anchor="stacks">
                 Stacks (<a href={data.sourceUrl}>Source Code</a>)
-              </h2>
+              </H2>
 
               <ul>
                 {stacks.map((e) => (
@@ -51,7 +52,8 @@ export const ExamplePage: FC<ExamplePageProps> = ({ data, mdx }) => {
 
           {stats.distTypeSum.length > 0 && (
             <>
-              <h2>Build (gzip size)</h2>
+              <H2>Build (gzip size)</H2>
+
               <BuildSizeBlock data={data} />
             </>
           )}
@@ -63,6 +65,37 @@ export const ExamplePage: FC<ExamplePageProps> = ({ data, mdx }) => {
           </div>
         </div>
       </div>
+
+      {core.length > 0 && (
+        <>
+          <H2>Core Libraries</H2>
+
+          {core.map((e) => (
+            <div key={e.name} className="desc">
+              <blockquote>
+                <p className="desc-link">
+                  <a href={e.url}>{e.name}</a>
+                </p>
+                <p>{e.desc}</p>
+              </blockquote>
+            </div>
+          ))}
+        </>
+      )}
+
+      {resources.length > 0 && (
+        <>
+          <H2>Resources</H2>
+
+          <ul>
+            {resources.map((e) => (
+              <li key={e.url}>
+                <a href={e.url}>{"name" in e ? e.name : e.title}</a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
 
       {mdx && <MdxRemote source={mdx} />}
     </div>

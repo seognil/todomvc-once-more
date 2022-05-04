@@ -1,4 +1,4 @@
-import type { FC, ReactElement } from "react";
+import type { FC, ReactElement, ReactNode, ReactText } from "react";
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // @ts-ignore for tsno
@@ -28,11 +28,15 @@ const ThemePre: FC = ({ children }) => (
   </SyntaxHighlighter>
 );
 
-const H2: FC = ({ children }) => {
-  const anchor = getAnchor(children as string);
+export const H2: FC<{ anchor?: string; children: ReactText } | { anchor: string; children: ReactNode }> = ({
+  children,
+  anchor,
+}) => {
+  const anchorStr = getAnchor(anchor ?? (children as string));
   return (
-    <h2 id={anchor}>
-      <a href={`#${anchor}`}>{children}</a>
+    <h2 id={anchorStr}>
+      <a href={`#${anchorStr}`}>#</a>
+      {children}
     </h2>
   );
 };

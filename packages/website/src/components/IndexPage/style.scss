@@ -14,10 +14,6 @@ body {
 
 // * ---------------------------------------------------------------- content and typography
 
-:root {
-  --sky-500: #0ea5e9;
-}
-
 main {
   font-weight: 300;
 
@@ -26,13 +22,6 @@ main {
     &:hover {
       text-decoration: underline;
     }
-  }
-
-  a {
-    color: inherit;
-  }
-  :not(h2) > a {
-    color: var(--sky-500);
   }
 
   h2:not(:first-child) {

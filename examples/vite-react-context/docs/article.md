@@ -1,3 +1,16 @@
+## Basic Usage
+
+- `useState()`
+- `useContext()`
+- `<MyContext.Provider value={}>`
+
+Basic usage of React Functional Components with built-in Hooks and Context API.
+
+It's simple, but there is a problem, once the context changes, all components will be re-rendered by default. It's trivial to do the performance optimization manually or split the model/domain layer in large projects.
+
+That's why third-party libraries appear to solve these pain points.
+
+```tsx
 import { createContext, useContext, useState } from "react";
 
 // * ---------------- Context and data definitions
@@ -39,3 +52,4 @@ const Comp = () => {
     </div>
   );
 };
+```

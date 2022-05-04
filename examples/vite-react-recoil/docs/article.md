@@ -1,3 +1,19 @@
+## Basic Usage
+
+- `<RecoilRoot>`
+- `atom()`
+- `selector()`
+- `useRecoilState()`
+
+The usage of Recoil simply looks like Redux or Mobx.
+
+But unlike Redux, when implementing multiple sub-systems, you only need one `RecoilRoot` as Provider.
+
+And unlike Mobx, there must be an ancestor of any component that uses any Recoil hooks.
+
+Multiple `RecoilRoot` may co-exist and represent independent providers/stores of atom state; atoms will have distinct values within each root.
+
+```tsx
 import { atom, RecoilRoot, selector, useRecoilState, useRecoilValue } from "recoil";
 
 // * ---------------- RecoilRoot wrapping
@@ -39,3 +55,4 @@ const Comp = () => {
     </div>
   );
 };
+```

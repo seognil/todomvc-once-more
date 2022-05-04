@@ -1,3 +1,16 @@
+## Basic Usage
+
+- `import { render } from "preact"`
+- `import type { FunctionalComponent as FC } from "preact"`
+- `import { useState } from "preact/compat"`
+
+Preact is a tiny React alternative. And It works well with most libraries of the React ecosystem which built on the top of React Hooks.
+
+With universal CLI such as Vite, preact support is out of the box.
+
+And if from an existing project, you can also easily replace React with Preact to reduce app's build size in minitus.
+
+```tsx
 // * ---------------- Replacing import using preact (or by setting alias)
 
 // import { render } from "react-dom";
@@ -30,3 +43,4 @@ const tsconfigJson = {
     jsxFragmentFactory: "Fragment",
   },
 };
+```

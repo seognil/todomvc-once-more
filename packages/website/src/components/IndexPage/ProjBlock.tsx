@@ -1,6 +1,7 @@
 import { ExampleNames, ProjectStatsFull, stats } from "@/data";
 import type { FC, ReactElement } from "react";
 import { FaCircle, FaSquare } from "react-icons/fa";
+import { H2 } from "../Mdx/MdxConfig";
 import { DistBar, GzipBar } from "./BarChart";
 import { PieChart } from "./PieChart";
 
@@ -38,32 +39,20 @@ export const ProjBlock: FC = () => {
       <ProjListByCate
         list={frameworkList}
         wait={["Vue 2", "Vue 2 + Vuex", "Angular", "Reason", "Elm"]}
-        anchor="projects-frameworks"
         title="Frameworks"
       />
 
-      <ProjListByCate
-        list={reactList}
-        wait={["Zusland", "Xstate", "resso"]}
-        anchor="projects-react"
-        title="React and Libraries"
-      />
+      <ProjListByCate list={reactList} wait={["Zusland", "Xstate", "resso"]} title="React and Libraries" />
 
       <ProjListByCate
         list={[]}
         wait={["React + Sass", "TailwindCSS", "React + UnoCSS", "Vue + UnoCSS", "Twind", "Emotion"]}
-        anchor="projects-styling"
         title="Styling"
       />
 
-      <ProjListByCate
-        list={[]}
-        wait={["Vite", "Create-React-App", "Vue CLI", "Astro"]}
-        anchor="projects-cli"
-        title="CLI Comparation"
-      />
+      <ProjListByCate list={[]} wait={["Vite", "Create-React-App", "Vue CLI", "Astro"]} title="CLI Comparation" />
 
-      <ProjListByCate list={rest} anchor="projects-rest" title="Others" />
+      <ProjListByCate list={rest} title="Others" />
     </>
   );
 };
@@ -74,17 +63,15 @@ const getProjs = (list: ExampleNames[] | ProjectStatsFull[]) =>
 const ProjListByCate: FC<{
   list: ExampleNames[] | ProjectStatsFull[];
   wait?: string[];
-  anchor: string;
+
   title: string;
-}> = ({ list, wait, anchor, title }) => {
+}> = ({ list, wait, title }) => {
   const notEmpty = list.length > 0 || (wait && wait?.length > 0);
   if (!notEmpty) return null;
 
   return (
     <>
-      <h2 id={anchor}>
-        <a href={"#" + anchor}>{title}</a>
-      </h2>
+      <H2>{title}</H2>
 
       <div>
         {getProjs(list).map((p, i) => (

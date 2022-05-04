@@ -1,3 +1,19 @@
+## Basic Usage
+
+- `class Observable`
+- `Observable.pipe()`
+- `Observable.subscribe()`
+- `new BehaviorSubject()`
+- `BehaviorSubject.value`
+- `BehaviorSubject.next()`
+- `import { map, switchMap } from "rxjs/operators"`
+- `import { useObservableEagerState } from "observable-hooks"`
+
+Like Mobx, RxJS's core concept is Observable/Observer. But RxJS shines in stream programming by provides tons of additional APIs (`rxjs/operators`). On the other hand, the cost is the steep learning curve.
+
+So although you can implement state management by using an object called `BehaviorSubject` which allows you to emit values manually. It's maybe an overkill.
+
+```tsx
 import { BehaviorSubject, combineLatest } from "rxjs";
 import { map } from "rxjs/operators";
 import { useObservableEagerState } from "observable-hooks";
@@ -45,3 +61,4 @@ const subscription = sum$.subscribe((val) => {
 });
 
 subscription.unsubscribe();
+```

@@ -12,25 +12,6 @@ const meta = {
 
   core: ["rxjs", "observable-hooks"],
 
-  usage: {
-    lang: "tsx",
-    code: [
-      "class Observable",
-      "Observable.pipe()",
-      "Observable.subscribe()",
-      "new BehaviorSubject()",
-      "BehaviorSubject.value",
-      "BehaviorSubject.next()",
-      `import { map, switchMap } from "rxjs/operators"`,
-      `import { useObservableEagerState } from "observable-hooks"`,
-    ],
-    note: [
-      "Like Mobx, RxJS's core concept is Observable/Observer. But RxJS shines in stream programming by provides tons of additional APIs (`rxjs/operators`). On the other hand, the cost is the steep learning curve.",
-      "So although you can implement state management by using an object called `BehaviorSubject` which allows you to emit values manually. It's maybe an overkill.",
-    ],
-    snippet: readFileSync(join(__dirname, "./concepts.tsx"), "utf-8"),
-  },
-
   resources: [
     {
       title: "Learn RxJS",
@@ -49,6 +30,8 @@ const meta = {
       url: "https://gist.github.com/staltz/868e7e9bc2a7b8c1f754",
     },
   ],
+
+  article: readFileSync(join(__dirname, "./article.md"), "utf-8"),
 };
 
 module.exports = meta;

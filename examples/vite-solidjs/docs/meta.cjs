@@ -12,14 +12,9 @@ const meta = {
 
   core: [],
 
-  usage: {
-    lang: "tsx",
-    code: [],
-    note: [],
-    snippet: "",
-  },
-
   resources: [],
+
+  article: readFileSync(join(__dirname, "./article.md"), "utf-8"),
 };
 
 module.exports = meta;

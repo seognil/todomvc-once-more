@@ -34,7 +34,7 @@ body {
     padding-top: 60px;
 
     max-width: 550px;
-    min-height: 500px;
+    // min-height: 500px;
   }
 
   // * ---------------- common
@@ -46,11 +46,10 @@ body {
   }
 
   h2 {
-    margin-top: 80px;
+    margin-top: 60px;
   }
 
   a {
-    color: var(--sky-500);
     transition-duration: 300ms;
     cursor: pointer;
 

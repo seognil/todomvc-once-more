@@ -10,6 +10,8 @@ const toFull = (p: ProjectStatsRaw): ProjectStatsFull => ({
     ...p.meta,
 
     stacks: p.meta.stacks.map((e) => stacks[e]),
+    core: p.meta.core?.map((e) => stacks[e]) ?? [],
+    resources: p.meta.resources?.map((e) => (typeof e === "string" ? stacks[e] : e)) ?? [],
   },
 });
 

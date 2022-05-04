@@ -8,7 +8,7 @@ import { components } from "./MdxConfig";
 // * ----------------------------------------------------------------
 
 export const parseMd = async (data: LayoutData) => {
-  const md = data.stats.meta.markdown;
+  const md = data.stats.meta.article;
   return md ? await serialize(md) : null;
 };
 

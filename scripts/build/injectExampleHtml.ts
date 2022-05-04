@@ -1,8 +1,7 @@
 import type { FullPath, LinkUrl, ProjectStatsFull, SubPath } from "@todo/data";
-import { ExamplePage, ExamplePageProps } from "@todo/examlpe-layout";
+import { renderExampleLayout } from "@todo/examlpe-layout";
+import type { ExamplePageProps } from "@todo/examlpe-layout";
 import { JSDOM } from "jsdom";
-import { createElement } from "react";
-import { renderToString } from "react-dom/server";
 
 // * ================================================================================
 
@@ -22,7 +21,7 @@ export const injectExampleHtml = (html: string, props: ExamplePageProps, inject:
   const document = root.window.document;
   const { head, body } = document;
 
-  const layoutBody = new JSDOM(renderToString(createElement(ExamplePage, props, null))).window.document.body;
+  const layoutBody = new JSDOM(renderExampleLayout(props)).window.document.body;
 
   // * ---------------- head
 

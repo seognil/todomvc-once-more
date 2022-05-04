@@ -6,6 +6,7 @@ import { FaGithub } from "react-icons/fa";
 import { FcTodoList } from "react-icons/fc";
 import { FiActivity } from "react-icons/fi";
 import { Mdx } from "../Mdx";
+import { H2 } from "../Mdx/MdxConfig";
 import Article from "./article.md";
 import { ProjBlock } from "./ProjBlock";
 
@@ -48,9 +49,7 @@ export const Index: FC = () => {
       </header>
 
       <main className="flex-1 pb-80px">
-        <h2 id="conclusions">
-          <a href="#conclusions">Conclusions (WIP)</a>
-        </h2>
+        <H2 anchor="conclusions">Conclusions (WIP)</H2>
 
         <li>MVX: How to write a Web App with any framework (WIP)</li>
 

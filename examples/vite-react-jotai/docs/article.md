@@ -1,3 +1,13 @@
+## Basic Usage
+
+- `atom()`
+- `useAtom()`
+
+Jotai's design principles are similar to Recoil's: using simple API to achieve high performance by preventing extra re-render. But Jotai is way simpler.
+
+But there are some differences. Jotai doesn't have a concept like `RecoilRoot` as Recoil, all state is globally accessible. And Recoil has more powerful utils such as `atomFamily` and `Snapshots` which Jotai doesn't provide.
+
+```tsx
 // * -------------------------------- Recoil
 
 import { atom, RecoilRoot, selector, useRecoilState, useRecoilValue } from "recoil";
@@ -44,3 +54,4 @@ const Comp = () => {
 
   return <div>{/*  */}</div>;
 };
+```
