@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "tsno run build.ts"
+    "build": "tsno run src/build.ts"
   },
   "devDependencies": {
     "@todo/data": "workspace:*",

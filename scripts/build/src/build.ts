@@ -5,6 +5,7 @@ import { globby } from "globby";
 import md5 from "md5";
 import { basename, join } from "node:path";
 import { InjectConfig, injectExampleHtml } from "./injectExampleHtml";
+import { shrinkHtmlScript } from "./shrinkHtmlScript";
 
 // * ================================================================================ const and type
 
@@ -32,9 +33,15 @@ const rebuildAll = async () => {
   await fs.ensureDir(DIR_OUTPUT);
   await fs.emptyDir(DIR_OUTPUT);
 
-  // * ---------------- index page
+  // * ---------------- website pages
 
   await fs.copy(join(DIR_WEBSITE, "./out"), join(DIR_OUTPUT));
+
+  // * ---------------- shrink website build size (TODO: astro)
+
+  const htmls = await globby(join(DIR_OUTPUT, "/**/*.html"));
+
+  Promise.all(htmls.map(async (e) => await fs.writeFile(e, shrinkHtmlScript(await fs.readFile(e, "utf8")))));
 
   // * ---------------- make css
 
@@ -48,7 +55,7 @@ const rebuildAll = async () => {
   const iconBasename = basename(iconFile);
   await fs.copy(iconFile, join(DIR_OUTPUT, iconBasename));
 
-  // * ---------------- inject config
+  // * ---------------- inject with config
 
   const inject: InjectConfig = {
     outDir: (p) => join(DIR_OUTPUT, "./examples/", p.projName),
