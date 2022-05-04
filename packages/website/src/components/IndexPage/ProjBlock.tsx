@@ -38,7 +38,7 @@ export const ProjBlock: FC = () => {
     <>
       <ProjListByCate
         list={frameworkList}
-        wait={["Vue 2", "Vue 2 + Vuex", "Angular", "Reason", "Elm"]}
+        wait={["Vue 2", "Vue 2 + Vuex", "Angular", "Flutter", "Vanilla", "Reason", "Elm"]}
         title="Frameworks"
       />
 

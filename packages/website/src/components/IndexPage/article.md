@@ -3,9 +3,13 @@
 This project also relies on these tools heavily, which I'd like to recommend to you guys. (Maybe you have already used some. Technically, they are the faster and simpler versions of their ancestors)
 
 - [**Vite**](https://vitejs.dev/): <i>Vite is a build tool that aims to provide a faster and leaner development experience for modern web projects</i>
+- [**Astro**](https://astro.build/): <i>Astro creates static sites with multiple frameworks but minimal output size</i>
 - [**tsup**](https://github.com/egoist/tsup): <i>The simplest and fastest way to bundle your TypeScript libraries</i>
 - [**tsno**](https://github.com/egoist/tsno): <i>node with typescript support</i>
+- [**esbuild**](https://esbuild.github.io/): <i>An extremely fast JavaScript bundler</i>
 - [**pnpm**](https://pnpm.io/): <i>pnpm has built-in support for monorepositories</i>
+- [**fnm**](https://github.com/Schniz/fnm): <i>Fast and simple Node.js version manager, built in Rust</i>
+- [**ni**](https://github.com/antfu/ni): <i>Use the right package manager</i>
 - [**Vercel**](https://vercel.com/): <i>Vercel is the best place to deploy any frontend app</i>
 - [**Bundlephobia**](https://bundlephobia.com/): <i>Find the cost of adding a npm package to your bundle</i>
 
