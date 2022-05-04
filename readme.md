@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://todomvc-once-more.vercel.app/">
-    <img width="240px" src="https://raw.githubusercontent.com/seognil/todomvc-once-more/master/packages/pages/index/src/favicon.svg" />
+    <img width="240px" src="https://raw.githubusercontent.com/seognil/todomvc-once-more/master/packages/website/public/favicon.svg" />
   </a>
 </p>
 
