@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isAllCompleted, toggleAllTodos } from "../model/model";
+import { isAllCompleted, toggleAllTodos } from "../model";
 </script>
 
 <template>

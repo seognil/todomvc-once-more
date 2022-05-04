@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import { observer } from "mobx-react-lite";
 import { useEffect, useRef, useState } from "react";
-import type { TodoItem } from "../model/model";
-import { deleteTodoById, filtedTodos } from "../model/model";
+import type { TodoItem } from "../model";
+import { deleteTodoById, filtedTodos } from "../model";
 
 // * ================================================================================
 

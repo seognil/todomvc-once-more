@@ -76,15 +76,10 @@ export interface ProjectMetaRaw {
   desc: string;
 
   stacks: StackName[];
+  core?: StackName[];
+  resources?: (StackName | ArticleLink)[];
 
-  core: StackName[];
-  usage: {
-    lang: SyntaxLang;
-    code: CodeSnippet[];
-    note: string[];
-    snippet: CodeSnippet;
-  };
-  resources: (StackName | ArticleLink)[];
+  article?: string;
 }
 
 // * ----------------
@@ -94,15 +89,10 @@ export interface ProjectMetaFull {
   desc: string;
 
   stacks: StackInfo[];
-
   core: StackInfo[];
-  usage: {
-    lang: SyntaxLang;
-    code: CodeSnippet[];
-    note: string | string[];
-    snippet: CodeSnippet;
-  };
   resources: (StackInfo | ArticleLink)[];
+
+  article?: string;
 }
 
 // * ----------------

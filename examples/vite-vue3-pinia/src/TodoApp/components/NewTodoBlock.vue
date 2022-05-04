@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import ToggleAll from "./ToggleAll.vue";
-import { useTodos } from "../model/model";
+import { useTodos } from "../model";
 
 const { createTodo } = useTodos();
 

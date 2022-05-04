@@ -1,6 +1,6 @@
 import type { FC, KeyboardEvent } from "react";
 import { useState } from "react";
-import { useTodoModel } from "../model/model";
+import { useTodoModel } from "../model";
 
 // * ================================================================================
 

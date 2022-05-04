@@ -7,7 +7,7 @@ import {
   useDeleteTodoById,
   useFiltedTodos,
   useUpdateTodoContent,
-} from "../model/model";
+} from "../model";
 
 // * ================================================================================
 

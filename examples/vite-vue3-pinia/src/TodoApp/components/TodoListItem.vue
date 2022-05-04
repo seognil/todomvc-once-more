@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from "vue";
-import type { TodoItem } from "../model/model";
-import { useTodos } from "../model/model";
+import type { TodoItem } from "../model";
+import { useTodos } from "../model";
 
 const { deleteTodoById } = useTodos();
 

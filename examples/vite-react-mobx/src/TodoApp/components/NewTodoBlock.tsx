@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import type { KeyboardEvent } from "react";
 import { useState } from "react";
-import { createTodo, isAllCompleted, toggleAllTodos } from "../model/model";
+import { createTodo, isAllCompleted, toggleAllTodos } from "../model";
 
 // * ================================================================================
 

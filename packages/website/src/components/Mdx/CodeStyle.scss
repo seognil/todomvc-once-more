@@ -1,0 +1,85 @@
+.theme-code {
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  color: rgb(144, 164, 174);
+  background: rgb(250, 250, 250);
+  font-family: "Roboto Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5em;
+  tab-size: 4;
+  hyphens: none;
+
+  display: inline-block;
+  margin: 4px;
+  padding: 0 8px;
+}
+
+.theme-pre {
+  color: #d4d4d4;
+  font-size: 13px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none;
+
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  background: #1e1e1e;
+}
+
+.theme-pre code {
+  color: #9cdcfe;
+
+  /* font-size: 13px;
+  text-shadow: none;
+  font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.5;
+  tab-size: 4;
+  hyphens: none; */
+}
+
+:root {
+  --sky-500: #0ea5e9;
+}
+
+a {
+  color: var(--sky-500);
+}
+
+h2 {
+  position: relative;
+}
+h2 > a:first-child {
+  opacity: 0;
+
+  color: inherit;
+
+  transition-duration: 100ms;
+  position: absolute;
+  left: 0;
+  transform: translateX(-100%);
+  padding: 8px;
+  margin-top: -8px;
+}
+h2:hover > a:first-child {
+  opacity: 1;
+
+  &:hover {
+    color: var(--sky-500);
+  }
+}

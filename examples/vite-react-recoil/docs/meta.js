@@ -12,18 +12,6 @@ const meta = {
 
   core: ["recoil"],
 
-  usage: {
-    lang: "tsx",
-    code: ["<RecoilRoot>", "atom()", "selector()", "useRecoilState()"],
-    note: [
-      "The usage of Recoil simply looks like Redux or Mobx.",
-      "But unlike Redux, when implementing multiple sub-systems, you only need one `RecoilRoot` as Provider.",
-      "And unlike Mobx, there must be an ancestor of any component that uses any Recoil hooks.",
-      "Multiple <RecoilRoot>'s may co-exist and represent independent providers/stores of atom state; atoms will have distinct values within each root.",
-    ],
-    snippet: readFileSync(join(__dirname, "./concepts.tsx"), "utf-8"),
-  },
-
   resources: [
     "recoil",
     "jotai",
@@ -36,6 +24,8 @@ const meta = {
       url: "https://github.com/facebookexperimental/Recoil/issues/378",
     },
   ],
+
+  article: readFileSync(join(__dirname, "./article.md"), "utf-8"),
 };
 
 module.exports = meta;

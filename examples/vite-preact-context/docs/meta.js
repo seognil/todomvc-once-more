@@ -12,21 +12,6 @@ const meta = {
 
   core: ["preact"],
 
-  usage: {
-    lang: "tsx",
-    code: [
-      `import { render } from "preact"`,
-      `import type { FunctionalComponent as FC } from "preact"`,
-      `import { useState } from "preact/compat"`,
-    ],
-    note: [
-      "Preact is a tiny React alternative. And It works well with most libraries of the React ecosystem which built on the top of React Hooks.",
-      "With universal CLI such as Vite, preact support is out of the box.",
-      "And if from an existing project, you can also easily replace React with Preact to reduce app's build size in minitus.",
-    ],
-    snippet: readFileSync(join(__dirname, "./concepts.tsx"), "utf-8"),
-  },
-
   resources: [
     {
       title: "Switching to Preact (from React)",
@@ -37,6 +22,8 @@ const meta = {
       url: "https://preactjs.com/guide/differences-to-react/",
     },
   ],
+
+  article: readFileSync(join(__dirname, "./article.md"), "utf-8"),
 };
 
 module.exports = meta;

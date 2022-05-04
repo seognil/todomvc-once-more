@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TodoListItem from "./TodoListItem.vue";
-import { filtedTodos } from "../model/model";
+import { filtedTodos } from "../model";
 </script>
 
 <template>

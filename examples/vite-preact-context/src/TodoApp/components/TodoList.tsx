@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import type { FunctionalComponent as FC } from "preact";
 import { useEffect, useRef, useState } from "preact/compat";
-import type { TodoItem } from "../model/model";
-import { useTodoModel } from "../model/model";
+import type { TodoItem } from "../model";
+import { useTodoModel } from "../model";
 
 // * ================================================================================
 

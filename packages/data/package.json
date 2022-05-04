@@ -1,16 +1,19 @@
 {
   "name": "@todo/data",
   "private": true,
-  "main": "dist/index.mjs",
+  "main": "dist/index.js",
   "types": "src/index.ts",
   "scripts": {
     "build": "pnpm build:stats && pnpm build:export",
     "build:stats": "tsno run scripts/build-stats.ts",
-    "build:export": "tsup --format=esm src/index.ts",
+    "build:export": "tsup --format=cjs,esm src/index.ts",
     "build:colors": "tsno run scripts/build-colors.ts",
     "build:lang": "tsno run scripts/build-syntax-type.ts"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/node": "^17.0.31",
+    "@types/react-syntax-highlighter": "^15.5.1",
     "execa": "^6.1.0",
     "find-up": "^6.3.0",
     "fs-extra": "^10.1.0",

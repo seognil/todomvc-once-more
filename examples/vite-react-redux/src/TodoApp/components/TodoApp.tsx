@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { Provider } from "react-redux";
-import { todoDataStore } from "../model/model";
+import { todoDataStore } from "../model";
 import "../styles/style-from-todo-mvc-website.scss";
 import "../styles/style-patch.scss";
 import { NewTodoBlock } from "./NewTodoBlock";
