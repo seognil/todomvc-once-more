@@ -18,7 +18,9 @@ export const PieChart: FC<{ clocs: ClocInfo[]; className?: string }> = ({ clocs,
   const [w, h] = [size, size];
   const [x, y] = [w / 2, h / 2];
   const origin = [x, y] as const;
-  const getRadius = (val: number) => Math.pow(val / localMax, 1 / 2) * (size / 2) * (csum / csumMax);
+
+  const minr = 0.4;
+  const getRadius = (val: number) => ((val / localMax) ** 0.8 * (1 - minr) + minr) * (size / 2) * (csum / csumMax);
 
   // * ----------------
 
