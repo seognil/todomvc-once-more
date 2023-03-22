@@ -1,7 +1,8 @@
+import type { Signal } from "@preact/signals";
 import clsx from "clsx";
 import type { FunctionalComponent as FC } from "preact";
-import { memo, useEffect, useRef, useState } from "preact/compat";
-import { TodoItem, changeTodoCompletedById, deleteTodoById, filtedTodos, updateTodoContent } from "../model";
+import { useEffect, useRef, useState } from "preact/compat";
+import { TodoItem, changeTodoCompleted, deleteTodoById, filtedTodos, updateTodoContent } from "../model";
 
 // * ================================================================================
 
@@ -11,7 +12,7 @@ export const TodoList: FC = () => {
   return (
     <ul className="todo-list">
       {filtedTodos.value.map((item) => (
-        <TodoListItem key={item.id} item={item} />
+        <TodoListItem key={item.value.id} item={item} />
       ))}
     </ul>
   );
@@ -19,8 +20,8 @@ export const TodoList: FC = () => {
 
 // * ---------------------------------------------------------------- TodoListItem
 
-const TodoListItem: FC<{ item: TodoItem }> = memo(({ item }) => {
-  const { id, content, completed } = item;
+const TodoListItem: FC<{ item: Signal<TodoItem> }> = ({ item }) => {
+  const { id, content, completed } = item.value;
 
   const [localText, setLocalText] = useState("");
   const [editing, setEditing] = useState(false);
@@ -40,7 +41,7 @@ const TodoListItem: FC<{ item: TodoItem }> = memo(({ item }) => {
   const exitTextEdition = () => {
     setEditing(false);
     if (!localText) return deleteTodoById(id);
-    if (localText !== content) return updateTodoContent({ id, content: localText });
+    if (localText !== content) return updateTodoContent(item, localText);
   };
 
   // * ---------------- render
@@ -52,7 +53,7 @@ const TodoListItem: FC<{ item: TodoItem }> = memo(({ item }) => {
           className="toggle"
           type="checkbox"
           checked={completed}
-          onChange={() => changeTodoCompletedById(id)}
+          onChange={() => changeTodoCompleted(item)}
           aria-label="toggle todo"
         />
         <label onDblClick={intoTextEditing}>{content}</label>
@@ -70,4 +71,4 @@ const TodoListItem: FC<{ item: TodoItem }> = memo(({ item }) => {
       />
     </li>
   );
-});
+};

@@ -48,6 +48,46 @@ importers:
       typescript: 4.9.5
       vite: 4.2.1
 
+  examples/vite-preact-signal-optimized:
+    specifiers:
+      '@preact/preset-vite': ^2.5.0
+      '@preact/signals': ^1.1.3
+      clsx: ^1.2.1
+      nanoid: ^4.0.1
+      preact: ^10.13.0
+      typescript: ^4.9.3
+      vite: ^4.2.0
+    dependencies:
+      '@preact/signals': 1.1.3_preact@10.13.1
+      clsx: 1.2.1
+      nanoid: 4.0.1
+      preact: 10.13.1
+    devDependencies:
+      '@preact/preset-vite': 2.5.0_preact@10.13.1+vite@4.2.1
+      typescript: 4.9.5
+      vite: 4.2.1
+
+  examples/vite-preact-signal-with-immer:
+    specifiers:
+      '@preact/preset-vite': ^2.5.0
+      '@preact/signals': ^1.1.3
+      clsx: ^1.2.1
+      immer: ^9.0.19
+      nanoid: ^4.0.1
+      preact: ^10.13.0
+      typescript: ^4.9.3
+      vite: ^4.2.0
+    dependencies:
+      '@preact/signals': 1.1.3_preact@10.13.1
+      clsx: 1.2.1
+      immer: 9.0.19
+      nanoid: 4.0.1
+      preact: 10.13.1
+    devDependencies:
+      '@preact/preset-vite': 2.5.0_preact@10.13.1+vite@4.2.1
+      typescript: 4.9.5
+      vite: 4.2.1
+
   examples/vite-react-context:
     specifiers:
       '@types/react': ^17.0.33
