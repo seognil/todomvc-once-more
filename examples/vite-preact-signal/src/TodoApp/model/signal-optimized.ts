@@ -1,4 +1,4 @@
-import { computed, signal } from "@preact/signals";
+import { batch, computed, Signal, signal } from "@preact/signals";
 import { nanoid } from "nanoid";
 
 // * ---------------------------------------------------------------- types and difinitions
@@ -15,12 +15,14 @@ export interface TodoItem {
 
 export const filter = signal<FilterMode>("ALL");
 
-// * JSON-style signal (store everything like redux or context/useState)
-export const todos = signal<TodoItem[]>([]);
+// * nested signals
+// * so todos.value will effect only if add/delete items
+// * (won't effect if updating item.value)
+export const todos = signal<Signal<TodoItem>[]>([]);
 
-export const completedTodos = computed(() => todos.value.filter((e) => e.completed));
+export const completedTodos = computed(() => todos.value.filter((e) => e.value.completed));
 
-export const activeTodos = computed(() => todos.value.filter((e) => !e.completed));
+export const activeTodos = computed(() => todos.value.filter((e) => !e.value.completed));
 
 export const hasCompleted = computed(() => completedTodos.value.length > 0);
 
@@ -30,25 +32,28 @@ export const filtedTodos = computed(() =>
   filter.value === "COMPLETED" ? completedTodos.value : filter.value === "ACTIVE" ? activeTodos.value : todos.value,
 );
 
-export const isAllCompleted = computed(() => todos.value.length !== 0 && todos.value.every((e) => e.completed));
+export const isAllCompleted = computed(() => todos.value.length !== 0 && todos.value.every((e) => e.value.completed));
 
 // * ---------------------------------------------------------------- actions
 
+// * use `.peek()` to read values, use `.value =` to update values
+// * https://preactjs.com/guide/v10/signals/#reading-signals-without-subscribing-to-them
+
 export const createTodo = (todoText: string) => {
   if (!todoText) return;
-  todos.value = [...todos.value, { id: nanoid(), content: todoText, completed: false }];
+  todos.value = [...todos.peek(), signal({ id: nanoid(), content: todoText, completed: false })];
 };
 
-export const updateTodoContent = (patch: Pick<TodoItem, "id" | "content">) => {
-  todos.value = todos.value.map((e) => (e.id === patch.id ? { ...e, ...patch } : e));
+export const updateTodoContent = (item: Signal<TodoItem>, content: string) => {
+  item.value = { ...item.peek(), content };
 };
 
-export const changeTodoCompletedById = (id: string) => {
-  todos.value = todos.value.map((e) => (e.id === id ? { ...e, completed: !e.completed } : e));
+export const changeTodoCompleted = (item: Signal<TodoItem>, nextCompleted = !item.peek().completed) => {
+  item.value = { ...item.peek(), completed: nextCompleted };
 };
 
 export const deleteTodoById = (id: string) => {
-  todos.value = todos.value.filter((e) => e.id !== id);
+  todos.value = todos.peek().filter((item) => item.peek().id !== id);
 };
 
 export const changeVisibilityFilter = (filterValue: FilterMode) => {
@@ -56,9 +61,14 @@ export const changeVisibilityFilter = (filterValue: FilterMode) => {
 };
 
 export const toggleAllTodos = () => {
-  todos.value = todos.value.map((e) => ({ ...e, completed: !isAllCompleted.value }));
+  batch(() => {
+    const nextCompleted = !isAllCompleted.peek();
+    todos.peek().forEach((item) => {
+      changeTodoCompleted(item, nextCompleted);
+    });
+  });
 };
 
 export const clearCompleted = () => {
-  todos.value = todos.value.filter((e) => !e.completed);
+  todos.value = todos.peek().filter((e) => !e.peek().completed);
 };
