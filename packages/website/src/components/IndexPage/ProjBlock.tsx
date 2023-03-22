@@ -31,6 +31,13 @@ export const ProjBlock: FC = () => {
     "vite-react-jotai",
   ];
 
+  const preactList: ExampleNames[] = [
+    "vite-preact-context",
+    "vite-preact-signal",
+    "vite-preact-signal-optimized",
+    "vite-preact-signal-with-immer",
+  ];
+
   const allProjects = [...reactList, ...frameworkList];
   const rest = stats.filter((p) => !allProjects.includes(p.projName as ExampleNames));
 
@@ -43,6 +50,8 @@ export const ProjBlock: FC = () => {
       />
 
       <ProjListByCate list={reactList} wait={["Zusland", "Xstate", "resso"]} title="React and Libraries" />
+
+      <ProjListByCate list={preactList} title="Preact" />
 
       <ProjListByCate
         list={[]}

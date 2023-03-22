@@ -1,4 +1,4 @@
-import type { FC, ReactElement, ReactNode, ReactText } from "react";
+import type { FC, PropsWithChildren, ReactElement, ReactNode, ReactText } from "react";
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 // @ts-ignore for tsno
@@ -6,7 +6,7 @@ import { materialLight, vscDarkPlus } from "react-syntax-highlighter/dist/cjs/st
 
 // * ----------------------------------------------------------------
 
-const ThemeCode: FC = ({ children }) => (
+const ThemeCode: FC<PropsWithChildren<{}>> = ({ children }) => (
   <SyntaxHighlighter
     language="tsx"
     style={materialLight}
@@ -17,7 +17,7 @@ const ThemeCode: FC = ({ children }) => (
   </SyntaxHighlighter>
 );
 
-const ThemePre: FC = ({ children }) => (
+const ThemePre: FC<PropsWithChildren<{}>> = ({ children }) => (
   <SyntaxHighlighter
     language="tsx"
     style={vscDarkPlus}

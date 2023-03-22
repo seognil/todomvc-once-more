@@ -1,7 +1,7 @@
 import { githubUrl } from "@/data";
 import clsx from "clsx";
 import Head from "next/head";
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcTodoList } from "react-icons/fc";
 import { FiActivity } from "react-icons/fi";
@@ -69,7 +69,7 @@ export const Index: FC = () => {
 
 // * ----------------------------------------------------------------
 
-const LinkBtn: FC<{ variant?: "contained" | "outlined"; href: string }> = ({
+const LinkBtn: FC<PropsWithChildren<{ variant?: "contained" | "outlined"; href: string }>> = ({
   variant = "contained",
   href,
   children,

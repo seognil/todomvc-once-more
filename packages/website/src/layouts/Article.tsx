@@ -1,7 +1,7 @@
-import type { FC } from "react";
+import type { FC, PropsWithChildren } from "react";
 import React from "react";
 
-export const Article: FC = ({ children }) => {
+export const Article: FC<PropsWithChildren<{}>> = ({ children }) => {
   return (
     <>
       <div>

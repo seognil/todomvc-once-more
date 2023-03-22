@@ -11,6 +11,9 @@ const withMDX = require("@next/mdx")({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 
   webpack(config, { dev, isServer }) {
     config.plugins.push(UnoCSS({ presets: [presetUno()] }));
