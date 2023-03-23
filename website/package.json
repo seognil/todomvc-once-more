@@ -14,5 +14,9 @@
     "@astrojs/preact": "^2.1.0",
     "astro": "^2.1.5",
     "preact": "^10.6.5"
+  },
+  "devDependencies": {
+    "@unocss/reset": "^0.50.6",
+    "unocss": "^0.50.6"
   }
 }
